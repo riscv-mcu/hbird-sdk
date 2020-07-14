@@ -16,6 +16,7 @@ PFLOAT ?= 1
 # RISC-V DSP instruction is not supported,
 # so we can only use library without dsp instructions
 $(warning "Use and link with RISC-V DSP disabled library")
+COMMON_FLAGS += -DRISCV_ALIGN_ACCESS
 LDLIBS = -lnmsis_dsp_$(RISCV_ARCH) -lm
 
 include $(HBIRD_SDK_ROOT)/Build/Makefile.base
