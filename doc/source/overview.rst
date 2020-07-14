@@ -18,6 +18,11 @@ peripherals access such as GPIO, UART, SPI and I2C, etc.
 HummingBird SDK provides a good start base for embedded developers which will help them simplify
 software development and improve time-to-market through well-designed software framework.
 
+.. note::
+
+   * The **NMSIS** used in this HummingBird SDK is **modified** for HummingBird RISC-V Core,
+     which is not compatiable with **Nuclei NMSIS**, take care.
+   * HummingBird SDK is developed based on Nuclei SDK 0.2.4 release, and will diverge in future.
 
 .. _overview_design_arch:
 

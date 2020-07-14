@@ -6,7 +6,7 @@
 
 This HummingBird SDK is built based on the modified **NMSIS** framework, user can access all the APIs provided by modified **NMSIS** and also the APIs that provided by HummingBird SDK which mainly for on-board peripherals access such as GPIO, UART, SPI and I2C etc.
 
-> **NOTE**
+> **IMPORTANT NOTICE**
   * The **NMSIS** used in this HummingBird SDK is **modified** for HummingBird RISC-V Core, which is not compatiable with **Nuclei NMSIS**, take care.
   * HummingBird SDK is developed based on Nuclei SDK 0.2.4 release, and will diverge in future.
 
