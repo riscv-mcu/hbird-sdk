@@ -163,7 +163,7 @@ typedef enum EXCn {
 /** @} */ /* End of group Configuration_of_CMSIS */
 
 
-#include <nmsis_core.h>                         /*!< HummingBird RISC-V processor and core peripherals */
+#include <nmsis_core.h>                      /*!< HummingBird RISC-V processor and core peripherals */
 /* ToDo: include your system_hbird.h file
          replace 'Device' with your device name */
 #include "system_hbird.h"                    /*!< hbird System */
