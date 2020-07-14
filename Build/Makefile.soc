@@ -1,0 +1,1 @@
+include $(HBIRD_SDK_BUILD)/Makefile.soc.$(SOC)

@@ -1,0 +1,87 @@
+## Small Functions ##
+get_csrcs = $(foreach subdir, $(1), $(wildcard $(subdir)/*.c $(subdir)/*.C))
+get_asmsrcs = $(foreach subdir, $(1), $(wildcard $(subdir)/*.s $(subdir)/*.S))
+get_cxxsrcs = $(foreach subdir, $(1), $(wildcard $(subdir)/*.cpp $(subdir)/*.CPP))
+check_item_exist = $(strip $(if $(filter 1, $(words $(1))),$(filter $(1), $(sort $(2))),))
+
+###
+# For Windows, in Win9x, COMSPEC is defined, WinNT, ComSpec is defined
+###
+ifdef ComSpec
+	WINCMD:=$(ComSpec)
+endif
+ifdef COMSPEC
+	WINCMD:=$(COMSPEC)
+endif
+
+ifneq "$(WINCMD)" ""
+ifneq "$(findstring /cygdrive/,$(PATH))" ""
+	HOST_OS:=Cygwin
+else
+	HOST_OS:=Windows
+endif
+else
+	HOST_OS:=$(shell uname)
+endif
+
+##
+# Define one space
+##
+nullstring=
+space=$(nullstring) # one space
+
+RM=rm -rf
+RMD=rm -rf
+ECHO=echo
+CP=cp -rf
+MKD = mkdir -p
+PS=/$(nullstring)
+NULL=/dev/null
+
+## Check OS ##
+## Check OS == Windows ##
+ifeq "$(HOST_OS)" "Windows"
+	PS=\$(nullstring)
+	NULL=NUL
+	DOS_CMD=$(WINCMD) /C
+	# when OS is windows, force SHELL to be cmd
+	# or if in your evironment path there is
+	# a mingw shell, the make process will go wrong
+	SHELL:=$(WINCMD)
+endif
+
+## Check OS == Linux ##
+ifeq "$(HOST_OS)" "Linux"
+	PS=/$(nullstring)
+	NULL=/dev/null
+endif
+
+## Check OS == Darwin ##
+ifeq "$(HOST_OS)" "Darwin"
+	PS=/$(nullstring)
+	NULL=/dev/null
+endif
+
+## MAKEFILE COMPILE MESSAGE CONTROL ##
+ifeq ($(V),1)
+	Q=
+else
+	Q=@
+endif
+
+## Suppress All Message ##
+ifeq ($(SILENT), 1)
+	TRACE_CREATE_DIR    =
+	TRACE_COMPILE       =
+	TRACE_ASSEMBLE      =
+	TRACE_LINK          =
+	TRACE_ARCHIVE       =
+	## Overwrite Q Value set by V option ##
+	override Q=@
+else
+	TRACE_CREATE_DIR    = @$(ECHO) "Creating Directory : " $(@D)
+	TRACE_COMPILE       = @$(ECHO) "Compiling  : " $<
+	TRACE_ASSEMBLE      = @$(ECHO) "Assembling : " $<
+	TRACE_LINK          = @$(ECHO) "Linking    : " $@
+	TRACE_ARCHIVE       = @$(ECHO) "Archiving  : " $@
+endif

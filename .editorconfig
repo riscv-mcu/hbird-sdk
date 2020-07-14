@@ -1,0 +1,71 @@
+# EditorConfig: https://editorconfig.org/
+
+# top-most EditorConfig file
+root = true
+
+# All (Defaults)
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+end_of_line = lf
+
+# C/C++
+[*.{c,h,cpp}]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+curly_bracket_next_line = false
+spaces_around_brackets = outside
+indent_brace_style = K&R
+spaces_around_operators = hybrid
+
+# Python
+[*.py]
+indent_style = space
+indent_size = 4
+continuation_indent_size = 2
+
+# YAML
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# Shell Script
+[*.sh]
+indent_style = space
+indent_size = 4
+
+# Windows Command Script
+[{*.cmd,*.bat}]
+end_of_line = crlf
+indent_style = tab
+indent_size = 8
+
+# Valgrind Suppression File
+[*.supp]
+indent_style = space
+indent_size = 3
+
+# CMake
+[{CMakeLists.txt,*.cmake}]
+indent_style = space
+indent_size = 2
+
+# Makefile
+[{Makefile,Makefile.*}]
+indent_style = tab
+indent_size = 8
+
+# Markdown
+[{*.md,*.MD}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Rst
+[*.rst]
+indent_style = space
+indent_size = 4

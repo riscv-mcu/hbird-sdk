@@ -1,0 +1,6 @@
+C_SRCDIRS += $(HBIRD_SDK_RTOS)/src $(HBIRD_SDK_RTOS)/libcpu/risc-v/nuclei
+ASM_SRCDIRS += $(HBIRD_SDK_RTOS)/libcpu/risc-v/nuclei
+
+INCDIRS += $(HBIRD_SDK_RTOS)/libcpu/risc-v/nuclei \
+	$(HBIRD_SDK_RTOS)/include \
+	$(HBIRD_SDK_RTOS)/include/libc

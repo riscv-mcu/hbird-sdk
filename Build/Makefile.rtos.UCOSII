@@ -1,0 +1,4 @@
+C_SRCDIRS += $(HBIRD_SDK_RTOS)/source $(HBIRD_SDK_RTOS)/arch
+ASM_SRCDIRS += $(HBIRD_SDK_RTOS)/arch
+
+INCDIRS += $(HBIRD_SDK_RTOS)/arch $(HBIRD_SDK_RTOS)/source/

@@ -1,0 +1,54 @@
+HBIRD_SDK_BUILD = $(HBIRD_SDK_ROOT)/Build
+# Include your local and global makefile variables
+# SOC, DOWNLOAD, PFLOAT, NEWLIB etc.
+# Makefile.global should be placed in $(HBIRD_SDK_ROOT)/Build
+# Makefile.local should be placed together with application Makefile in your own application folder
+# Sample content for this Makefile.local or Makefile.global
+# SOC ?= hbird
+# DOWNLOAD ?= ilm
+EXTRA_MKS := $(wildcard Makefile.local $(HBIRD_SDK_BUILD)/Makefile.global)
+ifneq ("$(strip $(EXTRA_MKS))", "")
+$(info Obtaining addtional make variables from $(EXTRA_MKS))
+include $(EXTRA_MKS)
+endif
+
+# Variables could be passed in make command
+# NOTE: CORE and BOARD are defined in Makefile.soc.$(SOC)
+# BOARD and SOC name should always be lower-case
+## Available choices:
+## The name of sub directories in $(HBIRD_SDK_ROOT)/SoC/
+SOC ?= hbird
+## Available choices:
+## ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
+## flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
+## flashxip: Program will to be download into flash and run directly in Flash
+DOWNLOAD ?= ilm
+## If SIMULATION=1, it means the program is optimized for hardware simulation environment
+SIMULATION ?= 0
+## If V=1, it will display compiling message in verbose including compiling options
+V ?=
+## If SILENT=1, it will not display any compiling messsage
+SILENT ?=
+
+# Variables should be defined in Application Makefile
+## Available choices:
+## The name of sub directories in $(HBIRD_SDK_ROOT)/OS/
+RTOS ?=
+## If PFLOAT=1, it will enable float point print when using nano newlib
+PFLOAT ?= 0
+## If NEWLIB=nano, it will use nano newlib, otherwise it will use normal newlib
+NEWLIB ?= nano
+## If NOGC=1, it will not gc any sections during compiling to save code size
+NOGC ?=
+
+# Directories for SoC and RTOS chosen
+HBIRD_SDK_SOC = $(HBIRD_SDK_ROOT)/SoC/$(SOC)
+HBIRD_SDK_RTOS = $(HBIRD_SDK_ROOT)/OS/$(RTOS)
+
+## Include GNU Make Standard Library
+## Website: http://gmsl.sourceforge.net/
+include $(HBIRD_SDK_BUILD)/gmsl/gmsl
+
+include $(HBIRD_SDK_BUILD)/Makefile.misc
+include $(HBIRD_SDK_BUILD)/Makefile.conf
+include $(HBIRD_SDK_BUILD)/Makefile.rules

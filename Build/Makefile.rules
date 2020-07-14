@@ -1,0 +1,120 @@
+TARGET_ELF = $(TARGET).elf
+
+ALL_CSRCS = $(sort $(C_SRCS) $(call get_csrcs, $(SRCDIRS) $(C_SRCDIRS)))
+ALL_CXXSRCS = $(sort $(CXX_SRCS) $(call get_cxxsrcs, $(SRCDIRS) $(CXX_SRCDIRS)))
+ALL_ASMSRCS = $(sort $(ASM_SRCS) $(call get_asmsrcs, $(SRCDIRS) $(ASM_SRCDIRS)))
+
+ALL_ASM_OBJS := $(ALL_ASMSRCS:=.o)
+ALL_C_OBJS := $(ALL_CSRCS:=.o)
+ALL_CXX_OBJS := $(ALL_CXXSRCS:=.o)
+
+ALL_OBJS += $(ALL_ASM_OBJS) $(ALL_C_OBJS) $(ALL_CXX_OBJS)
+
+ALL_DEPS := $(ALL_OBJS:=.d)
+
+CLEAN_OBJS += $(TARGET).elf $(TARGET).map $(TARGET).bin $(TARGET).dump $(TARGET).hex $(TARGET).verilog $(ALL_OBJS) $(ALL_DEPS)
+REAL_CLEAN_OBJS = $(subst /,$(PS), $(CLEAN_OBJS))
+
+# Default goal, placed before dependency includes
+all: info $(TARGET).elf
+
+# include dependency files of application
+ifneq ($(MAKECMDGOALS),clean)
+-include $(ALL_DEPS)
+endif
+
+.PHONY: all info help bin dasm upload run_openocd run_gdb clean debug
+
+info:
+	@$(ECHO) Current Configuration: RISCV_ARCH=$(RISCV_ARCH) RISCV_ABI=$(RISCV_ABI) SOC=$(SOC) BOARD=$(BOARD) CORE=$(CORE) DOWNLOAD=$(DOWNLOAD)
+
+help:
+	@$(ECHO) "HummingBird RISC-V Embedded Processor Software Development Kit "
+	@$(ECHO) "== Make variables used in HummingBird SDK =="
+	@$(ECHO) "SOC:         Select SoC built in HummingBird SDK, will select hbird by default"
+	@$(ECHO) "BOARD:       Select SoC's Board built in HummingBird SDK, will select hbird_eval by default"
+	@$(ECHO) "CORE:        Not required for all SoCs, currently only hbird require it, e203 by default"
+	@$(ECHO) "DOWNLOAD:    Not required for all SoCs, use ilm by default, optional flashxip/ilm/flash"
+	@$(ECHO) "V:           V=1 verbose make, will print more information, by default V=0"
+	@$(ECHO) "== How to Use with Make =="
+	@$(ECHO) "1. Build Application:"
+	@$(ECHO) "all [PROGRAM=flash/flashxip/ilm]"
+	@$(ECHO) "   Build a software program to load with the debugger."
+	@$(ECHO) "2. Upload Application to Board using OpenOCD and GDB:"
+	@$(ECHO) "upload [PROGRAM=flash/flashxip/ilm]"
+	@$(ECHO) "   Launch OpenOCD to flash your program to the on-board Flash."
+	@$(ECHO) "3:(Option 1) Debug Application using OpenOCD and GDB"
+	@$(ECHO) "  3.1: run_openocd"
+	@$(ECHO) "  3.2: run_gdb [PROGRAM=flash/flashxip/ilm]"
+	@$(ECHO) "   Step 1: Launch OpenOCD for Debugger connection: make run_openocd"
+	@$(ECHO) "   Step 2: Launch GDB to connect openocd server, you can set breakpoints using gdb and debug it."
+	@$(ECHO) "           If you want to load your application, you need to run load in gdb command terminal"
+	@$(ECHO) "           to load your program, then use gdb to debug it."
+	@$(ECHO) "3:(Option 2) Debug Application using OpenOCD and GDB"
+	@$(ECHO) "debug [PROGRAM=flash/flashxip/ilm]"
+	@$(ECHO) "   Launch GDB and OpenOCD to debug your application on-board, you can set breakpoints using gdb and debug it."
+	@$(ECHO) "           If you want to load your application, you need to run load in gdb command terminal"
+	@$(ECHO) "           to load your program, then use gdb to debug it."
+	@$(ECHO) ""
+	@$(ECHO) "== Example Usage =="
+	@$(ECHO) "1. cd $HBIRD_SDK_ROOT/application/helloworld"
+	@$(ECHO) "2. Build for ILM download mode: make DOWNLOAD=ilm all"
+	@$(ECHO) "3. Download application to board: make DOWNLOAD=ilm upload"
+	@$(ECHO) "4.(Option 1) Debug application:"
+	@$(ECHO) "   4.1 Terminal One: make DOWNLOAD=ilm run_openocd"
+	@$(ECHO) "   4.2 Terminal Two: make DOWNLOAD=ilm run_gdb"
+	@$(ECHO) "4.(Option 2) Debug application: make DOWNLOAD=ilm debug"
+	@$(ECHO) ""
+
+
+$(TARGET).elf: $(ALL_OBJS)
+	$(TRACE_LINK)
+	$(Q)$(CC) $(CFLAGS) $(ALL_OBJS) -o $@ $(LDFLAGS)
+	$(Q)$(SIZE) $@
+
+$(ALL_ASM_OBJS): %.o: % $(COMMON_PREREQS)
+	$(TRACE_ASSEMBLE)
+	$(Q)$(CC) $(ASMFLAGS) -c -o $@ $<
+
+$(ALL_C_OBJS): %.o: % $(COMMON_PREREQS)
+	$(TRACE_COMPILE)
+	$(Q)$(CC) $(CFLAGS) -c -o $@ $<
+
+$(ALL_CXX_OBJS): %.o: % $(COMMON_PREREQS)
+	$(TRACE_COMPILE)
+	$(Q)$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+dasm: $(TARGET).elf
+	$(OBJDUMP) -S -D $< > $(TARGET).dump
+	$(OBJCOPY) $< -O ihex $(TARGET).hex
+	$(OBJCOPY) $< -O verilog $(TARGET).verilog
+ifneq "$(HOST_OS)" "Windows"
+	sed -i 's/@800/@000/g' $(TARGET).verilog
+endif
+
+bin: $(TARGET).elf
+	$(OBJCOPY) $< -O binary $(TARGET).bin
+
+upload: $(TARGET).elf
+	@$(ECHO) "Download and run $<"
+	$(GDB) $< -ex "set remotetimeout 240" \
+        -ex "target remote | $(OPENOCD) --pipe $(OPENOCD_ARGS)" \
+        $(GDB_UPLOAD_ARGS) $(GDB_UPLOAD_CMDS)
+	@$(ECHO) "Successfully uploaded $< "
+
+run_openocd:
+	@$(ECHO) "Start openocd server"
+	$(OPENOCD) $(OPENOCD_PORT_ARGS) $(OPENOCD_ARGS)
+
+run_gdb: $(TARGET).elf
+	@$(ECHO) "Run gdb to connect openocd server and debug"
+	$(GDB) $< $(GDB_ARGS) $(GDB_CMDS)
+
+debug: $(TARGET).elf
+	@$(ECHO) "Download and debug $<"
+	$(GDB) $< -ex "set remotetimeout 240" \
+        -ex "target remote | $(OPENOCD) --pipe $(OPENOCD_ARGS)"
+
+clean:
+	@$(ECHO) "Clean all build objects"
+	$(Q)$(RM) $(REAL_CLEAN_OBJS)
