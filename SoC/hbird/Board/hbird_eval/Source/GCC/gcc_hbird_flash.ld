@@ -17,9 +17,9 @@
  */
 /******************************************************************************
  * @file     gcc_hbird_flash.ld
- * @brief    GNU Linker Script for Nuclei N/NX based device in Flash Download Mode
+ * @brief    GNU Linker Script for HummingBird RISC-V device in Flash Download Mode
  * @version  V1.0.0
- * @date     17. Dec 2019
+ * @date     14. Jul 2020
  ******************************************************************************/
 OUTPUT_ARCH( "riscv" )
 

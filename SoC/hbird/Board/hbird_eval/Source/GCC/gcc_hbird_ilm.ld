@@ -17,9 +17,9 @@
  */
 /******************************************************************************
  * @file     gcc_hbird_ilm.ld
- * @brief    GNU Linker Script for Nuclei N/NX based device in ilm Download Mode
+ * @brief    GNU Linker Script for HummingBird RISC-V device in ilm Download Mode
  * @version  V1.0.0
- * @date     17. Dec 2019
+ * @date     14. Jul 2020
  ******************************************************************************/
 OUTPUT_ARCH( "riscv" )
 

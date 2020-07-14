@@ -18,10 +18,9 @@
  */
 /*******************************************************************************
  * @file     system_hbird.h
- * @brief    NMSIS HummingBird RISC-V N/NX Device Peripheral Access Layer Header File for
- *           Device <Device>
+ * @brief    NMSIS HummingBird RISC-V Device Peripheral Access Layer Header File
  * @version  V1.00
- * @date     17. Dec 2019
+ * @date     14. Jul 2020
  ******************************************************************************/
 
 #ifndef __SYSTEM_HBIRD_H__   /* ToDo: replace '<Device>' with your device name */

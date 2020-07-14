@@ -3,7 +3,7 @@
  * @brief    NMSIS Core Peripheral Access Layer Header File for
  *           HummingBird RISC-V evaluation SoC which support HummingBird RISC-V cores
  * @version  V1.00
- * @date     22. Nov 2019
+ * @date     14. Jul 2020
  ******************************************************************************/
 /*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.

@@ -17,9 +17,9 @@
  */
 /******************************************************************************
  * @file     gcc_hbird_flashxip.ld
- * @brief    GNU Linker Script for Nuclei N/NX based device in FlashXIP Download Mode
+ * @brief    GNU Linker Script for HummingBird RISC-V device in FlashXIP Download Mode
  * @version  V1.0.0
- * @date     17. Dec 2019
+ * @date     14. Jul 2020
  ******************************************************************************/
 
 /*********** Use Configuration Wizard in Context Menu *************************/
