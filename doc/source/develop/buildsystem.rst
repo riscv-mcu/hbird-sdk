@@ -490,9 +490,9 @@ run_gdb and specify a different port other than ``3333``.
 
 You can do it like this, take ``hbird_eval`` board for example, such as port ``3344``:
 
-* Open openocd server: ``make SOC=hbird BOARD=hbird_eval CORE=n307 GDB_PORT=3344 run_openocd``
+* Open openocd server: ``make SOC=hbird BOARD=hbird_eval CORE=e203 GDB_PORT=3344 run_openocd``
 
-* connect gdb with openocd server: ``make SOC=hbird BOARD=hbird_eval CORE=n307 GDB_PORT=3344 run_gdb``
+* connect gdb with openocd server: ``make SOC=hbird BOARD=hbird_eval CORE=e203 GDB_PORT=3344 run_gdb``
 
 
 .. _develop_buildsystem_var_v:

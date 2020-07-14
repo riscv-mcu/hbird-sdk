@@ -20,7 +20,7 @@ Port your HummingBird SoC into HummingBird SDK
 If you want to port you HummingBird RISC-V Processor Core based Board to HummingBird SDK,
 you need to follow these steps:
 
-Assume your SoC name is ``ncstar``, based on HummingBird RISC-V core **n307**, and **RISCV_ARCH**
+Assume your SoC name is ``ncstar``, based on HummingBird RISC-V core **e203**, and **RISCV_ARCH**
 is ``rv32imafc``, **RISCV_ABI** is ``ilp32f``, and you made a new board called ``ncstar_eval``,
 and this SoC only support **FlashXIP** download mode.
 
@@ -118,7 +118,7 @@ Make sure the SoC name and Board name used in this HummingBird SDK is all in low
 
         # override DOWNLOAD and CORE variable for NCSTAR SoC
         # even though it was set with a command argument
-        override CORE := n307
+        override CORE := e203
         override DOWNLOAD := flashxip
 
         NCSTAR_SDK_SOC_BOARD=$(HBIRD_SDK_SOC)/Board/$(BOARD)
