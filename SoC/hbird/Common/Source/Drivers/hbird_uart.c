@@ -28,7 +28,9 @@ int32_t uart_write(UART_TypeDef *uart, uint8_t val)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
+#ifndef SIMULATION_XLSPIKE
     while (uart->TXFIFO & UART_TXFIFO_FULL);
+#endif
     uart->TXFIFO = val;
     return 0;
 }
