@@ -28,7 +28,7 @@ int32_t uart_write(UART_TypeDef *uart, uint8_t val)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
-    // while (uart->TXFIFO & UART_TXFIFO_FULL);
+    while (uart->TXFIFO & UART_TXFIFO_FULL);
     uart->TXFIFO = val;
     return 0;
 }

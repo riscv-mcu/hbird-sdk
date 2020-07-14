@@ -134,11 +134,11 @@ typedef enum EXCn {
 
 /* ToDo: define the correct core features for the hbird */
 #define __PLIC_PRESENT            1                     /*!< Set to 1 if PLIC is present */
-#define __PLIC_BASEADDR           0x08000000UL          /*!< Set to PLIC baseaddr of your device */
+#define __PLIC_BASEADDR           0x0C000000UL          /*!< Set to PLIC baseaddr of your device */
 #define __PLIC_INTNUM             30                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System CLINT Timer is present */
-#define __SYSTIMER_BASEADDR       0x02001000UL          /*!< Set to CLINT Timer baseaddr of your device */
+#define __SYSTIMER_BASEADDR       0x02000000UL          /*!< Set to CLINT Timer baseaddr of your device */
 
 /*!< Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */
 #if !defined(__riscv_flen)
