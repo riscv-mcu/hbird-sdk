@@ -266,50 +266,31 @@ We need to build application for this board :ref:`design_board_hbird_eval` using
 
 .. code-block:: shell
 
-    make SOC=gd32vf103 BOARD=gd32vf103v_rvstar all
+    make make SOC=hbird BOARD=hbird_eval CORE=e203 all
 
 Here is the sample output of this command:
 
 .. code-block::
 
-    Current Configuration: RISCV_ARCH=rv32imac RISCV_ABI=ilp32 SOC=gd32vf103 BOARD=gd32vf103v_rvstar CORE=n205 DOWNLOAD=flashxip
-    "Assembling : " ../../../SoC/gd32vf103/Common/Source/GCC/intexc_gd32vf103.S
-    "Assembling : " ../../../SoC/gd32vf103/Common/Source/GCC/startup_gd32vf103.S
-    "Compiling  : " ../../../SoC/gd32vf103/Board/gd32vf103v_rvstar/Source/gd32vf103v_rvstar.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_adc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_bkp.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_can.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_crc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_dac.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_dbg.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_dma.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_exmc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_exti.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_fmc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_fwdgt.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_gpio.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_i2c.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_pmu.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_rcu.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_rtc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_spi.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_timer.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_usart.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Drivers/gd32vf103_wwdgt.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/close.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/fstat.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/gettimeofday.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/isatty.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/lseek.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/read.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/sbrk.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/Stubs/write.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/gd32vf103_soc.c
-    "Compiling  : " ../../../SoC/gd32vf103/Common/Source/system_gd32vf103.c
-    "Compiling  : " hello_world.c
-    "Linking    : " hello_world.elf
-    text    data     bss     dec     hex filename
-    13022     112    2290   15424    3c40 hello_world.elf
+    Current Configuration: RISCV_ARCH=rv32imac RISCV_ABI=ilp32 SOC=hbird BOARD=hbird_eval CORE=e203 DOWNLOAD=ilm
+    Assembling :  ../../../SoC/hbird/Common/Source/GCC/intexc_hbird.S
+    Assembling :  ../../../SoC/hbird/Common/Source/GCC/startup_hbird.S
+    Compiling  :  ../../../SoC/hbird/Common/Source/Drivers/hbird_gpio.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Drivers/hbird_uart.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/close.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/fstat.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/gettimeofday.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/isatty.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/lseek.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/read.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/sbrk.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/Stubs/write.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/hbird_common.c
+    Compiling  :  ../../../SoC/hbird/Common/Source/system_hbird.c
+    Compiling  :  hello_world.c
+    Linking    :  hello_world.elf
+    text	   data	    bss	    dec	    hex	filename
+    7944	    112	   2440	  10496	   2900	hello_world.elf
 
 
 As you can see, that when the application is built successfully, the elf will be generated

@@ -43,9 +43,9 @@ will check this RISC-V CSR **MISA** register value.
     # cd to the helloworld directory
     cd application/baremetal/helloworld
     # Clean the application first
-    make SOC=gd32vf103 BOARD=gd32vf103v_rvstar clean
+    make make SOC=hbird BOARD=hbird_eval CORE=e203 clean
     # Build and upload the application
-    make SOC=gd32vf103 BOARD=gd32vf103v_rvstar upload
+    make make SOC=hbird BOARD=hbird_eval CORE=e203 upload
 
 **Expected output as below:**
 
