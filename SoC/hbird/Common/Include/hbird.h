@@ -76,7 +76,7 @@ typedef enum IRQn
 /* ===========================================  PLIC Interrupt Numbers  ========================================= */
 /* ToDo: add here your plic device specific external interrupt numbers.
          eg.: Interrupt for Timer#1      plic_tim1_handler   ->   TIM1_IRQn */
-    PLIC_INT0_IRQn           = 0,                /*!< Device external Interrupt 0 */
+    PLIC_INT0_IRQn           = 0,                /*!< Device external Interrupt 0, Reserved, no interrupt binded */
     PLIC_INT1_IRQn           = 1,                /*!< Device external Interrupt 1 */
     PLIC_INT2_IRQn           = 2,                /*!< Device external Interrupt 2 */
     PLIC_INT3_IRQn           = 3,                /*!< Device external Interrupt 3 */

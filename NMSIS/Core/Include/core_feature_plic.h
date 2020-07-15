@@ -115,8 +115,8 @@ typedef enum IRQn {
 
     /* ========= PLIC Interrupt Numbers  =================== */
     /* Plic interrupt number also started from 0 */
-    PLIC_INT0_IRQn            = 0,    /*!< 1st plic interrupt */
-    PLIC_INT1_IRQn            = 1,    /*!< 2nd plic interrupt */
+    PLIC_INT0_IRQn            = 0,    /*!< 0 plic interrupt, means no interrupt */
+    PLIC_INT1_IRQn            = 1,    /*!< 1st plic interrupt */
     PLIC_INT_MAX,                     /*!< Number of total plic interrupts */
 } IRQn_Type;
 #endif /* __ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__ */
