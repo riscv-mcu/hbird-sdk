@@ -10,11 +10,11 @@
 
 
 // Interrupt Numbers
-#define SOC_BUTTON_1_IRQn           SOC_INT49_IRQn
-#define SOC_BUTTON_2_IRQn           SOC_INT50_IRQn
+#define SOC_BUTTON_1_IRQn           PLIC_GPIO30_IRQn
+#define SOC_BUTTON_2_IRQn           PLIC_GPIO31_IRQn
 // Interrupt Handler Definitions
-#define SOC_BUTTON_1_HANDLER        plic_irq49_handler
-#define SOC_BUTTON_2_HANDLER        plic_irq50_handler
+#define SOC_BUTTON_1_HANDLER        plic_gpio30_handler
+#define SOC_BUTTON_2_HANDLER        plic_gpio31_handler
 // GPIO Bit Offset
 #define SOC_LED_RED_GPIO_OFS        19
 #define SOC_LED_GREEN_GPIO_OFS      21

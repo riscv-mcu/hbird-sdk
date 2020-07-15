@@ -52,7 +52,7 @@
    * The Library supports single public header file <code>riscv_math.h</code> for Nuclei N cores with little endian.
    * Same header file will be used for floating point unit(FPU) variants.
    *
-   * \note Please refer to [NMSIS-DSP](../../../html/dsp/index.html)
+   * \note Please refer to [NMSIS-DSP](../../../dsp/index.html)
    *
    * Examples
    * --------
@@ -265,7 +265,7 @@ extern "C"
 #define __ALIGNED(x) __declspec(align(x))
 #define LOW_OPTIMIZATION_ENTER
 #define LOW_OPTIMIZATION_EXIT
-#define IAR_ONLY_LOW_OPTIMIZATION_ENTER 
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
 #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 #endif
 
@@ -367,6 +367,113 @@ extern "C"
 
 /* SIMD replacement */
 
+/**
+  @brief         Read 2 Q31 from Q31 pointer and increment pointer afterwards.
+  @param[in]     pQ31      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t read_q31x2_ia (
+  q31_t ** pQ31)
+{
+  q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  val = __LD(*pQ31);
+#else
+  val = *((q63_t *)*pQ31);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(*pQ31), 8);
+#endif
+  *pQ31 += 2;
+  return (val);
+}
+
+/**
+  @brief         Read 2 Q31 from Q31 pointer and decrement pointer afterwards.
+  @param[in]     pQ31      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t read_q31x2_da (
+  q31_t ** pQ31)
+{
+  q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  val = __LD(*pQ31);
+#else
+  val = *((q63_t *)*pQ31);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(*pQ31), 8);
+#endif
+  *pQ31 -= 2;
+  return (val);
+}
+
+/**
+  @brief         Read 2 Q31 from Q31 pointer.
+  @param[in]     pQ31      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t read_q31x2 (
+  q31_t * pQ31)
+{
+  q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  val = __LD(pQ31);
+#else
+  val = *((q63_t *)pQ31);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(pQ31), 8);
+#endif
+  return (val);
+}
+
+/**
+  @brief         Write 2 Q31 to Q31 pointer and increment pointer afterwards.
+  @param[in]     pQ31      points to input value
+  @param[in]     value     Q63 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void write_q31x2_ia (
+		q31_t ** pQ31,
+		q63_t    value)
+{
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  __SD(*pQ31, value);
+#else
+  *((q63_t *)*pQ31) = value;
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(*pQ31), (void *)(&value), 8);
+#endif
+  *pQ31 += 2;
+}
+
+/**
+  @brief         Write 2 Q31 to Q31 pointer.
+  @param[in]     pQ31      points to input value
+  @param[in]     value     Q63 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void write_q31x2 (
+		q31_t * pQ31,
+		q63_t value)
+{
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  __SD(pQ31, value);
+#else
+  *((q63_t *)pQ31) = value;
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(pQ31), (void *)(&value), 8);
+#endif
+}
 
 /**
   @brief         Read 2 Q15 from Q15 pointer.
@@ -378,12 +485,15 @@ __STATIC_FORCEINLINE q31_t read_q15x2 (
 {
   q31_t val;
 
-  //memcpy (&val, pQ15, 4);
-	__ASM volatile (
-	"lw %0, (%1)"
-	:"=r"(val)
-	:"r"(pQ15)
-	);
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
+    "lw %0, (%1)"
+    :"=r"(val)
+    :"r"(pQ15)
+  );
+#else
+  memcpy((void *)(&val), (void *)(pQ15), 4);
+#endif
   return (val);
 }
 
@@ -397,12 +507,15 @@ __STATIC_FORCEINLINE q31_t read_q15x2_ia (
 {
   q31_t val;
 
-  //memcpy (&val, *pQ15, 4);
-	__ASM volatile (
-	"lw %0, (%1)"
-	:"=r"(val)
-	:"r"(*pQ15)
-	);
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
+    "lw %0, (%1)"
+    :"=r"(val)
+    :"r"(*pQ15)
+  );
+#else
+  memcpy((void *)(&val), (void *)(*pQ15), 4);
+#endif
   *pQ15 += 2;
 
   return (val);
@@ -411,16 +524,41 @@ __STATIC_FORCEINLINE q31_t read_q15x2_ia (
 /**
   @brief         Read 4 Q15 from Q15 pointer and increment pointer afterwards.
   @param[in]     pQ15      points to input value
-  @return        Q31 value
+  @return        Q63 value
  */
 __STATIC_FORCEINLINE q63_t read_q15x4_ia (
 		q15_t ** pQ15)
 {
-	q63_t val;
-	val = *((q63_t *)*pQ15);
-	*pQ15 += 4;
+  q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+  val = *((q63_t *)*pQ15);
+#else
+  memcpy((void *)(&val), (void *)(*pQ15), 8);
+#endif
+  *pQ15 += 4;
 
-	return (val);
+  return (val);
+}
+
+/**
+  @brief         Read 4 Q15 from Q15 pointer.
+  @param[in]     pQ15      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t read_q15x4 (
+		q15_t * pQ15)
+{
+  q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+#if __RISCV_XLEN == 64
+  val = __LD(pQ15);
+#else
+  val = *((q63_t *)pQ15);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(pQ15), 8);
+#endif
+  return (val);
 }
 
 /**
@@ -433,12 +571,15 @@ __STATIC_FORCEINLINE q31_t read_q15x2_da (
 {
   q31_t val;
 
-  //memcpy (&val, *pQ15, 4);
+#ifndef RISCV_ALIGN_ACCESS
   __ASM volatile (
     "lw %0, (%1)"
-	:"=r"(val)
-	:"r"(*pQ15)
-  		);
+    :"=r"(val)
+    :"r"(*pQ15)
+  );
+#else
+  memcpy((void *)(&val), (void *)(*pQ15), 4);
+#endif
   *pQ15 -= 2;
 
   return (val);
@@ -449,11 +590,15 @@ __STATIC_FORCEINLINE q31_t read_q15x2_da (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q15x4_da (
+__STATIC_FORCEINLINE q63_t read_q15x4_da (
 		q15_t ** pQ15)
 {
-	q31_t val;
+	q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
 	val = *((q63_t *)*pQ15);
+#else
+    memcpy((void *)(&val), (void *)(*pQ15), 8);
+#endif
 	*pQ15 -= 4;
 
 	return (val);
@@ -469,14 +614,16 @@ __STATIC_FORCEINLINE void write_q15x2_ia (
   q15_t ** pQ15,
   q31_t    value)
 {
-  //q31_t val = value;
-  //memcpy (*pQ15, &val, 4);
-    __ASM volatile (
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
     "sw %0, (%1)"
 	:
 	:"r"(value), "r"(*pQ15)
 	:"memory"
-  		);
+  );
+#else
+  memcpy((void *)(*pQ15), (void *)(&value), 4);
+#endif
   *pQ15 += 2;
 }
 
@@ -490,8 +637,30 @@ __STATIC_FORCEINLINE void write_q15x4_ia (
 		q15_t ** pQ15,
 		q63_t    value)
 {
+#ifndef RISCV_ALIGN_ACCESS
 	*((q63_t *)*pQ15) = value;
+#else
+    memcpy((void *)(*pQ15), (void *)(&value), 8);
+#endif
 	*pQ15 += 4;
+}
+
+/**
+  @brief         Write 4 Q15 to Q15 pointer and decrement pointer afterwards.
+  @param[in]     pQ15      points to input value
+  @param[in]     value     Q31 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void write_q15x4_da (
+		q15_t ** pQ15,
+		q63_t    value)
+{
+#ifndef RISCV_ALIGN_ACCESS
+	*((q63_t *)*pQ15) = value;
+#else
+    memcpy((void *)(*pQ15), (void *)(&value), 8);
+#endif
+	*pQ15 -= 4;
 }
 
 /**
@@ -504,12 +673,16 @@ __STATIC_FORCEINLINE void write_q15x2 (
   q15_t * pQ15,
   q31_t   value)
 {
- __ASM volatile (
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
     "sw %0, (%1)"
 	:
 	:"r"(value), "r"(pQ15)
 	:"memory"
-  		) ;
+  );
+#else
+  memcpy((void *)(pQ15), (void *)(&value), 4);
+#endif
 
 }
 
@@ -523,20 +696,47 @@ __STATIC_FORCEINLINE void write_q15x4 (
 		q15_t * pQ15,
 		q63_t   value)
 {
-	*((q63_t *)pQ15) = value;
+#ifndef RISCV_ALIGN_ACCESS
+  *((q63_t *)pQ15) = value;
+#else
+  memcpy((void *)(pQ15), (void *)(&value), 8);
+#endif
 }
 
 /**
   @brief         Read 8 Q7 from Q7 pointer and increment pointer afterwards.
   @param[in]     pQ7       points to input value
-  @return        Q31 value
+  @return        Q63 value
  */
 __STATIC_FORCEINLINE q63_t read_q7x8_ia (
 		q7_t ** pQ7)
 {
 	q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
 	val = *((q63_t *)*pQ7);
+#else
+    memcpy((void *)(&val), (void *)(*pQ7), 8);
+#endif
 	*pQ7 += 8;
+
+	return val;
+}
+
+/**
+  @brief         Read 8 Q7 from Q7 pointer and decrement pointer afterwards.
+  @param[in]     pQ7       points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t read_q7x8_da (
+		q7_t ** pQ7)
+{
+	q63_t val;
+#ifndef RISCV_ALIGN_ACCESS
+	val = *((q63_t *)*pQ7);
+#else
+    memcpy((void *)(&val), (void *)(*pQ7), 8);
+#endif
+	*pQ7 -= 8;
 	return val;
 }
 
@@ -550,12 +750,15 @@ __STATIC_FORCEINLINE q31_t read_q7x4_ia (
 {
   q31_t val;
 
-  //memcpy (&val, *pQ7, 4);
-	__ASM volatile (
-	"lw %0, (%1)"
-	:"=r"(val)
-	:"r"(*pQ7)
-	);
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
+    "lw %0, (%1)"
+    :"=r"(val)
+    :"r"(*pQ7)
+  );
+#else
+  memcpy((void *)(&val), (void *)(*pQ7), 4);
+#endif
   *pQ7 += 4;
 
   return (val);
@@ -571,12 +774,15 @@ __STATIC_FORCEINLINE q31_t read_q7x4_da (
 {
   q31_t val;
 
-  //memcpy (&val, *pQ7, 4);
-	__ASM volatile (
-	"lw %0, (%1)"
-	:"=r"(val)
-	:"r"(*pQ7)
-	);
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
+    "lw %0, (%1)"
+    :"=r"(val)
+    :"r"(*pQ7)
+  );
+#else
+  memcpy((void *)(&val), (void *)(*pQ7), 4);
+#endif
   *pQ7 -= 4;
 
   return (val);
@@ -592,7 +798,11 @@ __STATIC_FORCEINLINE void write_q7x8_ia (
 		q7_t ** pQ7,
 		q63_t   value)
 {
+#ifndef RISCV_ALIGN_ACCESS
 	*((q63_t *)*pQ7) = value;
+#else
+    memcpy((void *)(*pQ7), (void *)(&value), 8);
+#endif
 	*pQ7 += 8;
 }
 
@@ -608,14 +818,17 @@ __STATIC_FORCEINLINE void write_q7x4_ia (
 {
   q31_t val = value;
 
-  //memcpy (*pQ7, &val, 4);
-	__ASM volatile (
-	"sw %0, (%1)"
-	:
-	:"r"(value), "r"(*pQ7)
-	:"memory"
-	) ;
-	*pQ7 += 4;
+#ifndef RISCV_ALIGN_ACCESS
+  __ASM volatile (
+    "sw %0, (%1)"
+    :
+    :"r"(value), "r"(*pQ7)
+    :"memory"
+  );
+#else
+  memcpy((void *)(*pQ7), (void *)(&value), 4);
+#endif
+  *pQ7 += 4;
 }
 
 /**
@@ -4949,10 +5162,10 @@ __STATIC_FORCEINLINE q15_t riscv_pid_q15(
     /* Implementation of PID controller */
 
     /* acc = A0 * x[n]  */
-    acc = (q31_t) __SMUAD((uint32_t)S->A0, (uint32_t)in);
+    acc = (q31_t) __RV_KMDA((uint32_t)S->A0, (uint32_t)in);
 
     /* acc += A1 * x[n-1] + A2 * x[n-2]  */
-    acc = (q63_t)__SMLALD((uint32_t)S->A1, (uint32_t)read_q15x2 (S->state), (uint64_t)acc);
+    acc = (q63_t)__RV_SMALDA((uint64_t)acc, (uint32_t)S->A1, (uint32_t)read_q15x2 (S->state));
 #else
     /* acc = A0 * x[n]  */
     acc = ((q31_t) S->A0) * in;
