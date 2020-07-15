@@ -422,6 +422,7 @@ int32_t PLIC_Register_IRQ(uint32_t source, uint8_t priority, void *handler)
     }
     /* enable interrupt */
     PLIC_EnableInterrupt(source);
+    __enable_ext_irq();
     return 0;
 }
 #endif

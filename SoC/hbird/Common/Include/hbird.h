@@ -136,11 +136,10 @@ typedef enum EXCn {
 #define __PLIC_PRESENT            1                     /*!< Set to 1 if PLIC is present */
 #ifdef SIMULATION_XLSPIKE
 #define __PLIC_BASEADDR           0x08000000UL          /*!< Set to PLIC baseaddr of your device */
-#define __PLIC_INTNUM             30                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 #else
 #define __PLIC_BASEADDR           0x0C000000UL          /*!< Set to PLIC baseaddr of your device */
-#define __PLIC_INTNUM             30                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 #endif
+#define __PLIC_INTNUM             53                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System CLINT Timer is present */
 #ifdef SIMULATION_XLSPIKE

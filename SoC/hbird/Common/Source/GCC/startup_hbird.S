@@ -38,6 +38,8 @@ _start:
     /* ===== Startup Stage 1 ===== */
     /* Disable Global Interrupt */
     csrc CSR_MSTATUS, MSTATUS_MIE
+    /* Disable all interrupts controlled by CSR MIE */
+    csrw CSR_MIE, 0x0
 
     /* Initialize GP and Stack Pointer SP */
     .option push
