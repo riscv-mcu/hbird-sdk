@@ -170,7 +170,7 @@ __STATIC_FORCEINLINE void PLIC_EnableInterrupt(uint32_t source)
 {
     uint32_t hartid = __RV_CSR_READ(CSR_MHARTID);
     volatile uint32_t *enable_reg = (uint32_t *)((PLIC_BASE) + PLIC_ENABLE_OFFSET + \
-                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5));
+                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5) * 4);
 
     uint32_t current = *enable_reg;
     current = current | (1<<(source&0x1F));
@@ -190,7 +190,7 @@ __STATIC_FORCEINLINE void PLIC_DisableInterrupt(uint32_t source)
 {
     uint32_t hartid = __RV_CSR_READ(CSR_MHARTID);
     volatile uint32_t *enable_reg = (uint32_t *)((PLIC_BASE) + PLIC_ENABLE_OFFSET + \
-                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5));
+                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5) * 4);
 
     uint32_t current = *enable_reg;
     current = current & (~(1<<(source&0x1F)));
@@ -212,7 +212,7 @@ __STATIC_FORCEINLINE uint32_t PLIC_GetInterruptEnable(uint32_t source)
 {
     uint32_t hartid = __RV_CSR_READ(CSR_MHARTID);
     volatile uint32_t *enable_reg = (uint32_t *)((PLIC_BASE) + PLIC_ENABLE_OFFSET + \
-                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5));
+                    (hartid << PLIC_ENABLE_SHIFT_PER_TARGET) + (source >> 5) * 4);
 
     uint32_t current = *enable_reg;
     current = current >> (source&0x1F);
