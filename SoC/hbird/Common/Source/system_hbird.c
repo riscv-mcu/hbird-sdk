@@ -161,7 +161,7 @@ static uint32_t core_exception_handler(unsigned long mcause, unsigned long sp);
 /**
  * \brief      System Default Exception Handler
  * \details
- * This function provided a default exception and NMI handling code for all exception ids.
+ * This function provided a default exception handling code for all exception ids.
  * By default, It will just print some information for debug, Vendor can customize it according to its requirements.
  */
 static void system_default_exception_handler(unsigned long mcause, unsigned long sp)
@@ -234,6 +234,13 @@ void Exception_Register_EXC(uint32_t EXCn, unsigned long exc_handler)
     }
 }
 
+/**
+ * \brief       Register an core interrupt handler for core interrupt number
+ * \details
+ * * For irqn <=  10, it will be registered into SystemCoreInterruptHandlers[irqn-1].
+ * \param   irqn    See \ref IRQn
+ * \param   int_handler     The core interrupt handler for this interrupt code irqn
+ */
 void Interrupt_Register_CoreIRQ(uint32_t irqn, unsigned long int_handler)
 {
     if ((irqn <= 10) && (irqn >= 0)) {
@@ -241,6 +248,13 @@ void Interrupt_Register_CoreIRQ(uint32_t irqn, unsigned long int_handler)
     }
 }
 
+/**
+ * \brief       Register an external interrupt handler for plic external interrupt number
+ * \details
+ * * For irqn <= \ref __PLIC_INTNUM, it will be registered into SystemExtInterruptHandlers[irqn-1].
+ * \param   irqn    See \ref IRQn
+ * \param   int_handler     The external interrupt handler for this interrupt code irqn
+ */
 void Interrupt_Register_ExtIRQ(uint32_t irqn, unsigned long int_handler)
 {
     if ((irqn <= __PLIC_INTNUM) && (irqn >= 0)) {
@@ -248,6 +262,12 @@ void Interrupt_Register_ExtIRQ(uint32_t irqn, unsigned long int_handler)
     }
 }
 
+/**
+ * \brief       Get an core interrupt handler for core interrupt number
+ * \param   irqn    See \ref IRQn
+ * \return
+ * The core interrupt handler for this interrupt code irqn
+ */
 unsigned long Interrupt_Get_CoreIRQ(uint32_t irqn)
 {
     if ((irqn <= 10) && (irqn >= 0)) {
@@ -256,6 +276,12 @@ unsigned long Interrupt_Get_CoreIRQ(uint32_t irqn)
     return 0;
 }
 
+/**
+ * \brief       Get an external interrupt handler for external interrupt number
+ * \param   irqn    See \ref IRQn
+ * \return
+ * The external interrupt handler for this interrupt code irqn
+ */
 unsigned long Interrupt_Get_ExtIRQ(uint32_t irqn)
 {
     if ((irqn <= __PLIC_INTNUM) && (irqn >= 0)) {
@@ -321,9 +347,9 @@ uint32_t core_trap_handler(unsigned long mcause, unsigned long sp)
 }
 
 /**
- * \brief      Common NMI and Exception handler entry
+ * \brief      Common Exception handler entry
  * \details
- * This function provided a command entry for NMI and exception. Silicon Vendor could modify
+ * This function provided a command entry for exception. Silicon Vendor could modify
  * this template implementation according to requirement.
  * \remarks
  * - RISCV provided common entry for all types of exception. This is proposed code template
@@ -365,7 +391,7 @@ void SystemBannerPrint(void)
 /**
  * \brief  Register a riscv core interrupt and register the handler
  * \details
- * This function set priority and handler for plic interrupt
+ * This function set interrupt handler for core interrupt
  * \param [in]  irqn        interrupt number
  * \param [in]  handler     interrupt handler, if NULL, handler will not be installed
  * \return       -1 means invalid input parameter. 0 means successful.
