@@ -28,6 +28,7 @@ build_doc:
         - make clean
         - make all
         - make latexpdf
+        - make clean_xml
         - cp build/latex/*.pdf build/html/
     tags:
         - software-server
