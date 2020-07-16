@@ -12,10 +12,10 @@ Core
 .. doxygengroup:: NMSIS_Core_Base_Registers
    :project: nmsis_core
 
-ECLIC
------
+PLIC
+----
 
-.. doxygengroup:: NMSIS_Core_ECLIC_Registers
+.. doxygengroup:: NMSIS_Core_PLIC_Registers
    :project: nmsis_core
 
 SysTimer

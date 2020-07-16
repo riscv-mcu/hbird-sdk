@@ -32,17 +32,8 @@ In our FreeRTOS portable code, we are using ``SysTimer Interrupt`` as RTOS SysTi
 Interrupt, and using ``SysTimer Software Interrupt`` to do task switch.
 
 These two interrupts are kept as lowest level, and ``SysTimer Interrupt``
-is initialized as non-vector interrupt, and ``SysTimer Software Interrupt``
-is initialized as vector interrupt.
-
-In our FreeRTOS porting, we also allow FreeRTOS configuration variable
-``configMAX_SYSCALL_INTERRUPT_PRIORITY`` which can be find in https://www.freertos.org/a00110.html.
-
-The ``configMAX_SYSCALL_INTERRUPT_PRIORITY`` should be set to be a
-absolute interrupt level range from 1 to (2^lvlbits-1) while ``lvlbits = min(nlbits, CLICINTCTLBITS)``.
-
-If you set configMAX_SYSCALL_INTERRUPT_PRIORITY to value above the accepted
-value range, it will use the max value.
+is initialized as core internal interrupt, and ``SysTimer Software Interrupt``
+is initialized as core internal interrupt.
 
 If you want to learn about how to use FreeRTOS APIs, you need to go to
 its website to learn the FreeRTOS documentation in its website.
