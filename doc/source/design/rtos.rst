@@ -125,7 +125,7 @@ And also the ``rt_hw_board_init`` function is implemented in our portable code.
 If you want to learn about ``RT-Thread``, please click:
 
 * For Chinese version, click https://www.rt-thread.org/document/site/
-* For English version, click https://github.com/RT-Thread/rt-thread#documentation
+* For English version, click https://github.com/RT-Thread/rt-thread
 
 In HummingBird SDK, if you want to use **RT-Thread** in your application, you need
 to add ``RTOS = RTThread`` in your application Makefile.
