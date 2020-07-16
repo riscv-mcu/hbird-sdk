@@ -188,7 +188,7 @@
 
 /** \brief Use this attribute to indicate that the specified function is an interrupt handler. */
 #ifndef   __INTERRUPT
-  #define __INTERRUPT                            __attribute__((interrupt))
+  #define __INTERRUPT
 #endif
 
 /** @} */ /* End of Doxygen Group NMSIS_Core_CompilerControl */

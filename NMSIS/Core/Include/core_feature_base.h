@@ -148,11 +148,11 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t mode:6;                        /*!< bit:     0..5   interrupt mode control */
+        rv_csr_t mode:2;                        /*!< bit:     0..2   interrupt mode control */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t addr:58;                       /*!< bit:     6..63  mtvec address */
+        rv_csr_t addr:61;                       /*!< bit:     3..63  mtvec address */
 #else
-        rv_csr_t addr:26;                       /*!< bit:     6..31  mtvec address */
+        rv_csr_t addr:29;                       /*!< bit:     3..31  mtvec address */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -196,66 +196,6 @@ typedef union {
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MCOUNTINHIBIT_Type;
-
-/**
- * \brief  Union type to access msubm configure register.
- */
-typedef union {
-    struct {
-        rv_csr_t _reserved0:6;                  /*!< bit:     0..5   Reserved */
-        rv_csr_t typ:2;                         /*!< bit:     6..7   current trap type */
-        rv_csr_t ptyp:2;                        /*!< bit:     8..9   previous trap type */
-#if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved1:54;                 /*!< bit:     10..63 Reserved */
-#else
-        rv_csr_t _reserved1:22;                 /*!< bit:     10..31 Reserved */
-#endif
-    } b;                                        /*!< Structure used for bit  access */
-    rv_csr_t d;                                 /*!< Type      used for csr data access */
-} CSR_MSUBM_Type;
-
-/**
- * \brief  Union type to access MMISC_CTRL configure register.
- */
-typedef union {
-    struct {
-        rv_csr_t _reserved0:3;                  /*!< bit:     0..2  Reserved */
-        rv_csr_t bpu:1;                         /*!< bit:     3     dynamic prediction enable flag */
-        rv_csr_t _reserved1:2;                  /*!< bit:     4..5  Reserved */
-        rv_csr_t misalign:1;                    /*!< bit:     6     misaligned access support flag */
-        rv_csr_t _reserved2:2;                  /*!< bit:     7..8  Reserved */
-        rv_csr_t nmi_cause:1;                   /*!< bit:     9     mnvec control and nmi mcase exccode */
-#if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved3:54;                 /*!< bit:     10..63 Reserved */
-#else
-        rv_csr_t _reserved3:22;                 /*!< bit:     10..31 Reserved */
-#endif
-    } b;                                        /*!< Structure used for bit  access */
-    rv_csr_t d;                                 /*!< Type      used for csr data access */
-} CSR_MMISCCTRL_Type;
-
-
-/**
- * \brief  Union type to access MSAVESTATUS configure register.
- */
-typedef union {
-    struct {
-        rv_csr_t mpie1:1;                       /*!< bit:     0     interrupt enable flag of fisrt level NMI/exception nestting */
-        rv_csr_t mpp1:2;                        /*!< bit:     1..2  privilede mode of fisrt level NMI/exception nestting */
-        rv_csr_t _reserved0:3;                  /*!< bit:     3..5  Reserved */
-        rv_csr_t ptyp1:2;                       /*!< bit:     6..7  NMI/exception type of before first nestting */
-        rv_csr_t mpie2:1;                       /*!< bit:     8     interrupt enable flag of second level NMI/exception nestting */
-        rv_csr_t mpp2:2;                        /*!< bit:     9..10 privilede mode of second level NMI/exception nestting */
-        rv_csr_t _reserved1:3;                  /*!< bit:     11..13     Reserved */
-        rv_csr_t ptyp2:2;                       /*!< bit:     14..15     NMI/exception type of before second nestting */
-#if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved2:48;                 /*!< bit:     16..63 Reserved*/
-#else
-        rv_csr_t _reserved2:16;                 /*!< bit:     16..31 Reserved*/
-#endif
-    } b;                                        /*!< Structure used for bit  access */
-    rv_csr_t w;                                 /*!< Type      used for csr data access */
-} CSR_MSAVESTATUS_Type;
 /** @} */ /* End of Doxygen Group NMSIS_Core_Base_Registers */
 
 /* ###########################  Core Function Access  ########################### */
