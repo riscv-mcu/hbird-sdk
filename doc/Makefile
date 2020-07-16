@@ -7,6 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+DOXYDIR       = $(BUILDDIR)/html/design/doxygen
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -19,8 +20,16 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-all:
+all: doxygen_core
 	make html
+
+clean_xml:
+	rm -rf $(DOXYDIR)/core/xml/
+	rm -rf $(DOXYDIR)/core/def/
+
+doxygen_core:
+	mkdir -p $(DOXYDIR)
+	cd source/doxygen && doxygen nmsis_core.dxy
 
 firefox:
 	firefox build/html/index.html

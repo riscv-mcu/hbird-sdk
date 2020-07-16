@@ -42,8 +42,9 @@ The HummingBird SDK general design and architecture are shown in the block diagr
 
 As :ref:`figure_overview_1` shown, The HummingBird SDK provides the following features:
 
-* HummingBird RISC-V Core API service is built on top of a modified version of |NMSIS|, so silicon vendors
-  of HummingBird RISC-V processors can easily port their SoCs to HummingBird SDK, and quickly evaluate software on their SoC.
+* :ref:`HummingBird RISC-V Core API<nmsis_core>` service is built on top of a modified version of |NMSIS|,
+  so silicon vendors of HummingBird RISC-V processors can easily port their SoCs to HummingBird SDK, and
+  quickly evaluate software on their SoC.
 * **NMSIS-NN** and **NMSIS-DSP** library can be also used in HummingBird SDK, and the prebuilt libraries are
   included in **NMSIS/Library** folder of HummingBird SDK.
 * Mainly support two HummingBird RISC-V Processor based SoCs, :ref:`design_soc_hbird`.

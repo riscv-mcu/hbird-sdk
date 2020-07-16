@@ -25,14 +25,19 @@ NMSIS in HummingBird SDK
 ------------------------
 
 This HummingBird SDK is built based on the **modified** |NMSIS| framework,
-user can access `NMSIS Core API`_, `NMSIS DSP API`_ and `NMSIS NN API`_
+user can access :ref:`NMSIS Core API <nmsis_core>`, `NMSIS DSP API`_ and `NMSIS NN API`_
 provided by |NMSIS|.
 
-These NMSIS APIs are mainly responsible for accessing HummingBird RISC-V Processor
-Core.
+These modified NMSIS-Core APIs are mainly responsible for accessing HummingBird
+RISC-V Processor Core.
 
-The prebuilt NMSIS-DSP and NMSIS-NN libraries are also provided in HummingBird SDK,
-see ``NMSIS/Library/`` folder.
+.. toctree::
+   :maxdepth: 3
+
+   core/index.rst
+
+The prebuilt NMSIS-DSP and NMSIS-NN libraries without dsp are also provided in
+HummingBird SDK, see ``NMSIS/Library/`` folder.
 
 .. note::
 

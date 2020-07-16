@@ -1,0 +1,8 @@
+/** \mainpage Overview
+
+This Modified NMSIS-Core implements the basic run-time system for Opensource
+HummingBird RISC-V core device and gives the user access to the processor core and the device peripherals.
+
+For more details, please refer to [NMSIS-Core For HummingBird RISC-V Core](../../../core/index.html)
+
+*/
