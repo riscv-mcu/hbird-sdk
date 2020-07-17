@@ -13,13 +13,13 @@ CTEST(timer, timer_irq) {
   __disable_core_irq(SysTimerSW_IRQn);
   ASSERT_EQUAL(__get_core_irq_pending(SysTimerSW_IRQn), 0);
 
-  Core_Register_IRQ(SysTimerSW_IRQn ,core_msip_handler);    /* register system timer SW interrupt */
-  SysTimer_SetSWIRQ();
-  __RWMB();
-  ASSERT_NOT_EQUAL(__get_core_irq_pending(SysTimerSW_IRQn), 0);
-  __enable_irq();
-  for(uint32_t i = 10; i > 0; --i) {}
-  ASSERT_EQUAL(__get_core_irq_pending(SysTimerSW_IRQn), 0);
+//   Core_Register_IRQ(SysTimerSW_IRQn ,core_msip_handler);    /* register system timer SW interrupt */
+//   SysTimer_SetSWIRQ();
+//   __RWMB();
+//   ASSERT_NOT_EQUAL(__get_core_irq_pending(SysTimerSW_IRQn), 0);
+//   __enable_irq();
+//   for(uint32_t i = 10; i > 0; --i) {}
+//   ASSERT_EQUAL(__get_core_irq_pending(SysTimerSW_IRQn), 0);
 
   __disable_core_irq(SysTimerSW_IRQn);
   __disable_irq();

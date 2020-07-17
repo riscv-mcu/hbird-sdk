@@ -254,7 +254,7 @@ Hardware Preparation
 Please check :ref:`design_board` and find your board's page, and follow **Setup** section
 to setup your hardware, mainly **JTAG debugger driver setup and on-board connection setup**.
 
-* Power on the **RVStar** board, and use USB Type-C data cable to connect the board and your PC,
+* Power on the **HummingBird** board, and use Micro-USB data cable to connect the board and your PC,
   make sure you have setup the JTAG driver correctly, and you can see JTAG port and serial port.
 * Open a UART terminal tool such as |teraterm| or |minicom|, and minitor the serial port of the Board,
   the UART baudrate is *115200 bps*
@@ -266,7 +266,7 @@ We need to build application for this board :ref:`design_board_hbird_eval` using
 
 .. code-block:: shell
 
-    make make SOC=hbird BOARD=hbird_eval CORE=e203 all
+    make SOC=hbird BOARD=hbird_eval CORE=e203 all
 
 Here is the sample output of this command:
 
@@ -299,7 +299,7 @@ and will also print the size information of the ``hello_world.elf``.
 .. note::
 
     * In order to make sure that there is no application build before, you can run
-      ``make SOC=gd32vf103 BOARD=gd32vf103v_rvstar clean`` to clean previously built
+      ``make SOC=hbird BOARD=hbird_eval CORE=e203 clean`` to clean previously built
       objects and build dependency files.
     * About the make variable or option(**SOC**, **BOARD**) passed to make command, please refer
       to :ref:`develop_buildsystem`.
@@ -312,38 +312,42 @@ then you can run it using this command line:
 
 .. code-block:: shell
 
-    make SOC=gd32vf103 BOARD=gd32vf103v_rvstar upload
+    make SOC=hbird BOARD=hbird_eval CORE=e203 upload
 
 Here is the sample output of this command:
 
 .. code-block::
 
-    "Download and run hello_world.elf"
+   "Download and run hello_world.elf"
     riscv-nuclei-elf-gdb hello_world.elf -ex "set remotetimeout 240" \
-            -ex "target remote | openocd --pipe -f ../../../SoC/gd32vf103/Board/gd32vf103v_rvstar/openocd_gd32vf103.cfg" \
-            --batch -ex "monitor halt" -ex "monitor halt" -ex "monitor flash protect 0 0 last off" -ex "load" -ex "monitor resume" -ex "monitor shutdown" -ex "quit"
-    D:\Software\Nuclei\gcc\bin\riscv-nuclei-elf-gdb.exe: warning: Couldn't determine a path for the index cache directory.
-    Nuclei OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev-00014-g0eae03214 (2019-12-12-07:43)
+            -ex "target remote | openocd --pipe -f ../../../SoC/hbird/Board/hbi
+            --batch -ex "monitor reset halt" -ex "monitor halt" -ex "monitor fl
+    resume" -ex "monitor shutdown" -ex "quit"
+    D:\Nuclei\gcc\bin\riscv-nuclei-elf-gdb.exe: warning: Couldn't determine a p
+    Nuclei OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev-00014-g0eae03214 (2
     Licensed under GNU GPL v2
     For bug reports, read
             http://openocd.org/doc/doxygen/bugs.html
-    _start0800 () at ../../../SoC/gd32vf103/Common/Source/GCC/startup_gd32vf103.S:359
-    359         j 1b
-    cleared protection for sectors 0 through 127 on flash bank 0
-
-    Loading section .init, size 0x266 lma 0x8000000
-    Loading section .text, size 0x2e9c lma 0x8000280
-    Loading section .rodata, size 0x1f0 lma 0x8003120
-    Loading section .data, size 0x70 lma 0x8003310
-    Start address 0x800015c, load size 13154
-    Transfer rate: 7 KB/sec, 3288 bytes/write.
+    system_default_interrupt_handler (mcause=3735928559, sp=<optimized out>) at88
+    188         printf("MTVAL : 0x%lx\r\n", __RV_CSR_READ(CSR_MBADADDR));
+    JTAG tap: riscv.cpu tap/device found: 0x1e200a6d (mfg: 0x536 (Nuclei System
+    halted at 0x8000050c due to debug interrupt
+    cleared protection for sectors 0 through 63 on flash bank 0
+    
+    Loading section .init, size 0xc4 lma 0x80000000
+    Loading section .text, size 0x1c6e lma 0x80000100
+    Loading section .rodata, size 0x1ec lma 0x80001d70
+    Loading section .data, size 0x70 lma 0x80001f5c
+    Start address 0x80000000, load size 8078
+    Transfer rate: 45 KB/sec, 2019 bytes/write.
+    halted at 0x80000004 due to step
     shutdown command invoked
     A debugging session is active.
-
+    
             Inferior 1 [Remote target] will be detached.
-
+    
     Quit anyway? (y or n) [answered Y; input not from terminal]
-    Remote communication error.  Target disconnected.: Not a directory.
+    Remote communication error.  Target disconnected.: Success.
     "Successfully uploaded hello_world.elf "
 
 
@@ -368,7 +372,7 @@ then you can debug it using this command line:
 
 .. code-block:: shell
 
-    make SOC=gd32vf103 BOARD=gd32vf103v_rvstar debug
+    make SOC=hbird BOARD=hbird_eval CORE=e203 debug
 
 
 1. The program is not loaded automatically when you enter to debug state, just in case you want to
@@ -376,34 +380,35 @@ then you can debug it using this command line:
 
    .. code-block::
 
-      "Download and debug hello_world.elf"
-      riscv-nuclei-elf-gdb hello_world.elf -ex "set remotetimeout 240" \
-              -ex "target remote | openocd --pipe -f ../../../SoC/gd32vf103/Board/gd32vf103v_rvstar/openocd_gd32vf103.cfg"
-      D:\Software\Nuclei\gcc\bin\riscv-nuclei-elf-gdb.exe: warning: Couldn't determine a path for the index cache directory.
-      GNU gdb (GDB) 8.3.0.20190516-git
-      Copyright (C) 2019 Free Software Foundation, Inc.
-      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-      This is free software: you are free to change and redistribute it.
-      There is NO WARRANTY, to the extent permitted by law.
-      Type "show copying" and "show warranty" for details.
-      This GDB was configured as "--host=i686-w64-mingw32 --target=riscv-nuclei-elf".
-      Type "show configuration" for configuration details.
-      For bug reporting instructions, please see:
-      <http://www.gnu.org/software/gdb/bugs/>.
-      Find the GDB manual and other documentation resources online at:
-          <http://www.gnu.org/software/gdb/documentation/>.
-      --Type <RET> for more, q to quit, c to continue without paging--
-
-      For help, type "help".
-      Type "apropos word" to search for commands related to "word"...
-      Reading symbols from hello_world.elf...
-      Remote debugging using | openocd --pipe -f ../../../SoC/gd32vf103/Board/gd32vf103v_rvstar/openocd_gd32vf103.cfg
-      Nuclei OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev-00014-g0eae03214 (2019-12-12-07:43)
-      Licensed under GNU GPL v2
-      For bug reports, read
-              http://openocd.org/doc/doxygen/bugs.html
-      _start0800 () at ../../../SoC/gd32vf103/Common/Source/GCC/startup_gd32vf103.S:359
-      359         j 1b
+     "Download and debug hello_world.elf"
+     riscv-nuclei-elf-gdb hello_world.elf -ex "set remotetimeout 240" \
+             -ex "target remote | openocd --pipe -f ../../../SoC/hbird/Board/hbi
+     D:\Nuclei\gcc\bin\riscv-nuclei-elf-gdb.exe: warning: Couldn't determine a p
+     GNU gdb (GDB) 8.3.0.20190516-git
+     Copyright (C) 2019 Free Software Foundation, Inc.
+     License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.htm
+     This is free software: you are free to change and redistribute it.
+     There is NO WARRANTY, to the extent permitted by law.
+     Type "show copying" and "show warranty" for details.
+     This GDB was configured as "--host=i686-w64-mingw32 --target=riscv-nuclei-e
+     Type "show configuration" for configuration details.
+     For bug reporting instructions, please see:
+     <http://www.gnu.org/software/gdb/bugs/>.
+     Find the GDB manual and other documentation resources online at:
+         <http://www.gnu.org/software/gdb/documentation/>.
+     
+     For help, type "help".
+     Type "apropos word" to search for commands related to "word"...
+     --Type <RET> for more, q to quit, c to continue without paging--
+     Reading symbols from hello_world.elf...
+     Remote debugging using | openocd --pipe -f ../../../SoC/hbird/Board/hbird_e
+     Nuclei OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev-00014-g0eae03214 (2
+     Licensed under GNU GPL v2
+     For bug reports, read
+             http://openocd.org/doc/doxygen/bugs.html
+     system_default_interrupt_handler (mcause=3735928559, sp=<optimized out>)
+         at ../../../SoC/hbird/Common/Source/system_hbird.c:188
+     188         printf("MTVAL : 0x%lx\r\n", __RV_CSR_READ(CSR_MBADADDR));
 
 2. If you want to load the built application, you can type ``load`` to load the application.
 

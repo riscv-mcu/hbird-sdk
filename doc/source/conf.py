@@ -98,9 +98,9 @@ rst_prolog = """
 .. _HummingBird SDK in Github: https://github.com/riscv-mcu/hbird-sdk
 .. |github_hbird_sdk_release| replace:: `HummingBird SDK Release in Github`_
 .. _HummingBird SDK Release in Github: https://github.com/riscv-mcu/hbird-sdk/releases
-.. |teraterm| replace:: `TeraTerm in Windows``
+.. |teraterm| replace:: `TeraTerm in Windows`_
 .. _TeraTerm in Windows: http://ttssh2.osdn.jp/
-.. |minicom| replace:: ``Minicom in Linux``
+.. |minicom| replace:: `Minicom in Linux`_
 .. _Minicom in Linux: https://help.ubuntu.com/community/Minicom
 """
 
