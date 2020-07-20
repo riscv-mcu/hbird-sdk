@@ -1,4 +1,4 @@
-#include "hbird.h"
+#include "hbird_sdk_soc.h"
 
 static uint32_t get_timer_freq()
 {
