@@ -17,7 +17,7 @@ endif
 # BOARD and SOC name should always be lower-case
 ## Available choices:
 ## The name of sub directories in $(HBIRD_SDK_ROOT)/SoC/
-SOC ?= hbird
+SOC ?= hbirdv2
 ## Available choices:
 ## ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
 ## flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
