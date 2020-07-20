@@ -1,4 +1,4 @@
-TARGET = hello_world
+TARGET = helloworld
 
 HBIRD_SDK_ROOT = ../../..
 
