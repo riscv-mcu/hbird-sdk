@@ -55,8 +55,7 @@ _start:
     csrw CSR_MTVEC, t0
 
     /* Direct Mode: All exceptions set pc to BASE. */
-    la t0, 0x7
-    csrc CSR_MTVEC, t0
+    csrc CSR_MTVEC, 0x7
 
     /* ===== Startup Stage 2 ===== */
 
@@ -82,6 +81,7 @@ _start:
     la a2, _eilm
     bgeu a1, a2, 2f
 
+.align 4
 1:
     /* Load code section if necessary */
     lw t0, (a0)
