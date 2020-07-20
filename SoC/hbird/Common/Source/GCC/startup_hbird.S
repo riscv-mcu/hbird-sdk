@@ -81,7 +81,6 @@ _start:
     la a2, _eilm
     bgeu a1, a2, 2f
 
-.align 4
 1:
     /* Load code section if necessary */
     lw t0, (a0)
