@@ -15,6 +15,7 @@ software/*/*.s
 
 *.swp
 *.swo
+*.hex
 
 prebuilt_tools/
 setup_config.sh
