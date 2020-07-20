@@ -7,3 +7,4 @@ SoC
    :maxdepth: 3
 
    hbird.rst
+   hbirdv2.rst

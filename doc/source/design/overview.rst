@@ -41,6 +41,7 @@ Here is the directory structure for this HummingBird SDK.
     │   ├── Makefile.core
     │   ├── Makefile.files
     │   ├── Makefile.files.hbird
+    │   ├── Makefile.files.hbirdv2
     │   ├── Makefile.global
     │   ├── Makefile.misc
     │   ├── Makefile.rtos
@@ -49,7 +50,8 @@ Here is the directory structure for this HummingBird SDK.
     │   ├── Makefile.rtos.RTThread
     │   ├── Makefile.rules
     │   ├── Makefile.soc
-    │   └── Makefile.soc.hbird
+    │   ├── Makefile.soc.hbird
+    │   └── Makefile.soc.hbirdv2
     ├── doc
     │   ├── build
     │   ├── source
@@ -65,7 +67,8 @@ Here is the directory structure for this HummingBird SDK.
     │   ├── UCOSII
     │   └── RTThread
     ├── SoC
-    │   └── hbird
+    │   ├── hbird
+    │   └── hbirdv2
     ├── test
     │   ├── core
     │   ├── ctest.h
@@ -94,7 +97,7 @@ Here is the directory structure for this HummingBird SDK.
 
   This directory contains all the supported SoCs for this HummingBird SDK, the directory name for SoC and its boards should always in lower case.
 
-  Here we mainly support HummingBird processor cores running in Hummingbird FPGA evaluation board, the support package placed in *SoC/hbird/*.
+  Here we mainly support HummingBird processor cores running in Hummingbird FPGA evaluation board, the support package placed in *SoC/hbird/* and *SoC/hbirdv2/*.
 
   In each SoC's include directory, *hbird_sdk_soc.h* must be provided, and include the soc header file, for example, *SoC/hbird/Common/Include/hbird_sdk_soc.h*.
 

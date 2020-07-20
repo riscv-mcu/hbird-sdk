@@ -19,9 +19,11 @@ Here are the main features of this release:
 
 * Support Windows and Linux development in command line using Make
 
-* Support HummingBird FPGA evaluation board
+* Support HummingBird FPGA evaluation board and HummingBird FPGA DDR-200T evaluation board
 
   - The **HummingBird FPGA evaluation board** is used to run evaluation FPGA bitstream
+    of HummingBird E201, E203, E205 processor cores
+  - The **HummingBird FPGA DDR-200T evaluation board** is used to run evaluation FPGA bitstream
     of HummingBird E201, E203, E205 processor cores
 
 * Support different download modes *flashxip*, *ilm*, *flash* for HummingBird FPGA evaluation board

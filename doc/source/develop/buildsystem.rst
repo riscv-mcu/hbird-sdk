@@ -363,6 +363,8 @@ Currently we support the following SoCs, see :ref:`table_dev_buildsystem_1`.
      - Reference
    * - hbird
      - :ref:`design_soc_hbird`
+   * - hbirdv2
+     - :ref:`design_soc_hbirdv2`
 
 .. _develop_buildsystem_var_board:
 
@@ -375,9 +377,10 @@ The **BOARD** variable should match the supported boards of chosen **SOC**.
 You can easily find the supported Boards in the **<HBIRD_SDK_ROOT>/<SOC>/Board/** directory.
 
 * :ref:`table_dev_buildsystem_2`
+* :ref:`table_dev_buildsystem_3`
 
+Currently we support the following Boards.
 
-Currently we support the following SoCs.
 
 .. _table_dev_buildsystem_2:
 
@@ -390,6 +393,19 @@ Currently we support the following SoCs.
      - Reference
    * - hbird_eval
      - :ref:`design_board_hbird_eval`
+
+
+.. _table_dev_buildsystem_3:
+
+.. list-table:: Supported Boards when SOC=hbirdv2
+   :widths: 10 60
+   :header-rows: 1
+   :align: center
+
+   * - **BOARD**
+     - Reference
+   * - hbird_ddr_200t
+     - :ref:`design_board_hbird_ddr_200t`
 
 .. note::
 
