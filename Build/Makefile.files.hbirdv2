@@ -1,0 +1,14 @@
+INCDIRS += $(HBIRD_SDK_SOC_COMMON)/Include
+
+C_SRCDIRS += $(HBIRD_SDK_SOC_COMMON)/Source $(HBIRD_SDK_SOC_COMMON)/Source/Drivers \
+		$(HBIRD_SDK_SOC_COMMON)/Source/Stubs
+
+ASM_SRCS += $(HBIRD_SDK_SOC_COMMON)/Source/GCC/startup_hbirdv2.S \
+		$(HBIRD_SDK_SOC_COMMON)/Source/GCC/intexc_hbirdv2.S
+
+# Add extra board related source files and header files
+VALID_HBIRD_SDK_SOC_BOARD=$(wildcard $(HBIRD_SDK_SOC_BOARD))
+ifneq ($(VALID_HBIRD_SDK_SOC_BOARD),)
+INCDIRS += $(VALID_HBIRD_SDK_SOC_BOARD)/Include
+C_SRCDIRS += $(VALID_HBIRD_SDK_SOC_BOARD)/Source
+endif
