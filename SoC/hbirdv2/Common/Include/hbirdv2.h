@@ -281,7 +281,6 @@ typedef struct {
     __IOM uint32_t SCR;
 } UART_TypeDef;
 
-
 /**
   * @brief QSPI
   */
@@ -334,27 +333,26 @@ typedef struct {
     __IOM uint32_t PRE;
     __IOM uint32_t CTR;
     __IOM uint32_t RX;
-    __IOM uint32_t STATUS; 
-    __IOM uint32_t TX; 
-    __IOM uint32_t CMD; 
+    __IOM uint32_t STATUS;
+    __IOM uint32_t TX;
+    __IOM uint32_t CMD;
 } I2C_TypeDef;
 
 /**
   * @brief PWM
   */
-
 typedef enum {
-	PWM_TIMER0=0,
-	PWM_TIMER1=1,
-	PWM_TIMER2=2,
-	PWM_TIMER3=3,
+    PWM_TIMER0 = 0,
+    PWM_TIMER1 = 1,
+    PWM_TIMER2 = 2,
+    PWM_TIMER3 = 3,
 } PwmTimerNum;
 
 typedef enum {
-	PWM_TIMER_TH_CHANNEL0=0,
-	PWM_TIMER_TH_CHANNEL1=1,
-	PWM_TIMER_TH_CHANNEL2=2,
-	PWM_TIMER_TH_CHANNEL3=3,
+    PWM_TIMER_TH_CHANNEL0 = 0,
+    PWM_TIMER_TH_CHANNEL1 = 1,
+    PWM_TIMER_TH_CHANNEL2 = 2,
+    PWM_TIMER_TH_CHANNEL3 = 3,
 } PwmTimerThChannel;
 
 enum{
@@ -365,15 +363,15 @@ enum{
 };
 
 typedef enum {
-    PWM_TIMER_CMD_START = 0x01, 		/* Start counting */
-    PWM_TIMER_CMD_STOP  = 0x02, 		/* Stop counting */
-    PWM_TIMER_CMD_UPD   = 0x04, 		/* Update timer params */
-    PWM_TIMER_CMD_RST   = 0x08, 		/* Reset counter value */
+    PWM_TIMER_CMD_START = 0x01,         /* Start counting */
+    PWM_TIMER_CMD_STOP  = 0x02,         /* Stop counting */
+    PWM_TIMER_CMD_UPD   = 0x04,         /* Update timer params */
+    PWM_TIMER_CMD_RST   = 0x08,         /* Reset counter value */
 } PwmCounterCmd;
 
 typedef struct {
-    unsigned int SelectInputSource:8;	/* Select counting condition */
-    unsigned int InputEnableIn:3;		/* Define enable rules:
+    unsigned int SelectInputSource:8;    /* Select counting condition */
+    unsigned int InputEnableIn:3;        /* Define enable rules:
                                            000, always count (use clock)
                                            001 count when external input is 0
                                            010 count when external input is 1
@@ -381,28 +379,27 @@ typedef struct {
                                            100 count on falling edge of external
                                            101 count on falling and on rising edge of external
                                            */
-    unsigned int FllOrRTC:1;		/* Clock input of counter is Fll or RTC */
-    unsigned int IncThenDec:1;		/* When counter reaches threshold count down if IncThenDec else return to 0 and ocunt up again */
+    unsigned int FllOrRTC:1;        /* Clock input of counter is Fll or RTC */
+    unsigned int IncThenDec:1;      /* When counter reaches threshold count down if IncThenDec else return to 0 and ocunt up again */
     unsigned int Pad:3;
-    unsigned int PreScaler:8;		/* */
+    unsigned int PreScaler:8;       /* */
     unsigned int Pad2:8;
 } PwmCounterConfig;
 
 typedef struct {
-	unsigned int chThreshold:16;		/* Threshold value for the channel of a counter */
-	unsigned int chAction:3;
-						/* When counter reaches threshold:
-							000: Set
-							001: Toggle then next is Clear
-							010: Set then Clear
-							011: Toggle
-							100: Clear
-							101: Toggle then next is Set
-							110: Clear then Set
-						*/
+    unsigned int chThreshold:16;        /* Threshold value for the channel of a counter */
+    unsigned int chAction:3;
+                        /* When counter reaches threshold:
+                            000: Set
+                            001: Toggle then next is Clear
+                            010: Set then Clear
+                            011: Toggle
+                            100: Clear
+                            101: Toggle then next is Set
+                            110: Clear then Set
+                        */
     unsigned int Pad:13;
 } PwmChannelThConfig;
-
 
 typedef struct{
     unsigned int evt0_sel:4;

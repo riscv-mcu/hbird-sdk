@@ -7,16 +7,16 @@
  extern "C" {
 #endif
 
-#define SPI_CMD_RD    0
-#define SPI_CMD_WR    1
-#define SPI_CMD_QRD   2
-#define SPI_CMD_QWR   3
-#define SPI_CMD_SWRST 4
+#define SPI_CMD_RD      0
+#define SPI_CMD_WR      1
+#define SPI_CMD_QRD     2
+#define SPI_CMD_QWR     3
+#define SPI_CMD_SWRST   4
 
-#define SPI_CSN0 0
-#define SPI_CSN1 1
-#define SPI_CSN2 2
-#define SPI_CSN3 3
+#define SPI_CSN0        0
+#define SPI_CSN1        1
+#define SPI_CSN2        2
+#define SPI_CSN3        3
 
 int32_t spi_setup_cmd_addr(SPI_TypeDef *spi, int cmd, int cmdlen, int addr, int addrlen);
 int32_t spi_setup_dummy(SPI_TypeDef *spi, int dummy_rd, int dummy_wr);

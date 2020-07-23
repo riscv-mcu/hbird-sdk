@@ -7,7 +7,6 @@
  extern "C" {
 #endif
 
-
 typedef enum uart_stop_bit {
     UART_STOP_BIT_1 = 0,
     UART_STOP_BIT_2 = 1

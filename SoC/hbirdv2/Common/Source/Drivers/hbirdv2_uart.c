@@ -14,7 +14,6 @@ int32_t uart_init(UART_TypeDef *uart, uint32_t baudrate)
     uart->FCR = 0xA7;
     uart->LCR = 0x03;
 
-
     return 0;
 }
 

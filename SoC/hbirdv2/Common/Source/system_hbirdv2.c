@@ -153,8 +153,8 @@ static unsigned long SystemCoreInterruptHandlers[10];
  * This typedef is only used internal in this system_<Device>.c file.
  * It is used to do type conversion for registered exception handler before calling it.
  */
-typedef	void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
-typedef	void (*INT_HANDLER) (unsigned long mcause, unsigned long sp);
+typedef void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
+typedef void (*INT_HANDLER) (unsigned long mcause, unsigned long sp);
 
 static uint32_t core_exception_handler(unsigned long mcause, unsigned long sp);
 
@@ -370,7 +370,7 @@ static uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
     if (exc_handler != NULL) {
         exc_handler(mcause, sp);
     }
-	return 0;
+    return 0;
 }
 /** @} */ /* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */
 
