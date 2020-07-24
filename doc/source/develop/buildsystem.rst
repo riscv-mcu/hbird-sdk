@@ -405,7 +405,7 @@ Currently we support the following Boards.
    * - **BOARD**
      - Reference
    * - hbird_ddr_200t
-     - :ref:`design_board_hbird_ddr_200t`
+     - :ref:`design_board_ddr200t`
 
 .. note::
 

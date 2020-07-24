@@ -57,7 +57,7 @@ Supported Boards
 
 In HummingBird SDK, we support the following boards based on **HummingBird** SoC, see:
 
-* :ref:`design_board_hbird_ddr_200t`
+* :ref:`design_board_ddr200t`
 
 .. _design_soc_hbirdv2_usage:
 

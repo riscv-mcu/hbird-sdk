@@ -56,22 +56,26 @@ will check this RISC-V CSR **MISA** register value.
     CPU Frequency 15999631 Hz
     MISA: 0x40001105
     MISA: RV32IMAC
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-    Hello World!
-
+    0: Hello World From RISC-V Processor!
+    1: Hello World From RISC-V Processor!
+    2: Hello World From RISC-V Processor!
+    3: Hello World From RISC-V Processor!
+    4: Hello World From RISC-V Processor!
+    5: Hello World From RISC-V Processor!
+    6: Hello World From RISC-V Processor!
+    7: Hello World From RISC-V Processor!
+    8: Hello World From RISC-V Processor!
+    9: Hello World From RISC-V Processor!
+    10: Hello World From RISC-V Processor!
+    11: Hello World From RISC-V Processor!
+    12: Hello World From RISC-V Processor!
+    13: Hello World From RISC-V Processor!
+    14: Hello World From RISC-V Processor!
+    15: Hello World From RISC-V Processor!
+    16: Hello World From RISC-V Processor!
+    17: Hello World From RISC-V Processor!
+    18: Hello World From RISC-V Processor!
+    19: Hello World From RISC-V Processor!
 
 demo_timer
 ~~~~~~~~~~
@@ -186,8 +190,8 @@ the PLIC API and Interrupt.
 * This is an example of triggering an external interrupt
 * Two GPIO rising edge interrupts are used
 * When the button 1 and button 2 are pressed respectively
-  the program triggers the external rising edge interrupt 
-  and the interrupt processing function will show which button triggered 
+  the program triggers the external rising edge interrupt
+  and the interrupt processing function will show which button triggered
   the interrupt on the serial port
 
 
@@ -208,7 +212,7 @@ the PLIC API and Interrupt.
 
 .. code-block:: console
 
-   
+
    HummingBird SDK Build Time: Jul 16 2020, 16:37:14
    Download Mode: ILM
    CPU Frequency 15999303 Hz
@@ -249,7 +253,7 @@ This `demo_dsp application`_ is used to demostrate how to NMSIS-DSP API.
 
 .. code-block:: console
 
-  
+
     HummingBird SDK Build Time: Jul 16 2020, 15:55:06
     Download Mode: ILM
     CPU Frequency 16006512 Hz
@@ -343,10 +347,10 @@ to get different score number.
     [0]crcfinal      : 0xa14c
     Correct operation validated. See readme.txt for run and reporting rules.
     CoreMark 1.0 : 34.204621 / GCC9.2.0 -O2 -flto -funroll-all-loops -finline-limit=600 -ftree-dominator-opts -fno-if-conversion2 -fselective-scheduling -fno-code-hoisting -fno-common -funroll-loops -finline-functions -falign-functions=4 -falign-jumps=4 -falign-loops=4 / STACK
-    
-    
+
+
     Print Personal Added Addtional Info to Easy Visual Analysis
-    
+
          (Iterations is: 500
          (total_ticks is: 233879271
      (*) Assume the core running at 1 MHz
@@ -394,17 +398,17 @@ to get different score number.
     HummingBird SDK Build Time: Jul 16 2020, 16:15:27
     Download Mode: ILM
     CPU Frequency 15999959 Hz
-    
+
     Dhrystone Benchmark, Version 2.1 (Language: C)
-    
+
     Program compiled without 'register' attribute
-    
+
     Please give the number of runs through the benchmark:
     Execution starts, 500000 runs through Dhrystone
     Execution ends
-    
+
     Final values of the variables used in the benchmark:
-    
+
     Int_Glob:            5
             should be:   5
     Bool_Glob:           1
@@ -451,7 +455,7 @@ to get different score number.
             should be:   DHRYSTONE PROGRAM, 1'ST STRING
     Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
             should be:   DHRYSTONE PROGRAM, 2'ND STRING
-    
+
      (*) User_Cycle for total run through Dhrystone with loops 500000:
     220000037
            So the DMIPS/MHz can be caculated by:
@@ -495,18 +499,18 @@ to get different score number.
     HummingBird SDK Build Time: Jul 16 2020, 16:18:26
     Download Mode: ILM
     CPU Frequency 15997337 Hz
-    
+
     ##########################################
     Single Precision C Whetstone Benchmark Opt 3 32 Bit
     Calibrate
           15.43 Seconds          1   Passes (x 100)
-    
+
     Use 1  passes (x 100)
-    
+
               Single Precision C/C++ Whetstone Benchmark
-    
+
     Loop content                  Result              MFLOPS      MOPS   Seconds
-    
+
     N1 floating point -1.12475013732910156         0.144              0.133
     N2 floating point -1.12274742126464844         0.144              0.930
     N3 if then else    1.00000000000000000                   0.000    0.000
@@ -515,10 +519,10 @@ to get different score number.
     N6 floating point  0.99999982118606567         0.128              4.225
     N7 assignments     3.00000000000000000                  72.090    0.003
     N8 exp,sqrt etc.   0.75110614299774170                   0.010    3.664
-    
+
     MWIPS                                              0.648             15.431
-    
-    
+
+
     MWIPS/MHz                                          0.041             15.431
 
 
@@ -693,7 +697,7 @@ In HummingBird SDK, we provided code and Makefile for this ``rtthread demo`` app
     HummingBird SDK Build Time: Jul 16 2020, 17:22:44
     Download Mode: ILM
     CPU Frequency 16000286 Hz
-    
+
      \ | /
     - RT -     Thread Operating System
      / | \     3.1.3 build Jul 16 2020

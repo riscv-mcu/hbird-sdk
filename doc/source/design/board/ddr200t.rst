@@ -1,19 +1,19 @@
-.. _design_board_hbird_ddr_200t:
+.. _design_board_ddr200t:
 
-HummingBird DDR 200T Evaluation Kit
-===================================
+DDR200T Evaluation Kit
+======================
 
-.. _design_board_hbird_ddr_200t_overview:
+.. _design_board_ddr200t_overview:
 
 Overview
 --------
 
-Nuclei have customized a FPGA evaluation board (called Hummingbird DDR 200T Evaluation Kit),
+Nuclei have customized a FPGA evaluation board (called DDR200T Evaluation Kit),
 which can be programmed with HummingBird SoC FPGA bitstream.
 
-.. _figure_design_board_hbird_ddr_200t_1:
+.. _figure_design_board_ddr200t_1:
 
-.. figure:: /asserts/images/hbird_ddr_200t_board.jpg
+.. figure:: /asserts/images/ddr200t_board.jpg
     :width: 80 %
     :align: center
     :alt: HummingBird FPGA Evaluation Kit
@@ -23,7 +23,7 @@ which can be programmed with HummingBird SoC FPGA bitstream.
 Click `HummingBird FPGA Evaluation Kit Board Documents`_ to access the documents
 of this board.
 
-.. _design_board_hbird_ddr_200t_setup:
+.. _design_board_ddr200t_setup:
 
 Setup
 ~~~~~
@@ -38,7 +38,7 @@ make sure the following items are set correctly:
   is programmed to this board.
 * Following steps in board user manual to setup JTAG drivers for your development environment
 
-.. _design_board_hbird_ddr_200t_use:
+.. _design_board_ddr200t_use:
 
 How to use
 ~~~~~~~~~~
@@ -54,13 +54,13 @@ you just need to use this **SOC** and **BOARD** variables.
 .. code-block:: shell
 
     # Clean the application with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=hbird_ddr_200t DOWNLOAD=ilm CORE=e203 clean
+    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 clean
     # Build the application with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=hbird_ddr_200t DOWNLOAD=ilm CORE=e203 all
+    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 all
     # Upload the application using openocd and gdb with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=hbird_ddr_200t DOWNLOAD=ilm CORE=e203 upload
+    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 upload
     # Debug the application using openocd and gdb with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=hbird_ddr_200t DOWNLOAD=ilm CORE=e203 debug
+    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 debug
 
 .. note::
 

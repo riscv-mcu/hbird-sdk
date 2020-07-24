@@ -1,4 +1,4 @@
-BOARD ?= hbird_ddr_200t
+BOARD ?= ddr200t
 CORE ?= e203
 
 HBIRD_SDK_SOC_BOARD=$(HBIRD_SDK_SOC)/Board/$(BOARD)

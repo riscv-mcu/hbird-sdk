@@ -6,7 +6,7 @@
  extern "C" {
 #endif
 
-#include "board_hbird_ddr_200t.h"
+#include "board_ddr200t.h"
 
 #define SOC_DEBUG_UART      UART0
 

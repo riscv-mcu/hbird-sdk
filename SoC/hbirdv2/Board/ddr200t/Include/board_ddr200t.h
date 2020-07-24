@@ -1,6 +1,6 @@
 // See LICENSE for license details.
-#ifndef _BOARD_HBIRD_DDR_200T_H_
-#define _BOARD_HBIRD_DDR_200T_H_
+#ifndef _BOARD_DDR200T_H_
+#define _BOARD_DDR200T_H_
 
 #ifdef __cplusplus
  extern "C" {
