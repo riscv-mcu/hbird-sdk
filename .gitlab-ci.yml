@@ -8,7 +8,7 @@ stages:
     - doc_build
     - doc_deploy
     - build_hbird_eval
-    - build_hbird_ddr_200t
+    - build_ddr200t
 
 ## Job for build document
 build_doc:
@@ -164,97 +164,97 @@ build_hbird_eval_flashxip_e201:
         FIND_IGNORE: "! -wholename \"*dsp*\""
     <<: *build_hbird_eval_job_def
 
-## Jobs for board hbird_ddr_200t
-.build_hbird_ddr_200t_job_template: &build_hbird_ddr_200t_job_def
-    stage: build_hbird_ddr_200t
+## Jobs for board ddr200t
+.build_ddr200t_job_template: &build_ddr200t_job_def
+    stage: build_ddr200t
     script:
-        - SOC=hbirdv2 BOARD=hbird_ddr_200t hsdk_build_directory    application
-        - SOC=hbirdv2 BOARD=hbird_ddr_200t hsdk_build_directory    test
+        - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application
+        - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test
 
 # Build For HBird Evaluation Board with E203 Core, with Flash, FlashXIP, ILM Mode
-build_hbird_ddr_200t_ilm_e203:
+build_ddr200t_ilm_e203:
     variables:
         DOWNLOAD: "ilm"
         CORE: "e203"
         FIND_IGNORE: "! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flash_e203:
+build_ddr200t_flash_e203:
     variables:
         DOWNLOAD: "flash"
         CORE: "e203"
         FIND_IGNORE: "! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flashxip_e203:
+build_ddr200t_flashxip_e203:
     variables:
         DOWNLOAD: "flashxip"
         CORE: "e203"
         FIND_IGNORE: "! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
 # Build For E205F, with Flash, FlashXIP, ILM Mode
-build_hbird_ddr_200t_ilm_e205f:
+build_ddr200t_ilm_e205f:
     variables:
         DOWNLOAD: "ilm"
         CORE: "e205f"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flash_e205f:
+build_ddr200t_flash_e205f:
     variables:
         DOWNLOAD: "flash"
         CORE: "e205f"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flashxip_e205f:
+build_ddr200t_flashxip_e205f:
     variables:
         DOWNLOAD: "flashxip"
         CORE: "e205f"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
 # Build For E201E, with Flash, FlashXIP, ILM Mode
-build_hbird_ddr_200t_ilm_e201e:
+build_ddr200t_ilm_e201e:
     variables:
         DOWNLOAD: "ilm"
         CORE: "e201e"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flash_e201e:
+build_ddr200t_flash_e201e:
     variables:
         DOWNLOAD: "flash"
         CORE: "e201e"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flashxip_e201e:
+build_ddr200t_flashxip_e201e:
     variables:
         DOWNLOAD: "flashxip"
         CORE: "e201e"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
 # Build For E201, with Flash, FlashXIP, ILM Mode
-build_hbird_ddr_200t_ilm_e201:
+build_ddr200t_ilm_e201:
     variables:
         DOWNLOAD: "ilm"
         CORE: "e201"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flash_e201:
+build_ddr200t_flash_e201:
     variables:
         DOWNLOAD: "flash"
         CORE: "e201"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
 
-build_hbird_ddr_200t_flashxip_e201:
+build_ddr200t_flashxip_e201:
     variables:
         DOWNLOAD: "flashxip"
         CORE: "e201"
         FIND_IGNORE: "! -wholename \"*dsp*\" ! -wholename \"*demo_plic*\""
-    <<: *build_hbird_ddr_200t_job_def
+    <<: *build_ddr200t_job_def
