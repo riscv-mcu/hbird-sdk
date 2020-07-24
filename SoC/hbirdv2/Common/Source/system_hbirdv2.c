@@ -466,6 +466,7 @@ void _premain_init(void)
 {
     /* TODO: Add your own initialization code here, called before main */
     SystemCoreClock = get_cpu_freq();
+    gpio_iof_config(GPIOA, IOF_UART_MASK);
     uart_init(SOC_DEBUG_UART, 115200);
     /* Display banner after UART initialized */
     SystemBannerPrint();

@@ -13,6 +13,7 @@ typedef enum gpio_int_type {
     GPIO_INT_LOW = 3
 } GPIO_INT_TYPE;
 
+int32_t gpio_iof_config(GPIO_TypeDef *gpio, uint32_t mask);
 int32_t gpio_enable_output(GPIO_TypeDef *gpio, uint32_t mask);
 int32_t gpio_enable_input(GPIO_TypeDef *gpio, uint32_t mask);
 int32_t gpio_write(GPIO_TypeDef *gpio, uint32_t mask, uint32_t value);

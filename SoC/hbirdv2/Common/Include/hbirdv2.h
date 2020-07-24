@@ -232,6 +232,30 @@ typedef enum EXCn {
 /****************************************************************************
  * Platform definitions
  *****************************************************************************/
+// IOF Mappings
+#define IOF_PWM0_MASK              _AC(0x0000000F, UL)
+#define IOF_PWM1_MASK              _AC(0x000000F0, UL)
+#define IOF_PWM2_MASK              _AC(0x0000000F, UL)
+#define IOF_PWM3_MASK              _AC(0x000000F0, UL)
+
+#define IOF_SPI_MASK              _AC(0x00003F00,UL)
+#define IOF_SPI_SCK               (8u)
+#define IOF_SPI_SS0               (9u)
+#define IOF_SPI_MOSI              (10u)
+#define IOF_SPI_MISO              (11u)
+#define IOF_SPI_DQ0               (10u)
+#define IOF_SPI_DQ1               (11u)
+#define IOF_SPI_DQ2               (12u)
+#define IOF_SPI_DQ3               (13u)
+
+#define IOF_I2C_MASK              _AC(0x0000C000, UL)
+#define IOF_I2C_SCL               (14u)
+#define IOF_I2C_SDA               (15u)
+
+#define IOF_UART_MASK             _AC(0x00030000, UL)
+#define IOF_UART_RX               (16u)
+#define IOF_UART_TX               (17u)
+
 
 // Interrupt Numbers
 #define SOC_PLIC_NUM_INTERRUPTS    32
@@ -255,6 +279,7 @@ typedef struct {  /*!< GPIO Structure */
     __IOM uint32_t INTTYPE0;
     __IOM uint32_t INTTYPE1;
     __IOM uint32_t INTSTATUS;
+    __IOM uint32_t IOFCFG;
 } GPIO_TypeDef;
 
 /**
@@ -447,12 +472,16 @@ typedef union{
 #define HBIRD_PERIPH_BASE       (0x10000000UL)      /*!< (Peripheral) Base Address */
 
 /* Peripheral memory map */
-#define GPIO_BASE               (HBIRD_PERIPH_BASE + 0x12000)          /*!< (GPIO) Base Address */
+#define GPIOA_BASE              (HBIRD_PERIPH_BASE + 0x12000)          /*!< (GPIOA) Base Address */
 #define UART0_BASE              (HBIRD_PERIPH_BASE + 0x13000)          /*!< (UART0) Base Address */
 #define QSPI0_BASE              (HBIRD_PERIPH_BASE + 0x14000)          /*!< (QSPI0) Base Address */
 #define PWM_BASE                (HBIRD_PERIPH_BASE + 0x15000)          /*!< (PWM0) Base Address */
+#define UART1_BASE              (HBIRD_PERIPH_BASE + 0x23000)          /*!< (UART1) Base Address */
 #define SPI1_BASE               (HBIRD_PERIPH_BASE + 0x24000)          /*!< (QSPI1) Base Address */
-#define I2C_BASE                (HBIRD_PERIPH_BASE + 0x25000)          /*!< (I2C Master) Base Address */
+#define I2C0_BASE               (HBIRD_PERIPH_BASE + 0x25000)          /*!< (I2C0 Master) Base Address */
+#define SPI2_BASE               (HBIRD_PERIPH_BASE + 0x34000)          /*!< (QSPI2) Base Address */
+#define I2C1_BASE               (HBIRD_PERIPH_BASE + 0x35000)          /*!< (I2C1 Master) Base Address */
+#define GPIOB_BASE              (HBIRD_PERIPH_BASE + 0x40000)          /*!< (GPIOB) Base Address */
 
 /** @} */ /* End of group Device_Peripheral_peripheralAddr */
 
@@ -467,24 +496,32 @@ typedef union{
 /** @addtogroup Device_Peripheral_declaration
   * @{
   */
-#define GPIO                    ((GPIO_TypeDef *) GPIO_BASE)
+#define GPIOA                   ((GPIO_TypeDef *) GPIOA_BASE)
 #define UART0                   ((UART_TypeDef *) UART0_BASE)
 #define QSPI0                   ((QSPI_TypeDef *) QSPI0_BASE)
 #define PWM                     ((PWM_TypeDef *)  PWM_BASE)
+#define UART1                   ((UART_TypeDef *) UART1_BASE)
 #define SPI1                    ((SPI_TypeDef *)  SPI1_BASE)
-#define I2C                     ((I2C_TypeDef *)  I2C_BASE)
+#define I2C0                    ((I2C_TypeDef *)  I2C0_BASE)
+#define SPI2                    ((SPI_TypeDef *)  SPI2_BASE)
+#define I2C1                    ((I2C_TypeDef *)  I2C1_BASE)
+#define GPIOB                   ((GPIO_TypeDef *) GPIOB_BASE)
 
 // Helper functions
 #define _REG8(p, i)             (*(volatile uint8_t *) ((p) + (i)))
 #define _REG32(p, i)            (*(volatile uint32_t *) ((p) + (i)))
 #define _REG32P(p, i)           ((volatile uint32_t *) ((p) + (i)))
 
-#define GPIO_REG(offset)        _REG32(GPIO_BASE,  offset)
-#define PWM_REG(offset)         _REG32(PWM_BASE,   offset)
-#define QSPI0_REG(offset)       _REG32(QSPI0_BASE, offset)
-#define SPI1_REG(offset)        _REG32(SPI1_BASE,  offset)
+#define GPIOA_REG(offset)       _REG32(GPIOA_BASE, offset)
 #define UART0_REG(offset)       _REG32(UART0_BASE, offset)
-#define I2C_REG(offset)         _REG8(I2C_BASE,    offset)
+#define QSPI0_REG(offset)       _REG32(QSPI0_BASE, offset)
+#define PWM_REG(offset)         _REG32(PWM_BASE,   offset)
+#define UART1_REG(offset)       _REG32(UART1_BASE, offset)
+#define SPI1_REG(offset)        _REG32(SPI1_BASE,  offset)
+#define I2C0_REG(offset)        _REG32(I2C0_BASE,  offset)
+#define SPI2_REG(offset)        _REG32(SPI2_BASE,  offset)
+#define I2C1_REG(offset)        _REG32(I2C1_BASE,  offset)
+#define GPIOB_REG(offset)       _REG32(GPIOB_BASE, offset)
 
 // Misc
 

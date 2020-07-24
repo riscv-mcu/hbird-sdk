@@ -1,6 +1,16 @@
 #include "hbirdv2.h"
 #include "hbirdv2_gpio.h"
 
+int32_t gpio_iof_config(GPIO_TypeDef *gpio, uint32_t mask)
+{
+    if (__RARELY(gpio == NULL)) {
+        return -1;
+    }
+    gpio->IOFCFG |= mask;
+
+    return 0;
+}
+
 
 int32_t gpio_enable_output(GPIO_TypeDef *gpio, uint32_t mask)
 {
