@@ -21,7 +21,7 @@ int32_t gpio_toggle(GPIO_TypeDef *gpio, uint32_t mask);
 int32_t gpio_read(GPIO_TypeDef *gpio, uint32_t mask);
 int32_t gpio_enable_interrupt(GPIO_TypeDef *gpio, uint32_t mask, GPIO_INT_TYPE type);
 int32_t gpio_disable_interrupt(GPIO_TypeDef *gpio, uint32_t mask);
-int32_t gpio_clear_interrupt(GPIO_TypeDef *gpio, uint32_t mask);
+int32_t gpio_clear_interrupt(GPIO_TypeDef *gpio);
 
 #ifdef __cplusplus
 }

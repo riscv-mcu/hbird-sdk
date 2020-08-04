@@ -105,7 +105,7 @@ int32_t gpio_disable_interrupt(GPIO_TypeDef *gpio, uint32_t mask)
     return 0;
 }
 
-int32_t gpio_clear_interrupt(GPIO_TypeDef *gpio, uint32_t mask)
+int32_t gpio_clear_interrupt(GPIO_TypeDef *gpio)
 {
     if (__RARELY(gpio == NULL)) {
         return -1;
