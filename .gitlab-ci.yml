@@ -28,9 +28,9 @@ build_doc:
         - export PATH=$HOME/.local/bin:$PATH
         - make clean
         - make all
-          #- make latexpdf
+        - make latexpdf
         - make clean_xml
-          #- cp build/latex/*.pdf build/html/
+        - cp build/latex/*.pdf build/html/
     tags:
         - software-server
 
