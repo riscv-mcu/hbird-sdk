@@ -766,9 +766,9 @@ In HummingBird SDK, we provided code and Makefile for this ``rtthread demo`` app
 .. _demo_timer application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/demo_timer
 .. _demo_plic application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/demo_plic
 .. _demo_dsp application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/demo_dsp
-.. _coremark benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/benchmark/coremark
-.. _dhrystone benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/benchmark/dhrystone
-.. _whetstone benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/benchmark/whetstone
+.. _coremark benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/benchmark/coremark
+.. _dhrystone benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/benchmark/dhrystone
+.. _whetstone benchmark application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/baremetal/benchmark/whetstone
 .. _freertos demo application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/freertos/demo
 .. _ucosii demo application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/ucosii/demo
 .. _rt-thread demo application: https://github.com/riscv-mcu/hbird-sdk/tree/master/application/rtthread/demo
