@@ -3,15 +3,10 @@
 Changelog
 =========
 
-V0.1.0-dev
+V0.1.0-RC1
 ----------
 
-This is release ``0.1.0-dev`` of HummingBird SDK, which is under development.
-
-.. warning::
-
-   * The formal release is not yet published, the code is still under development,
-     the changelog is updated due to code changes.
+This is release candidate ``0.1.0-RC1`` of HummingBird SDK.
 
 Here are the main features of this release:
 
