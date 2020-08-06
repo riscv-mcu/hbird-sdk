@@ -16,11 +16,11 @@ which can be programmed with HummingBird SoC FPGA bitstream.
 .. figure:: /asserts/images/ddr200t_board.jpg
     :width: 80 %
     :align: center
-    :alt: HummingBird FPGA Evaluation Kit
+    :alt: DDR200T Evaluation Kit
 
-    HummingBird FPGA Evaluation Kit
+    DDR200T Evaluation Kit
 
-Click `HummingBird FPGA Evaluation Kit Board Documents`_ to access the documents
+Click `DDR200T Evaluation Kit Board Documents`_ to access the documents
 of this board.
 
 .. _design_board_ddr200t_setup:
@@ -28,7 +28,7 @@ of this board.
 Setup
 ~~~~~
 
-Follow the guide in `HummingBird FPGA Evaluation Kit Board Documents`_ to setup the board,
+Follow the guide in `DDR200T Evaluation Kit Board Documents`_ to setup the board,
 make sure the following items are set correctly:
 
 * Use **Hummingbird debugger** to connect the **MCU-JTAG** on board to your PC
@@ -73,4 +73,4 @@ you just need to use this **SOC** and **BOARD** variables.
      If you want to try these demos, please use ``ilm`` or ``flash``
      download mode.
 
-.. _HummingBird FPGA Evaluation Kit Board Documents: https://nucleisys.com/developboard.php
+.. _DDR200T Evaluation Kit Board Documents: https://nucleisys.com/developboard.php

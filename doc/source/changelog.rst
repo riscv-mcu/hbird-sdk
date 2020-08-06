@@ -29,3 +29,7 @@ Here are the main features of this release:
 * Support different download modes *flashxip*, *ilm*, *flash* for HummingBird FPGA evaluation board
 
 * Support different RTOSes such as FreeRTOS, UCOS-II and RT-Thread
+
+* This *hbird-sdk* is forked from `nuclei-sdk`_ , and adapted for opensource HummingBird RISC-V Core.
+
+.. _nuclei-sdk: https://github.com/nuclei-software/nuclei-sdk

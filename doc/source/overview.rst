@@ -22,7 +22,7 @@ software development and improve time-to-market through well-designed software f
 
    * The **NMSIS** used in this HummingBird SDK is **modified** for HummingBird RISC-V Core,
      which is not compatiable with **Nuclei NMSIS**, take care.
-   * HummingBird SDK is developed based on Nuclei SDK 0.2.4 release, and will diverge in future.
+   * HummingBird SDK is developed based on `Nuclei SDK`_ 0.2.4 release, and will diverge in future.
 
 .. _overview_design_arch:
 
@@ -117,3 +117,5 @@ License
 -------
 
 HummingBird SDK is an opensource project licensed by :ref:`Apache License 2.0 <license>`.
+
+.. _Nuclei SDK: https://github.com/nuclei-software/nuclei-sdk
