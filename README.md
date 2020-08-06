@@ -8,7 +8,7 @@ This HummingBird SDK is built based on the modified **NMSIS** framework, user ca
 
 > **IMPORTANT NOTICE**
   * The **NMSIS** used in this HummingBird SDK is **modified** for HummingBird RISC-V Core, which is not compatiable with **Nuclei NMSIS**, take care.
-  * HummingBird SDK is developed based on Nuclei SDK 0.2.4 release, and will diverge in future.
+  * HummingBird SDK is developed based on [Nuclei SDK](https://github.com/Nuclei-Software/nuclei-sdk) 0.2.4 release, and will diverge in future.
 
 We also intergated three RTOSes into HummingBird SDK, which are **FreeRTOS**, **UCOSII** and **RTThread**, you can easily find it in the *OS* folder.
 
