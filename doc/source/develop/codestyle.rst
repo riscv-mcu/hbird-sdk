@@ -15,5 +15,5 @@ We use `doxygen`_ to comment C/C++ source code.
 
 
 .. _EditorConfig: https://editorconfig.org/
-.. _editorconfig file: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/.editorconfig
+.. _editorconfig file: https://github.com/riscv-mcu/hbird-sdk/tree/master/.editorconfig
 .. _doxygen: http://www.doxygen.nl/manual/docblocks.html

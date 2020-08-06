@@ -3,8 +3,8 @@
 Overview
 ========
 
-HummingBird SDK is developed based on **NMSIS**, all the SoCs supported in it
-are following the `NMSIS-Core Device Templates Guidance`_.
+HummingBird SDK is developed based on Modified **NMSIS**, all the SoCs supported in it
+are following the Modified NMSIS-Core Device Templates Guidance.
 
 So this HummingBird SDK can be treated as a software guide for how to use NMSIS.
 
@@ -112,7 +112,7 @@ Here is the directory structure for this HummingBird SDK.
   This directory contains the **modified NMSIS** header files, which is widely used in this HummingBird SDK,
   you can check the *NMSIS_VERSION* file to know the current *NMSIS* version used in **HBird-SDK**.
 
-  We will also sync the changes in `NMSIS project`_ when it provided a new release.
+  We will also sync the changes in NMSIS project when it provided a new release.
 
 * **OS**
 
@@ -202,7 +202,3 @@ This HummingBird SDK project components is list as below:
 * :ref:`design_peripheral`: How to use the peripheral driver in HummingBird SDK
 * :ref:`design_rtos`: What RTOSes are supported in HummingBird SDK
 * :ref:`design_app`: How to use pre-built applications in HummingBird SDK
-
-
-.. _NMSIS-Core Device Templates Guidance: https://doc.HummingBird RISC-Vsys.com/nmsis/core/core_templates.html
-.. _NMSIS project: https://github.com/HummingBird RISC-V-Software/NMSIS
