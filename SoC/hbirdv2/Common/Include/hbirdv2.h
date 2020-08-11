@@ -82,18 +82,16 @@ typedef enum IRQn
     PLIC_UART0_IRQn          = 3,                /*!< Device external Interrupt 3 UART0 */
     PLIC_UART1_IRQn          = 4,                /*!< Device external Interrupt 4 UART1 */
     PLIC_QSPI0_IRQn          = 5,                /*!< Device external Interrupt 5 QSPI0 */
-    PLIC_QSPI1_IRQn          = 6,                /*!< Device external Interrupt 6 SPI1 TX/RX*/
-    PLIC_QSPI1_EOT_IRQn      = 7,                /*!< Device external Interrupt 7 SPI1 End of Trans*/
-    PLIC_QSPI2_IRQn          = 8,                /*!< Device external Interrupt 8 SPI2 TX/RX*/
-    PLIC_QSPI2_EOT_IRQn      = 9,                /*!< Device external Interrupt 9 SPI2 End of Trans*/
-    PLIC_PWM0_IRQn           = 10,               /*!< Device external Interrupt 10 PWM0 */
-    PLIC_PWM1_IRQn           = 11,               /*!< Device external Interrupt 11 PWM1 */
-    PLIC_PWM2_IRQn           = 12,               /*!< Device external Interrupt 12 PWM2 */
-    PLIC_PWM3_IRQn           = 13,               /*!< Device external Interrupt 13 PWM3 */
-    PLIC_I2C0_IRQn           = 14,               /*!< Device external Interrupt 14 I2C0 */
-    PLIC_I2C1_IRQn           = 15,               /*!< Device external Interrupt 15 I2C1 */
-    PLIC_GPIOA_IRQn          = 16,               /*!< Device external Interrupt 16 GPIOA */
-    PLIC_GPIOB_IRQn          = 17,               /*!< Device external Interrupt 17 GPIOB */
+    PLIC_QSPI1_IRQn          = 6,                /*!< Device external Interrupt 6 QSPI1 */
+    PLIC_QSPI2_IRQn          = 7,                /*!< Device external Interrupt 8 QSPI2 */
+    PLIC_PWM0_IRQn           = 8,                /*!< Device external Interrupt 10 PWM0 */
+    PLIC_PWM1_IRQn           = 9,                /*!< Device external Interrupt 11 PWM1 */
+    PLIC_PWM2_IRQn           = 10,               /*!< Device external Interrupt 12 PWM2 */
+    PLIC_PWM3_IRQn           = 11,               /*!< Device external Interrupt 13 PWM3 */
+    PLIC_I2C0_IRQn           = 12,               /*!< Device external Interrupt 14 I2C0 */
+    PLIC_I2C1_IRQn           = 13,               /*!< Device external Interrupt 15 I2C1 */
+    PLIC_GPIOA_IRQn          = 14,               /*!< Device external Interrupt 16 GPIOA */
+    PLIC_GPIOB_IRQn          = 15,               /*!< Device external Interrupt 17 GPIOB */
     PLIC_INT_MAX,
 } IRQn_Type;
 
@@ -146,7 +144,7 @@ typedef enum EXCn {
 #else
 #define __PLIC_BASEADDR           0x0C000000UL          /*!< Set to PLIC baseaddr of your device */
 #endif
-#define __PLIC_INTNUM             18                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
+#define __PLIC_INTNUM             16                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System CLINT Timer is present */
 #ifdef SIMULATION_XLSPIKE
