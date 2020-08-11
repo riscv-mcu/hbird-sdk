@@ -115,3 +115,66 @@ int32_t spi_read_fifo(SPI_TypeDef *spi, int *data, int datalen) {
     
     return 0;
 }
+
+int32_t spi_enable_interrupt(SPI_TypeDef *spi) {
+
+    if (__RARELY(spi == NULL)) {
+        return -1;
+    }
+
+    spi->INTCFG |= 0x80000000;
+    return 0;
+}
+
+int32_t spi_disable_interrupt(SPI_TypeDef *spi) {
+
+    if (__RARELY(spi == NULL)) {
+        return -1;
+    }
+
+    spi->INTCFG &= 0x7FFFFFFF;
+    return 0;
+}
+
+int32_t spi_set_tx_th(SPI_TypeDef *spi, int th) {
+
+    if (__RARELY(spi == NULL)) {
+        return -1;
+    }
+
+    if(th > 31) {
+        printf("Error: TXTH value should not be greater than 31");
+	return -1;
+    }
+
+    spi->INTCFG &= 0xFFFFFFE0;
+    spi->INTCFG |= th;
+
+    return 0;
+}
+
+int32_t spi_set_rx_th(SPI_TypeDef *spi, int th) {
+
+    if (__RARELY(spi == NULL)) {
+        return -1;
+    }
+
+    if(th > 31) {
+        printf("Error: RXTH value should not be greater than 31");
+	return -1;
+    }
+
+    spi->INTCFG &= 0xFFFFE0FF;
+    spi->INTCFG |= (th << 8);
+
+    return 0;
+}
+
+int32_t spi_get_int_status(SPI_TypeDef *spi) {
+
+    if (__RARELY(spi == NULL)) {
+        return -1;
+    }
+
+    return spi->INTSTA;
+}
