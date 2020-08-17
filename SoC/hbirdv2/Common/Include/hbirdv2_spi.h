@@ -29,8 +29,8 @@ int32_t spi_read_fifo(SPI_TypeDef *spi, int *data, int datalen);
 int32_t spi_enable_interrupt(SPI_TypeDef *spi);
 int32_t spi_disable_interrupt(SPI_TypeDef *spi);
 int32_t spi_get_int_status(SPI_TypeDef *spi);
-int32_t spi_set_tx_th(SPI_TypeDef *spi, int th);
-int32_t spi_set_rx_th(SPI_TypeDef *spi, int th);
+int32_t spi_set_tx_th(SPI_TypeDef *spi, uint8_t th);
+int32_t spi_set_rx_th(SPI_TypeDef *spi, uint8_t th);
 
 #ifdef __cplusplus
 }

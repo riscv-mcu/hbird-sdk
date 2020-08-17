@@ -136,15 +136,14 @@ int32_t spi_disable_interrupt(SPI_TypeDef *spi) {
     return 0;
 }
 
-int32_t spi_set_tx_th(SPI_TypeDef *spi, int th) {
+int32_t spi_set_tx_th(SPI_TypeDef *spi, uint8_t th) {
 
     if (__RARELY(spi == NULL)) {
         return -1;
     }
 
     if(th > 31) {
-        printf("Error: TXTH value should not be greater than 31");
-	return -1;
+       th = 31;
     }
 
     spi->INTCFG &= 0xFFFFFFE0;
@@ -153,15 +152,14 @@ int32_t spi_set_tx_th(SPI_TypeDef *spi, int th) {
     return 0;
 }
 
-int32_t spi_set_rx_th(SPI_TypeDef *spi, int th) {
+int32_t spi_set_rx_th(SPI_TypeDef *spi, uint8_t th) {
 
     if (__RARELY(spi == NULL)) {
         return -1;
     }
 
     if(th > 31) {
-        printf("Error: RXTH value should not be greater than 31");
-	return -1;
+       th = 31;
     }
 
     spi->INTCFG &= 0xFFFFE0FF;
