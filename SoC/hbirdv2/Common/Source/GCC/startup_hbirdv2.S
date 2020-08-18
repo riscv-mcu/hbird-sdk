@@ -55,7 +55,7 @@ _start:
     csrw CSR_MTVEC, t0
 
     /* Direct Mode: All exceptions set pc to BASE. */
-    csrc CSR_MTVEC, 0x7
+    csrc CSR_MTVEC, 0x3
 
     /* ===== Startup Stage 2 ===== */
 
@@ -65,9 +65,6 @@ _start:
     csrs mstatus, t0
     csrw fcsr, x0
 #endif
-
-    /* Enable mcycle and minstret counter */
-    csrci CSR_MCOUNTINHIBIT, 0x5
 
     /* ===== Startup Stage 3 ===== */
     /*

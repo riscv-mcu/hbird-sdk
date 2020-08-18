@@ -116,25 +116,29 @@
 /**
  * \brief  Macro for save necessary CSRs to stack
  * \details
- * This macro store MCAUSE, MEPC to stack.
+ * This macro store MCAUSE, MEPC, MSTATUS to stack.
  */
 .macro SAVE_CSR_CONTEXT
     csrr x5, CSR_MEPC
-    STORE x5, 12*REGBYTES(sp)
-    csrr x5, CSR_MCAUSE
     STORE x5, 11*REGBYTES(sp)
+    csrr x5, CSR_MCAUSE
+    STORE x5, 12*REGBYTES(sp)
+    csrr x5, CSR_MSTATUS
+    STORE x5, 13*REGBYTES(sp)
 .endm
 
 /**
  * \brief  Macro for restore necessary CSRs from stack
  * \details
- * This macro restore MEPC, MCAUSE from stack.
+ * This macro restore MEPC, MCAUSE, MSTATUS from stack.
  */
 .macro RESTORE_CSR_CONTEXT
-    LOAD x5,  12*REGBYTES(sp)
-    csrw CSR_MEPC, x5
     LOAD x5,  11*REGBYTES(sp)
+    csrw CSR_MEPC, x5
+    LOAD x5,  12*REGBYTES(sp)
     csrw CSR_MCAUSE, x5
+    LOAD x5,  13*REGBYTES(sp)
+    csrw CSR_MSTATUS, x5
 .endm
 
 /**
@@ -147,7 +151,7 @@
  * to be saved before enter interrupt handler and be restored before return.
  */
 .section .text.trap
-.align 6
+.align 2
 .global trap_entry
 .weak trap_entry
 trap_entry:
