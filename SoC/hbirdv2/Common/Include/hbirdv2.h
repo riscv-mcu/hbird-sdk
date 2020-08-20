@@ -138,7 +138,11 @@ typedef enum EXCn {
 #endif /* __riscv_xlen == 64 */
 
 /* ToDo: define the correct core features for the hbird */
+#ifndef SIMULATION_SPIKE
 #define __PLIC_PRESENT            1                     /*!< Set to 1 if PLIC is present */
+#else
+#define __PLIC_PRESENT            0                     /*!< Set to 1 if PLIC is present */
+#endif
 #ifdef SIMULATION_XLSPIKE
 #define __PLIC_BASEADDR           0x08000000UL          /*!< Set to PLIC baseaddr of your device */
 #else

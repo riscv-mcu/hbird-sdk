@@ -68,10 +68,15 @@ int32_t uart_write(UART_TypeDef *uart, uint8_t val)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
+#ifndef SIMULATION_SPIKE
 #ifndef SIMULATION_XLSPIKE
     while ((uart->LSR & 0x20) == 0);
 #endif
     uart->THR = val;
+#else
+    extern void htif_putc(char ch);
+    htif_putc(val);
+#endif
     return 0;
 }
 
@@ -139,7 +144,7 @@ int32_t uart_disable_rx_th_int(UART_TypeDef *uart)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
-    
+
     uart->IER &= 0xFFFFFFFE;
     return 0;
 }
@@ -159,7 +164,7 @@ int32_t uart_disable_rx_err_int(UART_TypeDef *uart)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
-    
+
     uart->IER &= 0xFFFFFFFB;
     return 0;
 }
