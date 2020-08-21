@@ -466,7 +466,7 @@ void _premain_init(void)
 {
     /* TODO: Add your own initialization code here, called before main */
     SystemCoreClock = get_cpu_freq();
-#ifndef SIMULATION_SPIKE
+#if ! defined(SIMULATION_SPIKE) && ! defined(SIMULATION_XLSPIKE)
     gpio_iof_config(GPIO, IOF0_UART0_MASK, IOF_SEL_0);
     uart_init(SOC_DEBUG_UART, 115200);
 #endif

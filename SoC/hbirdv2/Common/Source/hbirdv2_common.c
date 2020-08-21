@@ -62,8 +62,8 @@ void delay_1ms(uint32_t count)
 // never return for xlspike
 void xlspike_exit(int status)
 {
-    // pass exit status via rxfifo register
-    UART0->RXFIFO = status;
+    // pass exit status via DLM register
+    UART0->DLM = status;
     uart_write(UART0, 4);
 }
 #endif
