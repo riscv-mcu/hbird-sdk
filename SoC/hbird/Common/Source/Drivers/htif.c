@@ -3,12 +3,14 @@
  *
  * Copyright (c) 2010-2020, The Regents of the University of California
  * (Regents).  All Rights Reserved.
- * 
+ *
  * Notice:
  * 2020.08.18 Modified for HBird SDK
  */
 #ifdef SIMULATION_SPIKE
 #include <stdint.h>
+
+#include "riscv_atomic.h"
 
 #define HTIF_DATA_BITS		48
 #define HTIF_DATA_MASK		((1ULL << HTIF_DATA_BITS) - 1)
@@ -48,12 +50,10 @@
 volatile uint64_t tohost __attribute__((section(".htif")));
 volatile uint64_t fromhost __attribute__((section(".htif")));
 static int htif_console_buf;
-//static spinlock_t htif_lock = SPIN_LOCK_INITIALIZER;
+static spinlock_t htif_lock = SPINLOCK_INIT;
 
-
-static int htif_lock;
-#define spin_lock(x)
-#define spin_unlock(x)
+#define spin_lock(x)            spinlock_lock(x)
+#define spin_unlock(x)          spinlock_unlock(x)
 
 static void __check_fromhost()
 {
