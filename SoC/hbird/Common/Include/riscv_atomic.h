@@ -7,7 +7,7 @@
 
 #define disable_irqsave()           ({                                              \
                     register unsigned long __v;                                     \
-                    asm volatile ("csrrci %0 mstatus, 0x8" :"=r"(__v):: "memory");  \
+                    asm volatile ("csrrci %0, mstatus, 0x8" :"=r"(__v):: "memory"); \
                     __v;                                                            \
                     })
 
