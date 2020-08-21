@@ -465,12 +465,10 @@ int32_t PLIC_Register_IRQ(uint32_t source, uint8_t priority, void *handler)
 void _premain_init(void)
 {
     /* TODO: Add your own initialization code here, called before main */
-#ifndef SIMULATION_SPIKE
     SystemCoreClock = get_cpu_freq();
+#ifndef SIMULATION_SPIKE
     gpio_iof_config(GPIO, IOF0_UART0_MASK, IOF_SEL_0);
     uart_init(SOC_DEBUG_UART, 115200);
-#else
-    SystemCoreClock = 1000000;
 #endif
     /* Display banner after UART initialized */
     SystemBannerPrint();
