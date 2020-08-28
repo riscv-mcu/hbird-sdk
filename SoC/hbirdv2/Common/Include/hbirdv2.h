@@ -221,7 +221,8 @@ typedef enum EXCn {
 #define IOF_PWM3_CH2_MASK          _AC(0x00000040, UL)
 #define IOF_PWM3_CH3_MASK          _AC(0x00000080, UL)
 
-#define IOF_SPI_MASK              _AC(0x00003F00,UL)
+#define IOF_SPI_MASK              _AC(0x00000F00,UL)
+#define IOF_QSPI_MASK             _AC(0x00003F00,UL)
 #define IOF_SPI_SCK               (8u)
 #define IOF_SPI_SS0               (9u)
 #define IOF_SPI_MOSI              (10u)
