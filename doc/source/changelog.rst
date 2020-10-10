@@ -3,10 +3,31 @@
 Changelog
 =========
 
-V0.1.0-RC1
-----------
+V0.1.1
+------
 
-This is release candidate ``0.1.0-RC1`` of HummingBird SDK.
+This is official ``0.1.1`` of HummingBird SDK.
+
+Here are the main changes since last release:
+
+* SOC
+
+  - More drivers are added to hbirdv2
+
+* doc
+
+  - Update changelog
+
+* application
+
+  - Fix typos in rt-thread application
+  - Update freertos application
+
+
+V0.1.0
+------
+
+This is official release ``0.1.0`` of HummingBird SDK.
 
 Here are the main features of this release:
 
