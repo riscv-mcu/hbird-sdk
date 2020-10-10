@@ -127,7 +127,7 @@ your application. */
 #define configTIMER_QUEUE_LENGTH                5
 #define configTIMER_TASK_STACK_DEPTH            configMINIMAL_STACK_SIZE
 
-#define configKERNEL_INTERRUPT_PRIORITY         1
+#define configKERNEL_INTERRUPT_PRIORITY         0
 #define configMAX_SYSCALL_INTERRUPT_PRIORITY    7
 
 /* Define to trap errors during development. */

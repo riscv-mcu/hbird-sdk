@@ -17,7 +17,7 @@
 #define THREAD_TIMESLICE 5
 #define THREAD_NUM      5
 
-/*　Align stack when using static thread　*/
+/* Align stack when using static thread */
 ALIGN(RT_ALIGN_SIZE)
 static rt_uint8_t thread_stack[THREAD_NUM][THREAD_STACK_SIZE];
 static struct rt_thread tid[THREAD_NUM];

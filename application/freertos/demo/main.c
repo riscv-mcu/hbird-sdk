@@ -82,18 +82,11 @@ here. */
 
 #include "hbird_sdk_soc.h"
 
-#define mainQUEUE_RECEIVE_TASK_PRIORITY (tskIDLE_PRIORITY + 2)
-#define mainQUEUE_SEND_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
-#define mainEVENT_SEMAPHORE_TASK_PRIORITY (configMAX_PRIORITIES - 1)
-
-#define NBIT_DEFAULT 3
-#define REG_LEN 8
-
 /* The period of the example software timer, specified in milliseconds, and
 converted to ticks using the pdMS_TO_TICKS() macro. */
-#define mainSOFTWARE_TIMER_PERIOD_MS pdMS_TO_TICKS(1000)
+#define mainSOFTWARE_TIMER_PERIOD_MS    pdMS_TO_TICKS(1000)
+#define mainQUEUE_LENGTH                (1)
 
-#define mainQUEUE_LENGTH (1)
 static void prvSetupHardware(void);
 extern void idle_task(void);
 static void vExampleTimerCallback(TimerHandle_t xTimer);
@@ -101,14 +94,15 @@ static void vExampleTimerCallback(TimerHandle_t xTimer);
 /* The queue used by the queue send and queue receive tasks. */
 static QueueHandle_t xQueue = NULL;
 
+static TaskHandle_t StartTask1_Handler;
+static TaskHandle_t StartTask2_Handler;
+
 void prvSetupHardware(void)
 {
+
 }
 
-TaskHandle_t StartTask_Handler;
-TaskHandle_t StartTask2_Handler;
-
-void start_task(void *pvParameters);
+void start_task1(void *pvParameters);
 void start_task2(void *pvParameters);
 
 int main(void)
@@ -125,11 +119,12 @@ int main(void)
                           sizeof(uint32_t));
 
     if (xQueue == NULL) {
-        for (;;) ;
+        for (;;)
+            ;
     }
-    xTaskCreate((TaskFunction_t)start_task, (const char *)"start_task",
+    xTaskCreate((TaskFunction_t)start_task1, (const char *)"start_task1",
                 (uint16_t)256, (void *)NULL, (UBaseType_t)2,
-                (TaskHandle_t *)&StartTask_Handler);
+                (TaskHandle_t *)&StartTask1_Handler);
 
     xTaskCreate((TaskFunction_t)start_task2, (const char *)"start_task2",
                 (uint16_t)256, (void *)NULL, (UBaseType_t)1,
@@ -152,27 +147,22 @@ int main(void)
     };
 }
 
-void start_task(void *pvParameters)
+void start_task1(void *pvParameters)
 {
-    TickType_t xNextWakeTime;
-    int x;
-    printf("task_1\r\n");
+    int cnt = 0;
+    printf("Enter to task_1\r\n");
     while (1) {
-        printf("task1_running..... \r\n");
-
+        printf("task1 is running %d.....\r\n", cnt++);
         vTaskDelay(200);
     }
 }
 
 void start_task2(void *pvParameters)
 {
-    uint32_t ulReceivedValue;
-    printf("task_2\r\n");
-    /* Initialise xNextWakeTime - this only needs to be done once. */
-
+    int cnt = 0;
+    printf("Enter to task_2\r\n");
     while (1) {
-        printf("task2_running..... \r\n");
-
+        printf("task2 is running %d.....\r\n", cnt++);
         vTaskDelay(200);
     }
 }
@@ -182,20 +172,18 @@ static void vExampleTimerCallback(TimerHandle_t xTimer)
     /* The timer has expired.  Count the number of times this happens.  The
     timer that calls this function is an auto re-load timer, so it will
     execute periodically. */
-
-    printf("timers Callback\r\n");
+    static int cnt = 0;
+    printf("timers Callback %d\r\n", cnt++);
 }
 
 void vApplicationTickHook(void)
 {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    static uint32_t ulCount = 0;
+    // BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     /* The RTOS tick hook function is enabled by setting configUSE_TICK_HOOK to
     1 in FreeRTOSConfig.h.
 
     "Give" the semaphore on every 500th tick interrupt. */
-
 
     /* If xHigherPriorityTaskWoken is pdTRUE then a context switch should
     normally be performed before leaving the interrupt (because during the
@@ -228,9 +216,6 @@ void vApplicationMallocFailedHook(void)
 
 void vApplicationStackOverflowHook(TaskHandle_t xTask, signed char *pcTaskName)
 {
-    //  ( void ) pcTaskName;
-    // ( void ) xTask;
-
     /* Run time stack overflow checking is performed if
     configconfigCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
     function is called if a stack overflow is detected.  pxCurrentTCB can be
@@ -245,7 +230,7 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, signed char *pcTaskName)
 extern UBaseType_t uxCriticalNesting;
 void vApplicationIdleHook(void)
 {
-    volatile size_t xFreeStackSpace;
+    // volatile size_t xFreeStackSpace;
     /* The idle task hook is enabled by setting configUSE_IDLE_HOOK to 1 in
     FreeRTOSConfig.h.
 
