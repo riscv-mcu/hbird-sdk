@@ -34,6 +34,7 @@ int32_t uart_disable_rx_th_int(UART_TypeDef *uart);
 int32_t uart_enable_rx_err_int(UART_TypeDef *uart);
 int32_t uart_disable_rx_err_int(UART_TypeDef *uart);
 int32_t uart_get_int_status(UART_TypeDef *uart);
+int32_t uart_get_status(UART_TypeDef *uart);
 
 #ifdef __cplusplus
 }

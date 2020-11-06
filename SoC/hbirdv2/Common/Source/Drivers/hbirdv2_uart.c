@@ -86,10 +86,9 @@ uint8_t uart_read(UART_TypeDef *uart)
     if (__RARELY(uart == NULL)) {
         return -1;
     }
-    do {
-        reg = uart->RBR;
-    }
-    while ((uart->LSR & 0x1) != 0x1);
+    
+    reg = uart->RBR;
+    
     return (uint8_t)(reg & 0xFF);
 }
 
@@ -178,3 +177,15 @@ int32_t uart_get_int_status(UART_TypeDef *uart)
 
     return uart->IIR;
 }
+
+int32_t uart_get_status(UART_TypeDef *uart)
+{
+
+    if (__RARELY(uart == NULL)) {
+        return -1;
+    }
+
+    return uart->LSR;
+}
+
+
