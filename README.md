@@ -1,6 +1,6 @@
 # HummingBird RISC-V Software Development Kit
 
-**HummingBird RISC-V Development Kit(HummingBird SDK)** is developed for developing and evaluating software using our FPGA evaluation board.
+**HummingBird RISC-V Software Development Kit(HBird SDK)** is developed for developing and evaluating software using our FPGA evaluation board.
 
 ![HummingBird SDK Diagram](pics/hbird_sdk_diagram.png)
 
@@ -240,13 +240,12 @@ $HBIRD_SDK_ROOT
 
 * Pass extra `V=1` to your make command, it will show verbose compiling information, otherwise it will only show basic information. Sample output with extra `V=1`
   ~~~console
-  $ make V=1 CORE=e205fd all
-  Current Configuration: RISCV_ARCH=rv32imafdc RISCV_ABI=ilp32d SOC=hbird BOARD=hbird_eval CORE=e205fd DOWNLOAD=ilm
-  "Assembling : " ../../../OS/FreeRTOS/Source/portable/GCC/portasm.S
-  riscv-nuclei-elf-gcc -g -march=rv32imafdc -mabi=ilp32d -mcmodel=medany -ffunction-sections -fdata-sections -fno-common   -DDOWNLOAD_MODE=DOWNLOAD_MODE_ILM -I. -I../../../NMSIS/Include -I../../../OS/FreeRTOS/Source/include -I../../../OS/FreeRTOS/Source/  portable/GCC -I../../../SoC/hbird/Board/hbird_eval/Include -I../../../SoC/hbird/Common/Include -MMD -MT ../../../OS/FreeRTOS/Source/  portable/GCC/portasm.S.o -MF ../../../OS/FreeRTOS/Source/portable/GCC/portasm.S.o.d -c -o ../../../OS/FreeRTOS/Source/portable/GCC/  portasm.S.o ../../../OS/FreeRTOS/Source/portable/GCC/portasm.S
-  "Assembling : " ../../../SoC/hbird/Common/Source/GCC/intexc_hbird.S
-  riscv-nuclei-elf-gcc -g -march=rv32imafdc -mabi=ilp32d -mcmodel=medany -ffunction-sections -fdata-sections -fno-common   -DDOWNLOAD_MODE=DOWNLOAD_MODE_ILM -I. -I../../../NMSIS/Include -I../../../OS/FreeRTOS/Source/include -I../../../OS/FreeRTOS/Source/  portable/GCC -I../../../SoC/hbird/Board/hbird_eval/Include -I../../../SoC/hbird/Common/Include -MMD -MT ../../../SoC/hbird/Common/  Source/GCC/intexc_hbird.S.o -MF ../../../SoC/hbird/Common/Source/GCC/intexc_hbird.S.o.d -c -o ../../../SoC/hbird/Common/Source/GCC/  intexc_hbird.S.o ../../../SoC/hbird/Common/Source/GCC/intexc_hbird.S
-  "Assembling : " ../../../SoC/hbird/Common/Source/GCC/startup_hbird.S
+  $ make V=1 CORE=e203 all
+  Current Configuration: RISCV_ARCH=rv32imac RISCV_ABI=ilp32 SOC=hbirdv2 BOARD=ddr200t CORE=e203 DOWNLOAD=ilm
+  Assembling :  ../../../SoC/hbirdv2/Common/Source/GCC/intexc_hbirdv2.S
+  riscv-nuclei-elf-gcc -O2 -g -march=rv32imac -mabi=ilp32 -mcmodel=medany -ffunction-sections -fdata-sections -fno-common -DDOWNLOAD_MODE=DOWNLOAD_MODE_ILM -DSOC_HBIRDV2 -DBOARD_DDR200T -I. -I../../../NMSIS/Core/Include -I../../../SoC/hbirdv2/Board/ddr200t/Include -I../../../SoC/hbirdv2/Common/Include -Iinc -MMD -MT ../../../SoC/hbirdv2/Common/Source/GCC/intexc_hbirdv2.S.o -MF ../../../SoC/hbirdv2/Common/Source/GCC/intexc_hbirdv2.S.o.d -c -o ../../../SoC/hbirdv2/Common/Source/GCC/intexc_hbirdv2.S.o ../../../SoC/hbirdv2/Common/Source/GCC/intexc_hbirdv2.S
+  Assembling :  ../../../SoC/hbirdv2/Common/Source/GCC/startup_hbirdv2.S
+  riscv-nuclei-elf-gcc -O2 -g -march=rv32imac -mabi=ilp32 -mcmodel=medany -ffunction-sections -fdata-sections -fno-common -DDOWNLOAD_MODE=DOWNLOAD_MODE_ILM -DSOC_HBIRDV2 -DBOARD_DDR200T -I. -I../../../NMSIS/Core/Include -I../../../SoC/hbirdv2/Board/ddr200t/Include -I../../../SoC/hbirdv2/Common/Include -Iinc -MMD -MT ../../../SoC/hbirdv2/Common/Source/GCC/startup_hbirdv2.S.o -MF ../../../SoC/hbirdv2/Common/Source/GCC/startup_hbirdv2.S.o.d -c -o ../../../SoC/hbirdv2/Common/Source/GCC/startup_hbirdv2.S.o ../../../SoC/hbirdv2/Common/Source/GCC/startup_hbirdv2.S
   ~~~
 
 ## [Changelog](https://doc.nucleisys.com/hbirdv2/changelog.html)
