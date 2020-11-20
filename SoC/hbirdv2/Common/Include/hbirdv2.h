@@ -81,17 +81,18 @@ typedef enum IRQn
     PLIC_RTCCMP_IRQn         = 2,                /*!< Device external Interrupt 2 RTC compare */
     PLIC_UART0_IRQn          = 3,                /*!< Device external Interrupt 3 UART0 */
     PLIC_UART1_IRQn          = 4,                /*!< Device external Interrupt 4 UART1 */
-    PLIC_QSPI0_IRQn          = 5,                /*!< Device external Interrupt 5 QSPI0 */
-    PLIC_QSPI1_IRQn          = 6,                /*!< Device external Interrupt 6 QSPI1 */
-    PLIC_QSPI2_IRQn          = 7,                /*!< Device external Interrupt 8 QSPI2 */
-    PLIC_PWM0_IRQn           = 8,                /*!< Device external Interrupt 10 PWM0 */
-    PLIC_PWM1_IRQn           = 9,                /*!< Device external Interrupt 11 PWM1 */
-    PLIC_PWM2_IRQn           = 10,               /*!< Device external Interrupt 12 PWM2 */
-    PLIC_PWM3_IRQn           = 11,               /*!< Device external Interrupt 13 PWM3 */
-    PLIC_I2C0_IRQn           = 12,               /*!< Device external Interrupt 14 I2C0 */
-    PLIC_I2C1_IRQn           = 13,               /*!< Device external Interrupt 15 I2C1 */
-    PLIC_GPIOA_IRQn          = 14,               /*!< Device external Interrupt 16 GPIOA */
-    PLIC_GPIOB_IRQn          = 15,               /*!< Device external Interrupt 17 GPIOB */
+    PLIC_UART2_IRQn          = 5,                /*!< Device external Interrupt 5 UART2 */
+    PLIC_QSPI0_IRQn          = 6,                /*!< Device external Interrupt 6 QSPI0 */
+    PLIC_QSPI1_IRQn          = 7,                /*!< Device external Interrupt 7 QSPI1 */
+    PLIC_QSPI2_IRQn          = 8,                /*!< Device external Interrupt 8 QSPI2 */
+    PLIC_PWM0_IRQn           = 9,                /*!< Device external Interrupt 9  PWM0 */
+    PLIC_PWM1_IRQn           = 10,               /*!< Device external Interrupt 10 PWM1 */
+    PLIC_PWM2_IRQn           = 11,               /*!< Device external Interrupt 11 PWM2 */
+    PLIC_PWM3_IRQn           = 12,               /*!< Device external Interrupt 12 PWM3 */
+    PLIC_I2C0_IRQn           = 13,               /*!< Device external Interrupt 13 I2C0 */
+    PLIC_I2C1_IRQn           = 14,               /*!< Device external Interrupt 14 I2C1 */
+    PLIC_GPIOA_IRQn          = 15,               /*!< Device external Interrupt 15 GPIOA */
+    PLIC_GPIOB_IRQn          = 16,               /*!< Device external Interrupt 16 GPIOB */
     PLIC_INT_MAX,
 } IRQn_Type;
 
@@ -148,7 +149,7 @@ typedef enum EXCn {
 #else
 #define __PLIC_BASEADDR           0x0C000000UL          /*!< Set to PLIC baseaddr of your device */
 #endif
-#define __PLIC_INTNUM             16                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
+#define __PLIC_INTNUM             17                    /*!< Set to 1 - 1024, total interrupt sources of PLIC Unit */
 
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System CLINT Timer is present */
 #ifdef SIMULATION_XLSPIKE
@@ -240,6 +241,9 @@ typedef enum EXCn {
 #define IOF_UART_RX               (16u)
 #define IOF_UART_TX               (17u)
 
+#define IOF_UART2_MASK             _AC(0x000C0000, UL)
+#define IOF_UART2_RX               (18u)
+#define IOF_UART2_TX               (19u)
 
 // Interrupt Handler Definitions
 #define SOC_MTIMER_HANDLER          core_mtip_handler
@@ -459,6 +463,7 @@ typedef union{
 #define UART1_BASE              (HBIRD_PERIPH_BASE + 0x23000)          /*!< (UART1) Base Address */
 #define SPI1_BASE               (HBIRD_PERIPH_BASE + 0x24000)          /*!< (QSPI1) Base Address */
 #define I2C0_BASE               (HBIRD_PERIPH_BASE + 0x25000)          /*!< (I2C0 Master) Base Address */
+#define UART2_BASE              (HBIRD_PERIPH_BASE + 0x33000)          /*!< (UART2) Base Address */
 #define SPI2_BASE               (HBIRD_PERIPH_BASE + 0x34000)          /*!< (QSPI2) Base Address */
 #define I2C1_BASE               (HBIRD_PERIPH_BASE + 0x35000)          /*!< (I2C1 Master) Base Address */
 #define GPIOB_BASE              (HBIRD_PERIPH_BASE + 0x40000)          /*!< (GPIOB) Base Address */
@@ -483,6 +488,7 @@ typedef union{
 #define UART1                   ((UART_TypeDef *) UART1_BASE)
 #define SPI1                    ((SPI_TypeDef *)  SPI1_BASE)
 #define I2C0                    ((I2C_TypeDef *)  I2C0_BASE)
+#define UART2                   ((UART_TypeDef *) UART2_BASE)
 #define SPI2                    ((SPI_TypeDef *)  SPI2_BASE)
 #define I2C1                    ((I2C_TypeDef *)  I2C1_BASE)
 #define GPIOB                   ((GPIO_TypeDef *) GPIOB_BASE)
@@ -499,6 +505,7 @@ typedef union{
 #define UART1_REG(offset)       _REG32(UART1_BASE, offset)
 #define SPI1_REG(offset)        _REG32(SPI1_BASE,  offset)
 #define I2C0_REG(offset)        _REG32(I2C0_BASE,  offset)
+#define UART2_REG(offset)       _REG32(UART2_BASE, offset)
 #define SPI2_REG(offset)        _REG32(SPI2_BASE,  offset)
 #define I2C1_REG(offset)        _REG32(I2C1_BASE,  offset)
 #define GPIOB_REG(offset)       _REG32(GPIOB_BASE, offset)
