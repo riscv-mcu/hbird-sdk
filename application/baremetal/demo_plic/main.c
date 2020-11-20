@@ -35,7 +35,7 @@ void plic_btn2_handler(void)
 #endif
 
 #ifdef SOC_HBIRDV2
-#ifdef BOARD_DDR200T
+#if (defined BOARD_DDR200T) || (defined BOARD_MCU200T)
 // plic btn interrupt handler
 void plic_btn_handler(void)
 {
@@ -94,7 +94,7 @@ void board_gpio_init(void)
 #endif
 
 #ifdef SOC_HBIRDV2
-#ifdef BOARD_DDR200T
+#if (defined BOARD_DDR200T) || (defined BOARD_MCU200T)
     gpio_enable_input(GPIOA, SOC_BUTTON_GPIO_MASK);
     gpio_enable_output(GPIOA, SOC_LED_GPIO_MASK);
 
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 #endif
 
 #ifdef SOC_HBIRDV2
-#ifdef BOARD_DDR200T
+#if (defined BOARD_DDR200T) || (defined BOARD_MCU200T)
     // inital plic GPIOA interrupt
     returnCode = PLIC_Register_IRQ(PLIC_GPIOA_IRQn, 1, plic_btn_handler);
 #endif
