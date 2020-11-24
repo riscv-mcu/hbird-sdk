@@ -218,6 +218,14 @@ void rt_hw_console_output(const char *str)
     _write(STDOUT_FILENO, str, size);
 }
 
+extern ssize_t _read(int fd, void* ptr, size_t len);
+char rt_hw_console_getchar(void)
+{
+    int ch = -1;
+    _read(STDOUT_FILENO, &ch, 1);
+    return ch;
+}
+
 rt_base_t rt_hw_interrupt_disable(void)
 {
     return __RV_CSR_READ_CLEAR(CSR_MSTATUS, MSTATUS_MIE);
