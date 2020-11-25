@@ -1,5 +1,6 @@
 TARGET = msh
 RTOS = RTThread
+RTTHREAD_MSH := 1
 
 HBIRD_SDK_ROOT = ../../..
 
