@@ -12,6 +12,13 @@
 #include "hbird_sdk_soc.h"
 #include <rtthread.h>
 
+void hbird(int argc, char* argv[])
+{
+    rt_kprintf("Hello HBird SDK!\n");
+}
+MSH_CMD_EXPORT(hbird, msh hbird demo)
+
+
 int main(void)
 {
     rt_kprintf("Hello RT-Thread!\n");
