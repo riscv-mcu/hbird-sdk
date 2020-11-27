@@ -55,11 +55,11 @@
 #define __LDRT(ptr)                         __LW((ptr))
 
 /** \brief STRT Unprivileged (8 bit), ARM Compatiable */
-#define __STRBT(ptr)                        __SB((ptr))
+#define __STRBT(val, ptr)                   __SB((ptr), (val))
 /** \brief STRT Unprivileged (16 bit), ARM Compatiable */
-#define __STRHT(ptr)                        __SH((ptr))
+#define __STRHT(val, ptr)                   __SH((ptr), (val))
 /** \brief STRT Unprivileged (32 bit), ARM Compatiable */
-#define __STRT(ptr)                         __SW((ptr))
+#define __STRT(val, ptr)                    __SW((ptr), (val))
 
 /* ===== Saturation Operations ===== */
 /**
