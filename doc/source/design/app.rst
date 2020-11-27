@@ -773,12 +773,12 @@ msh
 
 This `rt-thread msh application`_ demonstrates a shell in serial console which is a component of rt-thread.
 
-* MSH_CMD_EXPORT(hbird, msh hbird demo) exports a command hbird to shell
+* ``MSH_CMD_EXPORT(hbird, msh hbird demo)`` exports a command ``hbird`` to shell
 
 In HummingBird SDK, we provided code and Makefile for this ``rtthread msh`` application.
 
 * **RTOS = RTThread** is added in its Makefile to include RT-Thread service
-* **RTOSRTTHREAD_MSH := 1** is added in its Makefile to include RT-Thread msh component
+* **RTTHREAD_MSH := 1** is added in its Makefile to include RT-Thread msh component
 * The **RT_TICK_PER_SECOND** in ``rtconfig.h`` is by default set to `200`, you can change it
   to other number according to your requirement.
 
