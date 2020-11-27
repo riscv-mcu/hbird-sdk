@@ -1,9 +1,11 @@
+/* See LICENSE of license details. */
+#include "hbird_sdk_soc.h"
 #include <errno.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include "stub.h"
 
-off_t _lseek(int fd, off_t ptr, int dir)
+#undef errno
+extern int errno;
+
+__WEAK int _lseek(int file, int offset, int whence)
 {
-  return _stub(EBADF);
+    return 0;
 }

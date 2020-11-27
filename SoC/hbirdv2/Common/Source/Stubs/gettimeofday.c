@@ -1,8 +1,9 @@
+/* See LICENSE of license details. */
 #include <errno.h>
 #include <sys/time.h>
 #include "hbird_sdk_soc.h"
 
-int _gettimeofday(struct timeval *tp, void *tzp)
+__WEAK int _gettimeofday(struct timeval *tp, void *tzp)
 {
     uint64_t cycles;
 

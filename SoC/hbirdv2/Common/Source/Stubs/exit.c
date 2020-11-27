@@ -1,8 +1,9 @@
 /* See LICENSE of license details. */
 #include "hbird_sdk_soc.h"
-#include <unistd.h>
 
-__WEAK int _isatty(int fd)
+__WEAK void _exit(int fd)
 {
-    return 1;
+    while(1) {
+        __WFI();
+    }
 }

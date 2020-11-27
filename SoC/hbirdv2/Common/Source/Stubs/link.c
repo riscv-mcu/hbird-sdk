@@ -5,8 +5,8 @@
 #undef errno
 extern int errno;
 
-__WEAK int _close(int fd)
+int _link(char *old, char *new)
 {
-    errno = EBADF;
+    errno = EMLINK;
     return -1;
 }

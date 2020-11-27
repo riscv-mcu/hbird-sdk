@@ -5,8 +5,8 @@
 #undef errno
 extern int errno;
 
-__WEAK int _close(int fd)
+__WEAK int fork(void)
 {
-    errno = EBADF;
+    errno = EAGAIN;
     return -1;
 }

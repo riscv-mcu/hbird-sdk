@@ -1,8 +1,8 @@
 /* See LICENSE of license details. */
 #include "hbird_sdk_soc.h"
-#include <unistd.h>
+#include <errno.h>
 
-__WEAK int _isatty(int fd)
+__WEAK int getpid(void)
 {
     return 1;
 }

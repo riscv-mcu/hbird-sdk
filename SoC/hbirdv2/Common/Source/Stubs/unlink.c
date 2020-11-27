@@ -1,12 +1,12 @@
+
 /* See LICENSE of license details. */
-#include "hbird_sdk_soc.h"
 #include <errno.h>
+#include <hbird_sdk_hal.h>
 
 #undef errno
 extern int errno;
 
-__WEAK int _close(int fd)
+__WEAK int _unlink(const char *name)
 {
-    errno = EBADF;
     return -1;
 }
