@@ -70,18 +70,18 @@ jobs:
         export CORE=e205
         export DOWNLOAD=ilm
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    test         >> build.log
         export CORE=e205
-        export DOWNLOAD=ddr
+        export DOWNLOAD=flash
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    test         >> build.log
         export CORE=e205
         export DOWNLOAD=flashxip
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
-        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval hsdk_build_directory    test         >> build.log
 
         mv build.log build_${{ matrix.soc }}.log
 
@@ -96,18 +96,34 @@ jobs:
         export CORE=e205
         export DOWNLOAD=ilm
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
         export CORE=e205
-        export DOWNLOAD=ddr
+        export DOWNLOAD=flash
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
         export CORE=e205
         export DOWNLOAD=flashxip
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
-        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
+        
+        export CORE=e205
+        export DOWNLOAD=ilm
+        echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=flash
+        echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=flashxip
+        echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    test         >> build.log
 
         mv build.log build_${{ matrix.soc }}.log
 
