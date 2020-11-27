@@ -1,5 +1,8 @@
 # HummingBird RISC-V Software Development Kit
 
+[![Build Documentation](https://github.com/riscv-mcu/hbird-sdk/workflows/Build%20Documentation/badge.svg)](https://github.com/riscv-mcu/hbird-sdk/actions?query=workflow%3A%22Build+Documentation%22)
+[![Build SDK](https://github.com/riscv-mcu/hbird-sdk/workflows/Build%20SDK/badge.svg)](https://github.com/riscv-mcu/hbird-sdk/actions?query=workflow%3A%22Build+SDK%22)
+
 **HummingBird RISC-V Software Development Kit(HBird SDK)** is developed for developing and evaluating software using our FPGA evaluation board.
 
 ![HummingBird SDK Diagram](doc/source/asserts/images/hbird_sdk_diagram.png)

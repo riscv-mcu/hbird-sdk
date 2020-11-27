@@ -1,0 +1,119 @@
+name: Build SDK
+
+on:
+  push:
+    paths:
+        - "Build/**"
+        - "application/**"
+        - "NMSIS/**"
+        - "OS/**"
+        - "SoC/**"
+        - "test/**"
+        - ".github/**"
+        - ".ci/**"
+
+  pull_request:
+    paths:
+        - "Build/**"
+        - "application/**"
+        - "NMSIS/**"
+        - "OS/**"
+        - "SoC/**"
+        - "test/**"
+        - ".github/**"
+        - ".ci/**"
+
+jobs:
+  build:
+    name: Build SDK
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        soc: [hbird, hbirdv2]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Caching tools
+      uses: actions/cache@v2
+      with:
+        path: |
+          prebuilt_tools/*.tar.bz2
+          prebuilt_tools/*.zip
+        key: build
+
+    - name: Prepare Tools for Ubuntu
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+          mkdir -p prebuilt_tools
+          cd prebuilt_tools
+          toolzip=nuclei_riscv_newlibc_prebuilt_linux64_2020.08.tar.bz2
+          if [ ! -e $toolzip ] ; then
+            wget https://nucleisys.com/upload/files/toochain/gcc/$toolzip
+          fi
+          tar -xjf $toolzip
+          cd ..
+          echo "NUCLEI_TOOL_ROOT=$(pwd)/prebuilt_tools" > setup_config.sh
+
+    - name: Build SDK for HummingBird SoC
+      if: matrix.soc == 'hbird'
+      run: |
+        echo "Setup build environment"
+        source setup.sh
+        source .ci/build_sdk.sh
+        source .ci/build_applications.sh
+        touch build.log
+        export CORE=e205
+        export DOWNLOAD=ilm
+        echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=ddr
+        echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=flashxip
+        echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    application  >> build.log
+        SOC=hbird BOARD=hbird_eval nsdk_build_directory    test         >> build.log
+
+        mv build.log build_${{ matrix.soc }}.log
+
+    - name: Build SDK for HummingBirdv2 SoC
+      if: matrix.soc == 'hbirdv2'
+      run: |
+        echo "Setup build environment"
+        source setup.sh
+        source .ci/build_sdk.sh
+        source .ci/build_applications.sh
+        touch build.log
+        export CORE=e205
+        export DOWNLOAD=ilm
+        echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=ddr
+        echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+        export CORE=e205
+        export DOWNLOAD=flashxip
+        echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    application  >> build.log
+        SOC=hbirdv2 BOARD=ddr200t nsdk_build_directory    test         >> build.log
+
+        mv build.log build_${{ matrix.soc }}.log
+
+    - name: Upload Build Log for ${{ matrix.soc }}
+      uses: actions/upload-artifact@v2.2.0
+      with:
+        name: build_${{ matrix.soc }}
+        path: |
+          build*.log
