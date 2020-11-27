@@ -2,7 +2,7 @@
 
 **HummingBird RISC-V Software Development Kit(HBird SDK)** is developed for developing and evaluating software using our FPGA evaluation board.
 
-![HummingBird SDK Diagram](pics/hbird_sdk_diagram.png)
+![HummingBird SDK Diagram](doc/source/asserts/images/hbird_sdk_diagram.png)
 
 This HummingBird SDK is built based on the modified **NMSIS** framework, user can access all the APIs provided by modified **NMSIS** and also the APIs that provided by HummingBird SDK which mainly for on-board peripherals access such as GPIO, UART, SPI and I2C etc.
 
