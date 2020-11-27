@@ -33,7 +33,7 @@ The SoC diagram can be checked as below :ref:`figure_design_soc_hbirdv2_1`
 
 .. _figure_design_soc_hbirdv2_1:
 
-.. figure:: /asserts/images/hbirdv2_soc_diagram.png
+.. figure:: /asserts/images/hbirdv2_soc_diagram.jpg
     :width: 80 %
     :align: center
     :alt: HummingBird V2 SoC Diagram
