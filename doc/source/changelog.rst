@@ -3,6 +3,38 @@
 Changelog
 =========
 
+V0.1.2
+------
+
+This is official ``0.1.2`` of HummingBird SDK.
+
+Here are the main changes since last release:
+
+* SOC
+
+  - More more newlib stub functions for hbird and hbirdv2 SoC
+
+* doc
+
+  - Update changelog
+  - Add rt-thread msh application doc
+
+* application
+
+  - Add rt-thread msh application
+
+* Build
+
+  - Add ``RTTHREAD_MSH`` makefile variable which is valid only for RTThread
+
+* OS
+
+  - Add RT-Thread MSH shell component into RT-Thread source code
+
+* CI
+
+  - Add initial github workflow support for building documentation and sdk
+
 V0.1.1
 ------
 

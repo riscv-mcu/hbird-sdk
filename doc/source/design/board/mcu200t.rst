@@ -1,34 +1,34 @@
-.. _design_board_ddr200t:
+.. _design_board_mcu200t:
 
-DDR200T Evaluation Kit
+MCU200T Evaluation Kit
 ======================
 
-.. _design_board_ddr200t_overview:
+.. _design_board_mcu200t_overview:
 
 Overview
 --------
 
-Nuclei have customized a FPGA evaluation board (called DDR200T Evaluation Kit),
+Nuclei have customized a FPGA evaluation board (called MCU200T Evaluation Kit),
 which can be programmed with HummingBird SoC FPGA bitstream.
 
-.. _figure_design_board_ddr200t_1:
+.. _figure_design_board_mcu200t_1:
 
-.. figure:: /asserts/images/ddr200t_board.jpg
+.. figure:: /asserts/images/mcu200t_board.png
     :width: 80 %
     :align: center
-    :alt: DDR200T Evaluation Kit
+    :alt: MCU200T Evaluation Kit
 
-    DDR200T Evaluation Kit
+    MCU200T Evaluation Kit
 
-Click `DDR200T Evaluation Kit Board Documents`_ to access the documents
+Click `MCU200T Evaluation Kit Board Documents`_ to access the documents
 of this board.
 
-.. _design_board_ddr200t_setup:
+.. _design_board_mcu200t_setup:
 
 Setup
 ~~~~~
 
-Follow the guide in `DDR200T Evaluation Kit Board Documents`_ to setup the board,
+Follow the guide in `MCU200T Evaluation Kit Board Documents`_ to setup the board,
 make sure the following items are set correctly:
 
 * Use **Hummingbird debugger** to connect the **MCU-JTAG** on board to your PC
@@ -38,12 +38,12 @@ make sure the following items are set correctly:
   is programmed to this board.
 * Following steps in board user manual to setup JTAG drivers for your development environment
 
-.. _design_board_ddr200t_use:
+.. _design_board_mcu200t_use:
 
 How to use
 ~~~~~~~~~~
 
-For **DDR200T Evaluation board**:
+For **MCU200T Evaluation board**:
 
 * **DOWNLOAD** support all the modes list in :ref:`develop_buildsystem_var_download`
 * **CORE** support all the cores list in :ref:`develop_buildsystem_var_core`
@@ -54,13 +54,13 @@ you just need to use this **SOC** and **BOARD** variables.
 .. code-block:: shell
 
     # Clean the application with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 clean
+    make SOC=hbirdv2 BOARD=mcu200t DOWNLOAD=ilm CORE=e203 clean
     # Build the application with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 all
+    make SOC=hbirdv2 BOARD=mcu200t DOWNLOAD=ilm CORE=e203 all
     # Upload the application using openocd and gdb with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 upload
+    make SOC=hbirdv2 BOARD=mcu200t DOWNLOAD=ilm CORE=e203 upload
     # Debug the application using openocd and gdb with DOWNLOAD=ilm CORE=e203
-    make SOC=hbirdv2 BOARD=ddr200t DOWNLOAD=ilm CORE=e203 debug
+    make SOC=hbirdv2 BOARD=mcu200t DOWNLOAD=ilm CORE=e203 debug
 
 .. note::
 
@@ -73,4 +73,4 @@ you just need to use this **SOC** and **BOARD** variables.
      If you want to try these demos, please use ``ilm`` or ``flash``
      download mode.
 
-.. _DDR200T Evaluation Kit Board Documents: https://nucleisys.com/developboard.php
+.. _MCU200T Evaluation Kit Board Documents: https://nucleisys.com/developboard.php

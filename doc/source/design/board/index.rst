@@ -8,4 +8,5 @@ Board
 
    hbird_eval.rst
    ddr200t.rst
+   mcu200t.rst
 

@@ -6,6 +6,11 @@ HummingBird SoC V2
 HummingBird SoC V2 is an evaluation FPGA SoC based on HummingBird RISC-V Core
 for customer to evaluate HummingBird Process Core.
 
+To get the up to date documentation about this SoC, please click:
+
+* `HummingBird SoC V2 online documentation`_
+* `HummingBird SoC V2 project source code`_
+
 .. _design_soc_hbirdv2_overview:
 
 Overview
@@ -28,27 +33,15 @@ The SoC diagram can be checked as below :ref:`figure_design_soc_hbirdv2_1`
 
 .. _figure_design_soc_hbirdv2_1:
 
-.. figure:: /asserts/images/hbird_soc_diagram.png
+.. figure:: /asserts/images/hbirdv2_soc_diagram.png
     :width: 80 %
     :align: center
-    :alt: HummingBird SoC Diagram
+    :alt: HummingBird V2 SoC Diagram
 
-    HummingBird SoC Diagram
+    HummingBird V2 SoC Diagram
 
-The SoC memory map for SoC resources is as below :ref:`figure_design_soc_hbirdv2_2`
-
-.. _figure_design_soc_hbirdv2_2:
-
-.. figure:: /asserts/images/hbird_soc_memory_map.png
-    :width: 80 %
-    :align: center
-    :alt: HummingBird SoC Memory Map
-
-    HummingBird SoC Memory Map
-
-If you want to learn more about this evaluation SoC, please get the
-``<Nuclei_Eval_SoC_Intro.pdf>`` from `Nuclei`_.
-
+If you want to learn more about this evaluation SoC,
+please click `HummingBird SoC V2 online documentation`_.
 
 .. _design_soc_hbirdv2_boards:
 
@@ -58,6 +51,7 @@ Supported Boards
 In HummingBird SDK, we support the following boards based on **HummingBird** SoC, see:
 
 * :ref:`design_board_ddr200t`
+* :ref:`design_board_mcu200t`
 
 .. _design_soc_hbirdv2_usage:
 
@@ -77,3 +71,5 @@ If you want to use this **HummingBird** SoC in HummingBird SDK, you need to set 
 
 
 .. _Nuclei: https://nucleisys.com/
+.. _HummingBird SoC V2 online documentation: https://doc.nucleisys.com/hbirdv2
+.. _HummingBird SoC V2 project source code: https://github.com/riscv-mcu/e203_hbirdv2

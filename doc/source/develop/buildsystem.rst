@@ -406,6 +406,8 @@ Currently we support the following Boards.
      - Reference
    * - hbird_ddr_200t
      - :ref:`design_board_ddr200t`
+   * - hbird_mcu_200t
+     - :ref:`design_board_mcu200t`
 
 .. note::
 

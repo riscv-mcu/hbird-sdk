@@ -6,6 +6,15 @@ HummingBird SoC
 HummingBird SoC is an evaluation FPGA SoC based on HummingBird RISC-V Core
 for customer to evaluate HummingBird Process Core.
 
+.. note::
+
+    HummingBird SoC is no longer maintained now, there is a v2 version,
+    please click :ref:`design_soc_hbirdv2` to learn about it.
+
+To get the up to date documentation about this SoC, please click:
+
+* `HummingBird SoC project source code`_
+
 .. _design_soc_hbird_overview:
 
 Overview
@@ -46,9 +55,8 @@ The SoC memory map for SoC resources is as below :ref:`figure_design_soc_hbird_2
 
     HummingBird SoC Memory Map
 
-If you want to learn more about this evaluation SoC, please get the
-``<Nuclei_Eval_SoC_Intro.pdf>`` from `Nuclei`_.
-
+If you want to learn more about this evaluation SoC, please check
+`HummingBird SoC project source code`_.
 
 .. _design_soc_hbird_boards:
 
@@ -77,3 +85,4 @@ If you want to use this **HummingBird** SoC in HummingBird SDK, you need to set 
 
 
 .. _Nuclei: https://nucleisys.com/
+.. _HummingBird SoC project source code: https://github.com/SI-RISCV/e200_opensource
