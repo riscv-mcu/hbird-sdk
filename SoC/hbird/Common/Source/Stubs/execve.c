@@ -5,8 +5,8 @@
 #undef errno
 extern int errno;
 
-__WEAK int _close(int fd)
+__WEAK int _execve(char *name, char **argv, char **env)
 {
-    errno = EBADF;
+    errno = ENOMEM;
     return -1;
 }

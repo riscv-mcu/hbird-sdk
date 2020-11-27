@@ -1,9 +1,19 @@
+/* See LICENSE of license details. */
+#include "hbird_sdk_soc.h"
 #include <errno.h>
-#include <unistd.h>
 #include <sys/stat.h>
-#include "stub.h"
+#include <unistd.h>
 
-int _fstat(int fd, struct stat* st)
+#undef errno
+extern int errno;
+
+__WEAK int _fstat(int file, struct stat *st)
 {
-  return _stub(EBADF);
+    if ((STDOUT_FILENO == file) || (STDERR_FILENO == file)) {
+        st->st_mode = S_IFCHR;
+        return 0;
+    } else {
+        errno = EBADF;
+        return -1;
+    }
 }

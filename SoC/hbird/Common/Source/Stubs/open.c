@@ -5,8 +5,8 @@
 #undef errno
 extern int errno;
 
-__WEAK int _close(int fd)
+__WEAK int _open(const char *name, int flags, int mode)
 {
-    errno = EBADF;
+    errno = ENOSYS;
     return -1;
 }
