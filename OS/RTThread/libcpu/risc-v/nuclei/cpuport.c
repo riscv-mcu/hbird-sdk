@@ -210,7 +210,7 @@ void SysTick_Handler(void)
 
 extern ssize_t _write(int fd, const void* ptr, size_t len);
 
-void rt_hw_console_output(const char *str)
+__WEAK void rt_hw_console_output(const char *str)
 {
     rt_size_t size = 0;
 
@@ -219,10 +219,10 @@ void rt_hw_console_output(const char *str)
 }
 
 extern ssize_t _read(int fd, void* ptr, size_t len);
-char rt_hw_console_getchar(void)
+__WEAK char rt_hw_console_getchar(void)
 {
     int ch = -1;
-    _read(STDOUT_FILENO, &ch, 1);
+    _read(STDIN_FILENO, &ch, 1);
     return ch;
 }
 
