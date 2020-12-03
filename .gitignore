@@ -3,6 +3,7 @@
 *.d
 *.elf
 *.diss
+*.dasm
 *.map
 *.bin
 *.log
