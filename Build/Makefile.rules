@@ -98,7 +98,6 @@ upload: $(TARGET).elf
 	$(GDB) $< -ex "set remotetimeout 240" \
         -ex "target remote | $(OPENOCD) --pipe $(OPENOCD_ARGS)" \
         $(GDB_UPLOAD_ARGS) $(GDB_UPLOAD_CMDS)
-	@$(ECHO) "Successfully uploaded $< "
 
 run_openocd:
 	@$(ECHO) "Start openocd server"
