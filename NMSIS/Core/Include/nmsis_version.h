@@ -73,7 +73,7 @@
  * The NMSIS patch version can be used to
  * show bug fixes in this package.
  **/
-#define __NMSIS_VERSION_PATCH            (0U)
+#define __NMSIS_VERSION_PATCH            (1U)
 /**
  * \brief   Represent the NMSIS Version
  * \details
