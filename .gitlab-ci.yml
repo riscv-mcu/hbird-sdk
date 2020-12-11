@@ -1,3 +1,7 @@
+variables:
+    DOC_SERVER: doc
+    DOC_CENTER: /home/xl_ci/doc_center
+
 before_script:
     - module load nucleisys/riscv-nuclei-elf-gcc
     - module load nucleisys/openocd
@@ -16,6 +20,7 @@ build_doc:
     only:
         changes:
           - doc/source/**/**/**/*
+          - .gitlab-ci.yml
     retry: 1
     artifacts:
         name: "hbird_sdk_doc-${CI_COMMIT_SHA::8}"
@@ -44,11 +49,12 @@ deploy_doc:
           - master
         changes:
           - doc/source/**/**/**/*
+          - .gitlab-ci.yml
     script:
-        - ssh xl01 "rm -rf /home/xl_ci/doc_center/hbird_sdk/*"
-        - ssh xl01 "mkdir -p /home/xl_ci/doc_center/hbird_sdk/"
+        - ssh $DOC_SERVER "rm -rf $DOC_CENTER/hbird_sdk/*"
+        - ssh $DOC_SERVER "mkdir -p $DOC_CENTER/hbird_sdk/"
         - cd doc/build
-        - scp -r html xl01:/home/xl_ci/doc_center/hbird_sdk
+        - scp -r html $DOC_SERVER:$DOC_CENTER/hbird_sdk
     tags:
         - software-server
     dependencies:
