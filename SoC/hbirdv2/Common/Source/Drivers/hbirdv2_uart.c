@@ -87,6 +87,7 @@ uint8_t uart_read(UART_TypeDef *uart)
         return -1;
     }
     
+    while ((uart->LSR & 0x1) == 0);
     reg = uart->RBR;
     
     return (uint8_t)(reg & 0xFF);
