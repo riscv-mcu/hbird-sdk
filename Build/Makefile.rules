@@ -89,6 +89,9 @@ dasm: $(TARGET).elf
 	$(OBJDUMP) -d $< > $(TARGET).dasm
 	$(OBJCOPY) $< -O ihex $(TARGET).hex
 	$(OBJCOPY) $< -O verilog $(TARGET).verilog
+ifneq "$(HOST_OS)" "Windows"
+	sed -i 's/@800/@000/g' $(TARGET).verilog
+endif
 
 bin: $(TARGET).elf
 	$(OBJCOPY) $< -O binary $(TARGET).bin
