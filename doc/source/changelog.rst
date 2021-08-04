@@ -3,6 +3,31 @@
 Changelog
 =========
 
+V0.1.3-dev
+----------
+
+This is development version ``0.1.3-dev`` of HBird SDK.
+
+* Build
+
+    - **Important changes** about build system:
+
+      - The SoC and RTOS related makefiles are moving to its own folder, and controlled By
+        **build.mk** inside in in the SoC/<SOC> or OS/<RTOS> folders.
+      - Middlware component build system is also available now, you can add you own middleware or library
+        into ``Components`` folder, such as ``Components/tjpgd`` or ``Components/fatfs``, and you can include
+        this component using make variable ``MIDDLEWARE`` in application Makefile, such as ``MIDDLEWARE := fatfs``,
+        or ``MIDDLEWARE := tjpgd fatfs``.
+      - Each middleware component folder should create a ``build.mk``, which is used to control
+        the component build settings and source code management.
+      - An extra ``DOWNLOAD_MODE_STRING`` macro is passed to represent the DOWNLOAD mode string.
+    - Change openocd ``--pipe`` option to ``-c "gdb_port pipe; log_output openocd.log"``
+    - Remove ``-ex "monitor flash protect 0 0 last off"`` when upload or debug program to avoid error
+      when openocd configuration file didn't configure a flash
+    - Add ``cleanall`` target in **<HBIRD_SDK_ROOT>/Makefile**, you can clean all the applications
+      defined by ``EXTRA_APP_ROOTDIRS`` variable
+    - Fix ``size`` target of build system
+
 V0.1.2
 ------
 

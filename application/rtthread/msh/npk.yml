@@ -1,0 +1,56 @@
+## Package Base Information
+name: app-hsdk_rtthread_msh
+owner: nuclei
+version:
+description: RTThread MSH Demo
+type: app
+keywords:
+  - app
+  - risc-v
+license:
+homepage:
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+  - name: osp-hsdk_rtthread
+    version:
+
+## Package Configurations
+configuration:
+  app_commonflags:
+    value: -O3
+    type: text
+    description: Application Compile Flags
+
+## Set Configuration for other packages
+setconfig:
+    - config: rtthread_msh
+      value: 1
+
+## Source Code Management
+codemanage:
+  copyfiles:
+    - path: ["*.c", "*.h"]
+  incdirs:
+    - path: ["./"]
+  libdirs:
+  ldlibs:
+    - libs:
+
+## Build Configuration
+buildconfig:
+  - type: gcc
+    common_flags: # flags need to be combined together across all packages
+      - flags: ${app_commonflags}
+    ldflags:
+    cflags:
+    asmflags:
+    cxxflags:
+    prebuild_steps: # could be override by app/bsp type
+      command:
+      description:
+    postbuild_steps: # could be override by app/bsp type
+      command:
+      description:

@@ -265,10 +265,6 @@
 
 #endif /* __riscv */
 
-#define DOWNLOAD_MODE_FLASHXIP  0
-#define DOWNLOAD_MODE_FLASH     1
-#define DOWNLOAD_MODE_ILM       2
-
 /**
  * \defgroup NMSIS_Core_CSR_Registers    Core CSR Registers
  * \ingroup  NMSIS_Core

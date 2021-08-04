@@ -29,17 +29,13 @@ The **<HBIRD_SDK_ROOT>/Build** directory content list as below:
     Makefile.base
     Makefile.conf
     Makefile.core
+    Makefile.components
     Makefile.files
-    Makefile.files.hbird
     Makefile.global  -> Created by user
     Makefile.misc
     Makefile.rtos
-    Makefile.rtos.FreeRTOS
-    Makefile.rtos.UCOSII
-    Makefile.rtos.RTThread
     Makefile.rules
     Makefile.soc
-    Makefile.soc.hbird
 
 The file or directory is used explained as below:
 
@@ -115,6 +111,31 @@ This **Makefile.conf** file will define the following items:
 * Include :ref:`develop_buildsystem_makefile_files` and :ref:`develop_buildsystem_makefile_rtos`
 * Collect all the C/C++/ASM compiling and link options
 
+.. _develop_buildsystem_makefile_components:
+
+Makefile.components
+~~~~~~~~~~~~~~~~~~~
+
+This **Makefile.components** will include ``build.mk`` Makefiles of selected components defined
+via makefile variable :ref:`develop_buildsystem_var_middleware`, the Makefiles are placed in
+the sub-folders of **<HBIRD_SDK_ROOT>/Components/**.
+
+A valid middleware component should be organized like this, take ``fatfs`` as example :
+
+.. code-block::
+
+    Components/fatfs/
+    ├── build.mk
+    ├── documents
+    ├── LICENSE.txt
+    └── source
+
+
+For example, if there are two valid middleware components in **<HBIRD_SDK_ROOT>/Components/**, called
+``fatfs`` and ``tjpgd``, and you want to use them in your application, then you can set ``MIDDLEWARE``
+like this ``MIDDLEWARE := fatfs tjpgd``, then the application will include these two middlewares into
+build process.
+
 .. _develop_buildsystem_makefile_rules:
 
 Makefile.rules
@@ -149,8 +170,9 @@ This **Makefile.files** file will do the following things:
 Makefile.soc
 ~~~~~~~~~~~~
 
-This **Makefile.soc** will just include **Makefile.soc.<SOC>** according
-to the :ref:`develop_buildsystem_var_soc` makefile variable setting.
+This **Makefile.soc** will include valid makefiles located in
+**<HBIRD_SDK_ROOT>/SoC/<SOC>/build.mk** according to
+the :ref:`develop_buildsystem_var_soc` makefile variable setting.
 
 It will define the following items:
 
@@ -159,31 +181,79 @@ It will define the following items:
   - For :ref:`design_soc_hbird`, we can support all the modes defined in
     :ref:`develop_buildsystem_var_download`, and **CORE** list defined in
     :ref:`develop_buildsystem_makefile_core`
+  - For :ref:`design_soc_hbirdv2`, we can support all the modes defined in
+    :ref:`develop_buildsystem_var_download`, and **CORE** list defined in
+    :ref:`develop_buildsystem_makefile_core`
 
 * Linker script used according to the **DOWNLOAD** mode settings
 * OpenOCD debug configuration file used for the SoC and Board
 * Some extra compiling or debugging options
+
+A valid SoC should be organized like this, take ``hbirdv2`` as example:
+
+.. code-block::
+
+    SoC/hbirdv2
+    ├── Board
+    │   └── hbird_fpga_eval
+    │       ├── Include
+    │       │   ├── board_hbird_fpga_eval.h
+    │       │   └── hbird_sdk_hal.h
+    │       ├── Source
+    │       │   └── GCC
+    │       └── openocd_hbirdv2.cfg
+    ├── build.mk
+    └── Common
+        ├── Include
+        │   ├── hbirdv2.h
+        │   ├── ... ...
+        │   ├── hbirdv2_uart.h
+        │   ├── hbird_sdk_soc.h
+        │   └── system_hbirdv2.h
+        └── Source
+            ├── Drivers
+            │   ├── ... ...
+            │   └── hbirdv2_uart.c
+            ├── GCC
+            │   ├── intexc_hbirdv2.S
+            │   └── startup_hbirdv2.S
+            ├── Stubs
+            │   ├── read.c
+            │   ├── ... ...
+            │   └── write.c
+            ├── hbirdv2_common.c
+            └── system_hbirdv2.c
 
 .. _develop_buildsystem_makefile_rtos:
 
 Makefile.rtos
 ~~~~~~~~~~~~~
 
-This **Makefile.rtos** will include **Makefile.rtos.<RTOS>** file
+This **Makefile.rtos** will include **<HBIRD_SDK_ROOT>/OS/<RTOS>/build.mk**
 according to our :ref:`develop_buildsystem_var_rtos` variable.
+
+A valid rtos should be organized like this, take ``UCOSII`` as example:
+
+.. code-block::
+
+    OS/UCOSII/
+    ├── arch
+    ├── build.mk
+    ├── license.txt
+    ├── readme.md
+    └── source
+
 
 If no :ref:`develop_buildsystem_var_rtos` is chosen, then RTOS
 code will not be included during compiling, user will develop
 baremetal application.
 
-If **FreeRTOS** or **UCOSII** RTOS is chosen, then FreeRTOS or UCOSII
-source code will be included during compiling, and user can develop
-RTOS application.
+If **FreeRTOS**, **UCOSII** or **RTThread** RTOS is chosen, then FreeRTOS
+UCOSII, or RTThread source code will be included during compiling, and extra
+compiler option ``-DRTOS_$(RTOS_UPPER)`` will be passed, then user can develop RTOS application.
 
-* **Makefile.rtos.FreeRTOS**: Include FreeRTOS related source code and header
-  directories
-* **Makefile.rtos.UCOSII**: Include UCOSII related source code and header
-  directories
+For example, if ``FreeRTOS`` is selected, then ``-DRTOS_FREERTOS`` compiler option
+will be passed.
 
 .. _develop_buildsystem_makefile_core:
 
@@ -513,6 +583,22 @@ You can do it like this, take ``hbird_eval`` board for example, such as port ``3
 * connect gdb with openocd server: ``make SOC=hbird BOARD=hbird_eval CORE=e203 GDB_PORT=3344 run_gdb``
 
 
+BANNER
+~~~~~~
+
+If **BANNER=0**, when program is rebuilt, then the banner message print in console will not be print,
+banner print is default enabled via ``HBIRD_BANNER=1`` in ``hbird_sdk_hal.h``.
+
+when ``BANNER=0``, an macro ``-DHBIRD_BANNER=0`` will be passed in Makefile.
+
+The banner message looks like this:
+
+.. code-block:: c
+
+    HummingBird SDK Build Time: Jul 23 2021, 10:22:50
+    Download Mode: ILM
+    CPU Frequency 15999959 Hz
+
 .. _develop_buildsystem_var_v:
 
 V
@@ -544,9 +630,11 @@ e.g. ``application/baremetal/timer_test/Makefile``.
 * :ref:`develop_buildsystem_var_target`
 * :ref:`develop_buildsystem_var_hbird_sdk_root`
 * :ref:`develop_buildsystem_var_rtos`
+* :ref:`develop_buildsystem_var_middleware`
 * :ref:`develop_buildsystem_var_pfloat`
 * :ref:`develop_buildsystem_var_newlib`
 * :ref:`develop_buildsystem_var_nogc`
+* :ref:`develop_buildsystem_var_rtthread_msh`
 
 .. _develop_buildsystem_var_target:
 
@@ -591,6 +679,20 @@ You can easily find the supported RTOSes in the **<HBIRD_SDK_ROOT>/OS** director
     use RT-Thread API, for ``UCOSII`` application, you need to have an ``rtconfig.h`` header file
     prepared in you application. See examples in ``application/rtthread``.
 
+
+.. _develop_buildsystem_var_middleware:
+
+MIDDLEWARE
+~~~~~~~~~~
+
+**MIDDLEWARE** variable is used to select which middlewares should be used in this application.
+
+You can easily find the available middleware components in the **<HBIRD_SDK_ROOT>/Components** directory.
+
+* If **MIDDLEWARE** is not defined, not leave empty, no middlware package will be selected.
+* If **MIDDLEWARE** is defined with more than 1 string, such as ``fatfs tjpgd``, then these two
+  middlewares will be selected.
+
 .. _develop_buildsystem_var_pfloat:
 
 PFLOAT
@@ -630,6 +732,20 @@ If you don't want disable this GC feature, you can set **NOGC=1**, GC feature wi
 remove sections for you, but sometimes it might remove sections that are useful,
 e.g. For HummingBird SDK test cases, we use ctest framework, and we need to set **NOGC=1**
 to disable GC feature.
+
+.. _develop_buildsystem_var_rtthread_msh:
+
+RTTHREAD_MSH
+~~~~~~~~~~~~
+
+**RTTHREAD_MSH** variable is valid only when **RTOS** is set to **RTThread**.
+
+When **RTTHREAD_MSH** is set to **1**:
+
+* The RTThread MSH component source code will be included
+* The MSH thread will be enabled in the background
+* Currently the msh getchar implementation is using a weak function implemented
+  in ``rt_hw_console_getchar`` in ``OS/RTTThread/libcpu/risc-v/nuclei/cpuport.c``
 
 .. _develop_buildsystem_app_build_vars:
 

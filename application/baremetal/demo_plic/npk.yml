@@ -1,0 +1,53 @@
+## Package Base Information
+name: app-hsdk_demo_plic
+owner: nuclei
+version:
+description: PLIC Demo
+type: app
+keywords:
+  - app
+  - risc-v
+license:
+homepage:
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+
+## Package Configurations
+configuration:
+  app_commonflags:
+    value:
+    type: text
+    description: Application Compile Flags
+
+## Set Configuration for other packages
+setconfig:
+
+
+## Source Code Management
+codemanage:
+  copyfiles:
+    - path: ["*.c", "*.h"]
+  incdirs:
+    - path: ["./"]
+  libdirs:
+  ldlibs:
+    - libs: [""]
+
+## Build Configuration
+buildconfig:
+  - type: gcc
+    common_flags: # flags need to be combined together across all packages
+      - flags: ${app_commonflags}
+    ldflags:
+    cflags:
+    asmflags:
+    cxxflags:
+    prebuild_steps: # could be override by app/bsp type
+      command:
+      description:
+    postbuild_steps: # could be override by app/bsp type
+      command:
+      description:

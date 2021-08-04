@@ -37,7 +37,8 @@ build_doc:
         - make clean_xml
         - cp build/latex/*.pdf build/html/
     tags:
-        - software-server
+        - env::native
+        - host::xls01
 
 ## Job for deploy document to internal server
 deploy_doc:
@@ -56,7 +57,8 @@ deploy_doc:
         - cd doc/build
         - scp -r html $DOC_SERVER:$DOC_CENTER/hbird_sdk
     tags:
-        - software-server
+        - env::native
+        - host::xls01
     dependencies:
         - build_doc
 
@@ -73,13 +75,17 @@ deploy_website:
     script:
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER doc/build/html hbird_sdk
     tags:
-        - software-server
+        - env::native
+        - host::xls01
     dependencies:
         - build_doc
 
 ## Jobs for board hbird_eval
 .build_hbird_eval_job_template: &build_hbird_eval_job_def
     stage: build_hbird_eval
+    tags:
+        - env::native
+        - host::xls01
     script:
         - SOC=hbird BOARD=hbird_eval hsdk_build_directory    application
         - SOC=hbird BOARD=hbird_eval hsdk_build_directory    test
@@ -173,6 +179,9 @@ build_hbird_eval_flashxip_e201:
 ## Jobs for board ddr200t
 .build_ddr200t_job_template: &build_ddr200t_job_def
     stage: build_ddr200t
+    tags:
+        - env::native
+        - host::xls01
     script:
         - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application
         - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test

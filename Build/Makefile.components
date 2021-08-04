@@ -1,0 +1,20 @@
+ifneq ($(MIDDLEWARE),)
+ifneq ($(wildcard $(NUCLEI_SDK_MIDDLEWARE)),)
+MAKEFILE_PREREQS += $(NUCLEI_SDK_BUILD)/Makefile.components
+
+MIDDLEWARE_SORTED := $(sort $(MIDDLEWARE))
+MIDDLEWARE_BUILD_MAKEFILES := $(foreach MID, $(MIDDLEWARE_SORTED), $(wildcard $(NUCLEI_SDK_MIDDLEWARE)/$(MID)/build.mk))
+
+# build.mk is necessary for Middlewares
+ifneq ($(wildcard $(MIDDLEWARE_BUILD_MAKEFILES)),)
+MAKEFILE_PREREQS += $(MIDDLEWARE_BUILD_MAKEFILES)
+include $(MIDDLEWARE_BUILD_MAKEFILES)
+else
+$(error build.mk might not exist in one of the middleware $(MIDDLEWARE_SORTED))
+endif
+
+# Define WITH_COMPONENT_$(MID) to show components, such as WITH_COMPONENT_TJPGD
+MIDDLEWARE_WITH_DEFINES := $(foreach MID, $(MIDDLEWARE_SORTED), -DWITH_COMPONENT_$(call uc, $(MID)))
+COMMON_FLAGS += $(MIDDLEWARE_WITH_DEFINES)
+endif
+endif

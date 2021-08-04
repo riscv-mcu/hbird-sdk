@@ -1,1 +1,21 @@
-include $(HBIRD_SDK_BUILD)/Makefile.soc.$(SOC)
+# Check if the SOC is valid, if there is only one SoC in this folder, force it to be the only SoC
+ifeq ($(wildcard $(HBIRD_SDK_SOC)),)
+HBIRD_SOC_VALID_BUILD_MKS := $(wildcard $(HBIRD_SDK_ROOT)/SoC/*/build.mk)
+HBIRD_SOC_COUNT := $(words $(HBIRD_SOC_VALID_BUILD_MKS))
+HBIRD_SOC_VALID := $(notdir $(patsubst %/,%,$(dir $(HBIRD_SOC_VALID_BUILD_MKS))))
+ifeq ($(HBIRD_SOC_COUNT),1)
+$(warning No SoC named $(SOC) located $(realpath $(HBIRD_SDK_ROOT)/SoC), force SOC=$(HBIRD_SOC_VALID) now)
+override SOC := $(HBIRD_SOC_VALID)
+else
+$(error There is no SoC named $(SOC) located in $(realpath $(HBIRD_SDK_ROOT)/SoC, please pass correct SOC variable))
+endif
+endif
+
+SOC_BUILD_MAKEFILE := $(HBIRD_SDK_ROOT)/SoC/$(SOC)/build.mk
+
+ifneq ($(wildcard $(SOC_BUILD_MAKEFILE)),)
+MAKEFILE_PREREQS += $(SOC_BUILD_MAKEFILE)
+include $(SOC_BUILD_MAKEFILE)
+else
+$(error build.mk might not exist in $(realpath $(HBIRD_SDK_ROOT)/SoC/$(SOC)))
+endif

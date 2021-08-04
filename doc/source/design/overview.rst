@@ -38,20 +38,14 @@ Here is the directory structure for this HummingBird SDK.
     │   ├── gmsl
     │   ├── Makefile.base
     │   ├── Makefile.conf
+    │   ├── Makefile.components
     │   ├── Makefile.core
     │   ├── Makefile.files
-    │   ├── Makefile.files.hbird
-    │   ├── Makefile.files.hbirdv2
     │   ├── Makefile.global
     │   ├── Makefile.misc
     │   ├── Makefile.rtos
-    │   ├── Makefile.rtos.FreeRTOS
-    │   ├── Makefile.rtos.UCOSII
-    │   ├── Makefile.rtos.RTThread
     │   ├── Makefile.rules
-    │   ├── Makefile.soc
-    │   ├── Makefile.soc.hbird
-    │   └── Makefile.soc.hbirdv2
+    │   └── Makefile.soc
     ├── doc
     │   ├── build
     │   ├── source

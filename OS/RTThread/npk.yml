@@ -1,0 +1,38 @@
+## Package Base Information
+name: osp-hsdk_rtthread
+version: 3.1.3
+owner: nuclei
+description: RT-Thread Nano
+type: osp
+keywords:
+  - rtos
+  - risc-v
+license: Apache-2.0
+homepage: https://github.com/RT-Thread/rtthread-nano
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+
+## Package Configurations
+configuration:
+  rtthread_msh:
+    default_value: 0
+    type: checkbox
+    global: false
+    description: Select RT-Thread MSH Component
+
+## Source Code Management
+codemanage:
+  installdir: RTThread
+  copyfiles:
+    - path: ["src", "libcpu/risc-v/nuclei", "include"]
+    - path: ["components/finsh"]
+      condition: $( ${rtthread_msh} == 1 )
+  incdirs:
+    - path: ["include", "include/libc", "libcpu/risc-v/nuclei"]
+    - path: ["components/finsh"]
+      condition: $( ${rtthread_msh} == 1 )
+  libdirs:
+  ldlibs:

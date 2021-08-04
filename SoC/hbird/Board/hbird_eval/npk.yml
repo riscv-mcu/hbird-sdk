@@ -1,0 +1,70 @@
+## Package Base Information
+name: bsp-hsdk_hbird_eval
+owner: nuclei
+description: Nuclei HummingBird Evaluation Board Support Package
+type: bsp
+keywords:
+  - board
+  - risc-v
+  - hummingbird
+license: Apache-2.0
+homepage: https://doc.nucleisys.com/hbird_sdk/design/board/hbird_eval.html
+
+packinfo:
+  vendor: Nuclei
+  name: Nuclei HummingBird Evaluation Board
+  doc:
+    website: https://doc.nucleisys.com/hbird_sdk/design/board/hbird_eval.html
+    usermanual: https://doc.nucleisys.com/hbird_sdk/design/board/hbird_eval.html
+
+
+## Package Dependency
+dependencies:
+  - name: ssp-hsdk_hbird
+    version:
+
+## Package Configurations
+configuration:
+  download_mode:
+    default_value: ilm
+    type: choice
+    global: true
+    description: Download/Run Mode
+    choices:
+      - name: ilm
+        description: ILM download mode, program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
+      - name: flash
+        description: FLASH download mode, program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
+      - name: flashxip
+        description: FLASHXIP download mode, program will to be download into flash and run directly in Flash
+
+## Source Code Management
+codemanage:
+  installdir: hbird_eval
+  copyfiles:
+    - path: ["Source/", "Include/", "openocd_hbird.cfg"]
+  incdirs:
+    - path: ["Include/"]
+
+## Set Configuration for other packages
+setconfig:
+
+## Debug Configuration for this board
+debugconfig:
+  - type: openocd
+    description: Nuclei OpenOCD
+    configs:
+      - key: config
+        value: "openocd_hbird.cfg"
+
+
+buildconfig:
+  - type: gcc
+    linkscript:
+      - script: "Source/GCC/gcc_hbird_${download_mode}.ld"
+    common_flags:
+      - flags:
+    common_defines:
+      - defines: DOWNLOAD_MODE=DOWNLOAD_MODE_$(upper(${download_mode}))
+      - defines: DOWNLOAD_MODE_STRING=\"$(upper(${download_mode}))\"
+      - defines: BOARD_HBIRD_EVAL

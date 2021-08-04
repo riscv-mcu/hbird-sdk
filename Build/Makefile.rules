@@ -96,11 +96,14 @@ endif
 bin: $(TARGET).elf
 	$(OBJCOPY) $< -O binary $(TARGET).bin
 
+size: $(TARGET).elf
+	$(Q)$(SIZE) $<
+
 upload: $(TARGET).elf
 	@$(ECHO) "Download and run $<"
 	$(GDB) $< -ex "set remotetimeout 240" \
-        -ex "target remote | $(OPENOCD) --pipe $(OPENOCD_ARGS)" \
-        $(GDB_UPLOAD_ARGS) $(GDB_UPLOAD_CMDS)
+	-ex "target remote $(GDBREMOTE)" \
+	$(GDB_UPLOAD_ARGS) $(GDB_UPLOAD_CMDS)
 
 run_openocd:
 	@$(ECHO) "Start openocd server"
@@ -113,7 +116,7 @@ run_gdb: $(TARGET).elf
 debug: $(TARGET).elf
 	@$(ECHO) "Download and debug $<"
 	$(GDB) $< -ex "set remotetimeout 240" \
-        -ex "target remote | $(OPENOCD) --pipe $(OPENOCD_ARGS)"
+	-ex "target remote $(GDBREMOTE)"
 
 clean:
 	@$(ECHO) "Clean all build objects"

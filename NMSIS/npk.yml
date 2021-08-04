@@ -1,0 +1,61 @@
+## Package Base Information
+name: csp-hsdk_nmsis
+owner: nuclei
+version: 1.0.1
+description: Modified NMSIS in HBird SDK
+type: csp
+keywords:
+  - nmsis
+  - risc-v
+  - nuclei
+license: Apache-2.0
+homepage: https://github.com/Nuclei-Software/NMSIS
+
+## Package Configurations
+configuration:
+  nmsislibarch:
+    default_value: rv32imac
+    type: list
+    global: false
+    description: RISC-V ARCH for NMSIS library
+    value: >-
+      [ "rv32imac", "rv32imafc", "rv32imafdc" ]
+  nmsislibsel:
+    default_value: none
+    type: choices
+    global: global
+    description: Select NMSIS Library
+    choices:
+      - name: none
+        description: No NMSIS Library used
+      - name: nmsis_dsp
+        description: NMSIS DSP Library
+      - name: nmsis_nn
+        description: NMSIS DSP and NN Library
+
+## Source Code Management
+codemanage:
+  installdir: NMSIS
+  copyfiles:
+    - path: ["Core"]
+    - path: ["DSP", "Library/DSP"]
+      condition: $( contains(${nmsislibsel}, "nmsis_dsp") || contains(${nmsislibsel}, "nmsis_nn") )
+    - path: ["NN", "Library/NN"]
+      condition: $( contains(${nmsislibsel}, "nmsis_nn") )
+  incdirs:
+    - path: ["Core/Include"]
+    - path: ["DSP/Include"]
+      condition: $( contains(${nmsislibsel}, "nmsis_dsp") || contains(${nmsislibsel}, "nmsis_nn") )
+    - path: ["NN/Include"]
+      condition: $( contains(${nmsislibsel}, "nmsis_nn") )
+  libdirs:
+    - path: ["Library/DSP/GCC"]
+      condition: $( contains(${nmsislibsel}, "nmsis_dsp") || contains(${nmsislibsel}, "nmsis_nn") )
+    - path: ["Library/NN/GCC"]
+      condition: $( contains(${nmsislibsel}, "nmsis_nn") )
+  ldlibs:
+    - libs: ["nmsis_dsp_${nmsislibarch}"]
+      condition: $( contains(${nmsislibsel}, "nmsis_dsp") || contains(${nmsislibsel}, "nmsis_nn") )
+    - libs: ["nmsis_nn_${nmsislibarch}"]
+      condition: $( contains(${nmsislibsel}, "nmsis_nn") )
+

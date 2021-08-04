@@ -1,0 +1,116 @@
+## Package Base Information
+name: ssp-hsdk_hbird
+owner: nuclei
+description: HummingBird SoC Support Package
+type: ssp
+keywords:
+  - soc
+  - risc-v
+  - hummingbird
+license: Apache-2.0
+homepage: https://github.com/SI-RISCV/e200_opensource
+
+packinfo:
+  core_vendor: HummingBird
+  vendor: HummingBird
+  name: HummingBird RISC-V SoC
+  doc:
+    website: https://github.com/SI-RISCV/e200_opensource # Website
+    datasheet: https://github.com/SI-RISCV/e200_opensource/blob/master/doc/%E8%9C%82%E9%B8%9FE203%E5%BC%80%E6%BA%90SoC%E7%AE%80%E4%BB%8B.pdf
+    usermanual: https://doc.nucleisys.com/hbird_sdk/design/soc/hbird.html
+
+## Package Dependency
+dependencies:
+  - name: csp-hsdk_nmsis
+    version:
+
+## Package Configurations
+configuration:
+  hbird_core:
+    default_value: e203
+    type: choice
+    global: true
+    description: RISC-V Core
+    choices:
+      - name: e201
+        arch: rv32iac
+        abi: ilp32
+        description: E201 Core(ARCH=rv32iac, ABI=ilp32)
+      - name: e201e
+        arch: rv32eac
+        abi: ilp32e
+        description: E201E Core(ARCH=rv32eac, ABI=ilp32e)
+      - name: e203
+        arch: rv32imac
+        abi: ilp32
+        description: E203 Core(ARCH=rv32imac, ABI=ilp32)
+      - name: e205
+        arch: rv32imac
+        abi: ilp32
+        description: E205 Core(ARCH=rv32imac, ABI=ilp32)
+      - name: e205f
+        arch: rv32imafc
+        abi: ilp32f
+        description: E205F Core(ARCH=rv32imafc, ABI=ilp32f)
+      - name: e205fd
+        arch: rv32imafdc
+        abi: ilp32d
+        description: E205F Core(ARCH=rv32imafdc, ABI=ilp32d)
+  newlibsel:
+    default_value: nano
+    type: choice
+    global: true
+    description: Newlib Selection
+    choices:
+      - name: normal
+        description: Normal Newlib
+      - name: nano_with_printfloat
+        description: Newlib Nano with print float support
+      - name: nano
+        description: Newlib Nano
+
+## Source Code Management
+codemanage:
+  installdir: hbird
+  copyfiles:
+    - path: ["Source/", "Include/"]
+  incdirs:
+    - path: ["Include/"]
+
+## Set Configuration for other packages
+setconfig:
+  - config: nmsislibarch
+    value: ${hbird_core.arch}
+
+## Debug Configuration for this board
+debugconfig:
+  - type: openocd
+    description: Nuclei OpenOCD
+    svd:
+
+## Build Configuration
+buildconfig:
+  - type: gcc
+    description: Nuclei GNU Toolchain
+    cross_prefix: riscv-nuclei-elf- # optional
+    common_flags: # flags need to be combined together across all packages
+      - flags: -g -fno-common -ffunction-sections -fdata-sections
+      - flags: -march=${hbird_core.arch} -mabi=${hbird_core.abi} -mcmodel=medany
+    ldflags:
+      - flags: -lstdc++ -nostartfiles --specs=nosys.specs
+      - flags: --specs=nano.specs
+        condition: $( ${newlibsel} != "normal" )
+      - flags: -u _printf_float
+        condition: $( ${newlibsel} != "nano_with_printfloat" )
+      - flags: -u _isatty -u _write -u _sbrk -u _read -u _close -u _fstat -u _lseek
+    cflags:
+    asmflags:
+    cxxflags:
+    common_defines:
+      - defines: SOC_HBIRD
+    prebuild_steps: # could be override by app/bsp type
+      command:
+      description:
+    postbuild_steps: # could be override by app/bsp type
+      command:
+      description:

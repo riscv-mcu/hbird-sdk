@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * Copyright (c) 2019 HBIRD Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -129,7 +129,7 @@ void SystemInit (void)
  * \defgroup  NMSIS_Core_IntExcNMI_Handling   Interrupt and Exception Handling
  * \brief Functions for interrupt, exception handle available in system_<device>.c.
  * \details
- * Nuclei provide a template for interrupt, exception handling. Silicon Vendor could adapat according
+ * HBIRD provide a template for interrupt, exception handling. Silicon Vendor could adapat according
  * to their requirement. Silicon vendor could implement interface for different exception code and
  * replace current implementation.
  *
@@ -378,12 +378,10 @@ static uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
 void SystemBannerPrint(void)
 {
 #if defined(HBIRD_BANNER) && (HBIRD_BANNER == 1)
-#ifndef DOWNLOAD_MODE
-#error DOWNLOAD_MODE is not defined via build system, please check!
-#endif
-    const char* download_modes[] = {"FLASHXIP", "FLASH", "ILM"};
     printf("HummingBird SDK Build Time: %s, %s\r\n", __DATE__, __TIME__);
-    printf("Download Mode: %s\r\n", download_modes[DOWNLOAD_MODE]);
+#ifdef DOWNLOAD_MODE_STRING
+    printf("Download Mode: %s\r\n", DOWNLOAD_MODE_STRING);
+#endif
     printf("CPU Frequency %lu Hz\r\n", SystemCoreClock);
 #endif
 }
