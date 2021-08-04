@@ -1,0 +1,55 @@
+## Package Base Information
+name: app-hsdk_dhrystone
+owner: nuclei
+version:
+description: Dhrystone Benchmark
+type: app
+keywords:
+  - app
+  - risc-v
+license:
+homepage:
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+
+## Package Configurations
+configuration:
+  app_commonflags:
+    value: >-
+      -O2 -flto -fno-inline -funroll-loops -Wno-implicit -mexplicit-relocs
+      -fno-builtin-printf -fno-common -falign-functions=4 -falign-jumps=4 -falign-loops=4
+    type: text
+    description: Application Compile Flags
+
+## Set Configuration for other packages
+setconfig:
+  - config: newlibsel
+    value: nano_with_printfloat
+
+## Source Code Management
+codemanage:
+  copyfiles:
+    - path: ["*.c", "*.h"]
+  incdirs:
+    - path: ["./"]
+  libdirs:
+  ldlibs:
+
+## Build Configuration
+buildconfig:
+  - type: gcc
+    common_flags: # flags need to be combined together across all packages
+      - flags: ${app_commonflags}
+    ldflags:
+    cflags:
+    asmflags:
+    cxxflags:
+    prebuild_steps: # could be override by app/bsp type
+      command:
+      description:
+    postbuild_steps: # could be override by app/bsp type
+      command:
+      description:

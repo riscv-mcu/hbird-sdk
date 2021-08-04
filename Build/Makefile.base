@@ -40,10 +40,15 @@ PFLOAT ?= 0
 NEWLIB ?= nano
 ## If NOGC=1, it will not gc any sections during compiling to save code size
 NOGC ?=
+## If BANNER=0, it will not display sdk banner when program run
+BANNER ?=
 
-# Directories for SoC and RTOS chosen
+# Directory variables for NMSIS, SoC/RTOS chosen, Middleware Components
+# HBIRD_SDK_SOC and HBIRD_SDK_RTOS variables need to be set deferred
+HBIRD_SDK_NMSIS ?= $(HBIRD_SDK_ROOT)/NMSIS
 HBIRD_SDK_SOC = $(HBIRD_SDK_ROOT)/SoC/$(SOC)
 HBIRD_SDK_RTOS = $(HBIRD_SDK_ROOT)/OS/$(RTOS)
+HBIRD_SDK_MIDDLEWARE := $(HBIRD_SDK_ROOT)/Components
 
 ## Include GNU Make Standard Library
 ## Website: http://gmsl.sourceforge.net/

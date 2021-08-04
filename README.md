@@ -42,19 +42,13 @@ $HBIRD_SDK_ROOT
 │   ├── Makefile.base
 │   ├── Makefile.conf
 │   ├── Makefile.core
+│   ├── Makefile.components
 │   ├── Makefile.files
-│   ├── Makefile.files.hbird
-│   ├── Makefile.files.hbirdv2
 │   ├── Makefile.global
 │   ├── Makefile.misc
 │   ├── Makefile.rtos
-│   ├── Makefile.rtos.FreeRTOS
-│   ├── Makefile.rtos.UCOSII
-│   ├── Makefile.rtos.RTThread
 │   ├── Makefile.rules
-│   ├── Makefile.soc
-│   ├── Makefile.soc.hbird
-│   └── Makefile.soc.hbirdv2
+│   └── Makefile.soc
 ├── doc
 │   ├── build
 │   ├── source

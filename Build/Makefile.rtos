@@ -1,10 +1,19 @@
 ifneq ($(RTOS),)
 ifneq ($(wildcard $(HBIRD_SDK_RTOS)),)
 MAKEFILE_PREREQS += $(HBIRD_SDK_BUILD)/Makefile.rtos
-MAKEFILE_PREREQS += $(HBIRD_SDK_BUILD)/Makefile.rtos.$(RTOS)
-include $(HBIRD_SDK_BUILD)/Makefile.rtos.$(RTOS)
+
+RTOS_BUILD_MAKEFILE := $(HBIRD_SDK_ROOT)/OS/$(RTOS)/build.mk
+
+# build.mk is necessary for RTOS
+ifneq ($(wildcard $(RTOS_BUILD_MAKEFILE)),)
+MAKEFILE_PREREQS += $(RTOS_BUILD_MAKEFILE)
+include $(RTOS_BUILD_MAKEFILE)
+else
+$(error build.mk might not exist in $(realpath $(HBIRD_SDK_ROOT)/OS/$(RTOS)))
+endif
+
 # Define RTOS_$(RTOS) to show usage of RTOS, such as RTOS_FREERTOS
-RTOS_UPPER = $(call uc, $(RTOS))
+RTOS_UPPER := $(call uc, $(RTOS))
 COMMON_FLAGS += -DRTOS_$(RTOS_UPPER)
 endif
 endif

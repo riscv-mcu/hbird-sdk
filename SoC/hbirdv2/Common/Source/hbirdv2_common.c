@@ -1,6 +1,6 @@
 #include "hbird_sdk_soc.h"
 
-static uint32_t get_timer_freq()
+__STATIC_FORCEINLINE uint64_t get_timer_freq(void)
 {
     return SOC_TIMER_FREQ;
 }
@@ -9,7 +9,7 @@ uint32_t measure_cpu_freq(uint32_t n)
 {
     uint32_t start_mcycle, delta_mcycle;
     uint32_t start_mtime, delta_mtime;
-    uint32_t mtime_freq = get_timer_freq();
+    uint64_t mtime_freq = get_timer_freq();
 
     // Don't start measuruing until we see an mtime tick
     uint32_t tmp = (uint32_t)SysTimer_GetLoadValue();
@@ -27,7 +27,7 @@ uint32_t measure_cpu_freq(uint32_t n)
            + ((delta_mcycle % delta_mtime) * mtime_freq) / delta_mtime;
 }
 
-uint32_t get_cpu_freq()
+uint32_t get_cpu_freq(void)
 {
     uint32_t cpu_freq;
 

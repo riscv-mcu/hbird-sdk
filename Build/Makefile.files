@@ -1,4 +1,4 @@
-INCDIRS += $(HBIRD_SDK_ROOT)/NMSIS/Core/Include
+INCDIRS += $(HBIRD_SDK_NMSIS)/Core/Include
 C_INCDIRS +=
 CXX_INCDIRS +=
 ASM_INCDIRS +=
@@ -13,5 +13,3 @@ CXX_SRCS +=
 ASM_SRCS +=
 
 LIBDIRS +=
-
-include $(HBIRD_SDK_BUILD)/Makefile.files.$(SOC)

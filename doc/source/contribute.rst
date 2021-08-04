@@ -48,17 +48,31 @@ Make sure the SoC name and Board name used in this HummingBird SDK is all in low
             │   ├── intexc_ncstar.S
             │   └── startup_ncstar.S
             ├── Stubs
+            │   ├── clock_getres.c
+            │   ├── clock_gettime.c
+            │   ├── clock_settime.c
             │   ├── close.c
+            │   ├── execve.c
+            │   ├── exit.c
+            │   ├── fork.c
             │   ├── fstat.c
+            │   ├── getpid.c
             │   ├── gettimeofday.c
             │   ├── isatty.c
+            │   ├── kill.c
+            │   ├── link.c
             │   ├── lseek.c
+            │   ├── open.c
             │   ├── read.c
             │   ├── sbrk.c
-            │   ├── stub.h
+            │   ├── stat.c
+            │   ├── times.c
+            │   ├── unlink.c
+            │   ├── wait.c
             │   └── write.c
             ├── ncstar_soc.c
             └── system_ncstar.c
+
 
      .. note::
 
@@ -73,7 +87,7 @@ Make sure the SoC name and Board name used in this HummingBird SDK is all in low
            mainly ``_write``, ``_read``, ``_sbrk`` stub function
          * The **GCC** folder contains *startup* and *exeception/interrupt* assemble code,
            if your board share the same linker script files, you can also put link script files here,
-           the linker script files name rules can refer to previously supported *hbird* SoC.
+           the linker script files name rules can refer to previously supported *hbirdv2* SoC.
          * The **hbird_sdk_soc.h** file is very important, it is a HummingBird RISC-V SoC Header file used
            by common application which can run accoss different SoC, it should include the SoC device
            header file ``ncstar.h``
@@ -110,47 +124,47 @@ Make sure the SoC name and Board name used in this HummingBird SDK is all in low
 
 2. Create Makefiles related to ``ncstar`` in :ref:`HummingBird SDK build system <develop_buildsystem>`
 
-   * Create **Build/Makefile.soc.ncstar**, the file content should be like this:
+   * Create **SoC/ncstar/build.mk**, the file content should be like this:
 
      .. code-block:: Makefile
+
+        ##### Put your SoC build configurations below #####
 
         BOARD ?= ncstar_eval
 
         # override DOWNLOAD and CORE variable for NCSTAR SoC
         # even though it was set with a command argument
-        override CORE := e203
+        override CORE := n307
         override DOWNLOAD := flashxip
 
-        NCSTAR_SDK_SOC_BOARD=$(HBIRD_SDK_SOC)/Board/$(BOARD)
-        NCSTAR_SDK_SOC_COMMON=$(HBIRD_SDK_SOC)/Common
+        HBIRD_SDK_SOC_BOARD := $(HBIRD_SDK_SOC)/Board/$(BOARD)
+        HBIRD_SDK_SOC_COMMON := $(HBIRD_SDK_SOC)/Common
 
         #no ilm on NCSTAR SoC
-        LINKER_SCRIPT ?= $(NCSTAR_SDK_SOC_BOARD)/Source/GCC/gcc_ncstar_flashxip.ld
-        OPENOCD_CFG ?= $(NCSTAR_SDK_SOC_BOARD)/openocd_ncstar.cfg
+        LINKER_SCRIPT ?= $(HBIRD_SDK_SOC_BOARD)/Source/GCC/gcc_ncstar_flashxip.ld
+        OPENOCD_CFG ?= $(HBIRD_SDK_SOC_BOARD)/openocd_ncstar.cfg
 
-        RISCV_ARCH ?= rv32imafc
-        RISCV_ABI ?= ilp32f
+        RISCV_ARCH ?= rv32imac
+        RISCV_ABI ?= ilp32
 
+        ##### Put your Source code Management configurations below #####
 
-   * Create **Makefile.files.ncstar**, the file content should be like this:
+        INCDIRS += $(HBIRD_SDK_SOC_COMMON)/Include
 
-     .. code-block:: Makefile
+        C_SRCDIRS += $(HBIRD_SDK_SOC_COMMON)/Source \
+                     $(HBIRD_SDK_SOC_COMMON)/Source/Drivers \
+                     $(HBIRD_SDK_SOC_COMMON)/Source/Stubs
 
-        INCDIRS += $(NCSTAR_SDK_SOC_COMMON)/Include
-
-        C_SRCDIRS += $(NCSTAR_SDK_SOC_COMMON)/Source \
-                     $(NCSTAR_SDK_SOC_COMMON)/Source/Drivers \
-                     $(NCSTAR_SDK_SOC_COMMON)/Source/Stubs
-
-        ASM_SRCS += $(NCSTAR_SDK_SOC_COMMON)/Source/GCC/startup_ncstar.S \
-                     $(NCSTAR_SDK_SOC_COMMON)/Source/GCC/intexc_ncstar.S
+        ASM_SRCS += $(HBIRD_SDK_SOC_COMMON)/Source/GCC/startup_ncstar.S \
+                     $(HBIRD_SDK_SOC_COMMON)/Source/GCC/intexc_ncstar.S
 
         # Add extra board related source files and header files
-        VALID_NCSTAR_SDK_SOC_BOARD=$(wildcard $(NCSTAR_SDK_SOC_BOARD))
-        ifneq ($(VALID_NCSTAR_SDK_SOC_BOARD),)
-        INCDIRS += $(VALID_NCSTAR_SDK_SOC_BOARD)/Include
-        C_SRCDIRS += $(VALID_NCSTAR_SDK_SOC_BOARD)/Source
+        VALID_HBIRD_SDK_SOC_BOARD := $(wildcard $(HBIRD_SDK_SOC_BOARD))
+        ifneq ($(VALID_HBIRD_SDK_SOC_BOARD),)
+        INCDIRS += $(VALID_HBIRD_SDK_SOC_BOARD)/Include
+        C_SRCDIRS += $(VALID_HBIRD_SDK_SOC_BOARD)/Source
         endif
+
 
 3. If you have setup the source code and build system correctly, then you can test
    your SoC using the common applications, e.g.

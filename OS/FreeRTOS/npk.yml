@@ -1,0 +1,30 @@
+## Package Base Information
+name: osp-hsdk_freertos
+owner: nuclei
+version: 10.3.1
+description: FreeRTOS
+type: osp
+keywords:
+  - rtos
+  - risc-v
+license: MIT
+homepage: https://freertos.org/
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+
+## Package Configurations
+configuration:
+
+
+## Source Code Management
+codemanage:
+  installdir: FreeRTOS
+  copyfiles:
+    - path: ["Source/*.c", "Source/portable/GCC", "Source/portable/MemMang/heap_4.c", "Source/include"]
+  incdirs:
+    - path: ["Source/include", "Source/portable/GCC"]
+  libdirs:
+  ldlibs:

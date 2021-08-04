@@ -1,0 +1,28 @@
+## Package Base Information
+name: osp-hsdk_ucosii
+owner: nuclei
+version: 2.93.00
+description: UCOS/II
+type: osp
+keywords:
+  - rtos
+  - risc-v
+license: Apache-2.0
+homepage: https://github.com/SiliconLabs/uC-OS2
+
+## Package Dependency
+dependencies:
+  - name: sdk-hbird_sdk
+    version:
+
+## Package Configurations
+configuration:
+
+## Source Code Management
+codemanage:
+  installdir: UCOSII
+  copyfiles:
+    - path: ["source", "arch"]
+  incdirs:
+    - path: ["source", "arch"]
+
