@@ -119,9 +119,7 @@ void rt_hw_context_switch_interrupt(rt_ubase_t from, rt_ubase_t to)
 
 void rt_hw_context_switch(rt_ubase_t from, rt_ubase_t to)
 {
-    rt_interrupt_from_thread = from;
-    rt_interrupt_to_thread = to;
-    portYIELD();
+    rt_hw_context_switch_interrupt(from, to);
 }
 
 /** shutdown CPU */
