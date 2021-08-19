@@ -36,3 +36,9 @@ codemanage:
       condition: $( ${rtthread_msh} == 1 )
   libdirs:
   ldlibs:
+
+## Build Configuration
+buildconfig:
+  - type: gcc
+    common_defines:
+      - defines: RTOS_RTTHREAD
