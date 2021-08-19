@@ -26,3 +26,8 @@ codemanage:
   incdirs:
     - path: ["source", "arch"]
 
+## Build Configuration
+buildconfig:
+  - type: gcc
+    common_defines:
+      - defines: RTOS_UCOSII

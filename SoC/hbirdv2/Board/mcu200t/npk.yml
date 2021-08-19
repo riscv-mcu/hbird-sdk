@@ -62,7 +62,7 @@ debugconfig:
       - key: config
         value: "openocd_hbirdv2.cfg"
 
-
+## Build Configuration
 buildconfig:
   - type: gcc
     linkscript:

@@ -49,7 +49,7 @@ codemanage:
 ## Set Configuration for other packages
 setconfig:
 
-## Debug Configuration for this board
+## Debug Configuration for this Board
 debugconfig:
   - type: openocd
     description: Nuclei OpenOCD
@@ -57,7 +57,7 @@ debugconfig:
       - key: config
         value: "openocd_hbird.cfg"
 
-
+## Build Configuration
 buildconfig:
   - type: gcc
     linkscript:
