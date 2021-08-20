@@ -499,6 +499,11 @@ extern void xlspike_exit(int status);
 extern void spike_exit(int status);
     spike_exit(status);
 #endif
+#ifdef SIMULATION_RTL
+extern void rtlsim_exit(int status);
+    rtlsim_exit(status);
+#endif
+
 }
 
 /**
