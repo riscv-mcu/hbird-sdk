@@ -194,7 +194,11 @@ typedef enum EXCn {
 
 #define RTC_FREQ                    32768
 // The TIMER frequency is just the RTC frequency
-#define SOC_TIMER_FREQ              RTC_FREQ
+#ifdef SIMULATION_RTL
+  #define SOC_TIMER_FREQ            (1000000UL)
+#else
+  #define SOC_TIMER_FREQ            RTC_FREQ
+#endif
 /* =========================================================================================================================== */
 /* ================                            Device Specific Peripheral Section                             ================ */
 /* =========================================================================================================================== */

@@ -76,3 +76,14 @@ void spike_exit(int status)
     htif_system_reset(status);
 }
 #endif
+
+#ifdef SIMULATION_RTL
+// never return for rtl
+void rtlsim_exit(int status)
+{
+    __ASM volatile("li x3, 0xDEADBEEF");
+    while (1) {
+        __RV_CSR_WRITE(CSR_MSCRATCH, 0x1);
+    }
+}
+#endif
