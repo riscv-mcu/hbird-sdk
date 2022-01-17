@@ -32,30 +32,14 @@ configuration:
     global: true
     description: RISC-V Core
     choices:
-      - name: e201
-        arch: rv32iac
-        abi: ilp32
-        description: E201 Core(ARCH=rv32iac, ABI=ilp32)
-      - name: e201e
+      - name: e203e
         arch: rv32eac
         abi: ilp32e
-        description: E201E Core(ARCH=rv32eac, ABI=ilp32e)
+        description: E203E Core(ARCH=rv32eac, ABI=ilp32e)
       - name: e203
         arch: rv32imac
         abi: ilp32
         description: E203 Core(ARCH=rv32imac, ABI=ilp32)
-      - name: e205
-        arch: rv32imac
-        abi: ilp32
-        description: E205 Core(ARCH=rv32imac, ABI=ilp32)
-      - name: e205f
-        arch: rv32imafc
-        abi: ilp32f
-        description: E205F Core(ARCH=rv32imafc, ABI=ilp32f)
-      - name: e205fd
-        arch: rv32imafdc
-        abi: ilp32d
-        description: E205F Core(ARCH=rv32imafdc, ABI=ilp32d)
   newlibsel:
     default_value: nano
     type: choice
@@ -101,7 +85,7 @@ buildconfig:
       - flags: --specs=nano.specs
         condition: $( ${newlibsel} != "normal" )
       - flags: -u _printf_float
-        condition: $( ${newlibsel} != "nano_with_printfloat" )
+        condition: $( ${newlibsel} == "nano_with_printfloat" )
       - flags: -u _isatty -u _write -u _sbrk -u _read -u _close -u _fstat -u _lseek
     cflags:
     asmflags:

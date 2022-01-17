@@ -1,12 +1,8 @@
 # Format for adding a new core
 # EXXX_CORE_ARCH_ABI = ARCH ABI
-E201_CORE_ARCH_ABI = rv32iac ilp32
-E201E_CORE_ARCH_ABI = rv32eac ilp32e
+E203E_CORE_ARCH_ABI = rv32eac ilp32e
 E203_CORE_ARCH_ABI = rv32imac ilp32
-E205_CORE_ARCH_ABI = rv32imac ilp32
-E205F_CORE_ARCH_ABI = rv32imafc ilp32f
-E205FD_CORE_ARCH_ABI = rv32imafdc ilp32d
 
 # Don't forget to add a new core below
 # if you add a new EXXX_CORE_ARCH_ABI above
-SUPPORTED_CORES = e201 e201e e203 e205 e205f e205fd
+SUPPORTED_CORES = e203e e203
