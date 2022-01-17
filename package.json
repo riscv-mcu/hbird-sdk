@@ -1,6 +1,6 @@
 {
     "name": "framework-hbird-sdk",
     "description": "HummingBird RISC-V Embedded SDK",
-    "version": "0.1.3-dev",
+    "version": "0.1.3",
     "url": "https://github.com/riscv-mcu/hbird-sdk/"
 }
