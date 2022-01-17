@@ -536,12 +536,8 @@ Currently it has these cores supported as described in table
 
    ========  ========== =======
    **CORE**  **ARCH**   **ABI**
-   e201      rv32iac    ilp32
-   e201e     rv32eac    ilp32e
+   e203e     rv32eac    ilp32e
    e203      rv32imac   ilp32
-   e205      rv32imac   ilp32
-   e205f     rv32imafc  ilp32f
-   e205fd    rv32imafdc ilp32d
    ========  ========== =======
 
 .. _develop_buildsystem_var_simulation:

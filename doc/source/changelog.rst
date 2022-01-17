@@ -3,10 +3,10 @@
 Changelog
 =========
 
-V0.1.3-dev
-----------
+V0.1.3
+------
 
-This is development version ``0.1.3-dev`` of HBird SDK.
+This is release version ``0.1.3`` of HBird SDK.
 
 * Build
 
@@ -27,6 +27,10 @@ This is development version ``0.1.3-dev`` of HBird SDK.
     - Add ``cleanall`` target in **<HBIRD_SDK_ROOT>/Makefile**, you can clean all the applications
       defined by ``EXTRA_APP_ROOTDIRS`` variable
     - Fix ``size`` target of build system
+
+* SoC
+
+    - hbird and hbirdv2 SoC cores only support e203 and e203e now.
 
 V0.1.2
 ------
