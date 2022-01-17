@@ -67,17 +67,17 @@ jobs:
         source .ci/build_sdk.sh
         source .ci/build_applications.sh
         touch build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=ilm
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
         SOC=hbird BOARD=hbird_eval hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flash
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
         SOC=hbird BOARD=hbird_eval hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flashxip
         echo "Build For Board hbird_eval, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbird BOARD=hbird_eval hsdk_build_directory    application  >> build.log
@@ -93,33 +93,33 @@ jobs:
         source .ci/build_sdk.sh
         source .ci/build_applications.sh
         touch build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=ilm
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flash
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flashxip
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
         
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=ilm
         echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flash
         echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    test         >> build.log
-        export CORE=e205
+        export CORE=e203
         export DOWNLOAD=flashxip
         echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=mcu200t hsdk_build_directory    application  >> build.log
