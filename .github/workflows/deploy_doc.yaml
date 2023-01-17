@@ -18,10 +18,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-20.04]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: recursive
         fetch-depth: 0
@@ -48,7 +48,7 @@ jobs:
       run: |
         bash .ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER doc/build/html hbird_sdk
     - name: Upload Documentation
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: hbird_sdk_doc

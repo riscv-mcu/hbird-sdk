@@ -29,17 +29,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-20.04]
         soc: [hbird, hbirdv2]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: recursive
         fetch-depth: 0
 
     - name: Caching tools
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           prebuilt_tools/*.tar.bz2
@@ -51,9 +51,9 @@ jobs:
       run: |
           mkdir -p prebuilt_tools
           cd prebuilt_tools
-          toolzip=nuclei_riscv_newlibc_prebuilt_linux64_2020.08.tar.bz2
+          toolzip=nuclei_riscv_newlibc_prebuilt_linux64_2022.08.tar.bz2
           if [ ! -e $toolzip ] ; then
-            wget https://nucleisys.com/upload/files/toochain/gcc/$toolzip
+            wget --no-check-certificate https://nucleisys.com/upload/files/toochain/gcc/$toolzip
           fi
           tar -xjf $toolzip
           cd ..
@@ -108,7 +108,7 @@ jobs:
         echo "Build For Board ddr200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application  >> build.log
         SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test         >> build.log
-        
+
         export CORE=e203
         export DOWNLOAD=ilm
         echo "Build For Board mcu200t, CORE=$CORE, DOWNLOAD=$DOWNLOAD"
@@ -128,7 +128,7 @@ jobs:
         mv build.log build_${{ matrix.soc }}.log
 
     - name: Upload Build Log for ${{ matrix.soc }}
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v3
       with:
         name: build_${{ matrix.soc }}
         path: |
