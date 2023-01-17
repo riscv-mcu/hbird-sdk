@@ -3,8 +3,7 @@ variables:
     DOC_CENTER: /home/xl_ci/doc_center
 
 before_script:
-    - module load nucleisys/riscv-nuclei-elf-gcc
-    - module load nucleisys/openocd
+    - source /home/share/devtools/env.sh
     - source .ci/build_sdk.sh
     - source .ci/build_applications.sh
 
@@ -38,7 +37,7 @@ build_doc:
         - cp build/latex/*.pdf build/html/
     tags:
         - env::native
-        - host::xls01
+        - host::whss1
 
 ## Job for deploy document to internal server
 deploy_doc:
@@ -58,7 +57,7 @@ deploy_doc:
         - scp -r html $DOC_SERVER:$DOC_CENTER/hbird_sdk
     tags:
         - env::native
-        - host::xls01
+        - host::whss1
     dependencies:
         - build_doc
 
@@ -76,7 +75,7 @@ deploy_website:
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER doc/build/html hbird_sdk
     tags:
         - env::native
-        - host::xls01
+        - host::whss1
     dependencies:
         - build_doc
 
@@ -85,7 +84,7 @@ deploy_website:
     stage: build_hbird_eval
     tags:
         - env::native
-        - host::xls01
+        - host::whss1
     script:
         - SOC=hbird BOARD=hbird_eval hsdk_build_directory    application
         - SOC=hbird BOARD=hbird_eval hsdk_build_directory    test
@@ -137,7 +136,7 @@ build_hbird_eval_flashxip_e203e:
     stage: build_ddr200t
     tags:
         - env::native
-        - host::xls01
+        - host::whss1
     script:
         - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    application
         - SOC=hbirdv2 BOARD=ddr200t hsdk_build_directory    test
