@@ -23,7 +23,7 @@ configuration:
   nmsislibsel:
     default_value: none
     type: choices
-    global: global
+    global: true
     description: Select NMSIS Library
     choices:
       - name: none
