@@ -73,6 +73,8 @@ html_theme_options = {
 breathe_projects = {
     "nmsis_core": "../build/html/design/doxygen/core/xml",
 }
+
+language = "en"
 breathe_default_project = "nmsis_core"
 breathe_show_define_initializer = True
 
