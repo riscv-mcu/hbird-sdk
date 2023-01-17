@@ -77,6 +77,7 @@ deploy_website:
           - master
         changes:
           - doc/source/**/**/**/*
+          - .gitlab-ci.yml
     script:
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER doc/build/html hbird_sdk
     tags:
