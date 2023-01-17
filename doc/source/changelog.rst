@@ -3,6 +3,19 @@
 Changelog
 =========
 
+V0.1.4
+------
+
+This is release version ``0.1.4`` of HBird SDK.
+
+* SoC
+
+  - Fix PLIC example fail in Nuclei Studio, due to ``SOC_HBIRDV2`` not defined in npk.yml
+
+* NMSIS
+
+  - Fix typo of ``global: true`` in npk.yml
+
 V0.1.3
 ------
 
