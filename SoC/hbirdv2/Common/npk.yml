@@ -91,7 +91,7 @@ buildconfig:
     asmflags:
     cxxflags:
     common_defines:
-      - defines: SOC_HBIRD
+      - defines: SOC_HBIRDV2
     prebuild_steps: # could be override by app/bsp type
       command:
       description:
