@@ -31,8 +31,9 @@ build_doc:
         expire_in: 2 day
     script:
         - cd doc
-        - pip3 install --user -r requirements.txt
-        - export PATH=$HOME/.local/bin:$PATH
+        - activate_swdev
+          #- pip3 install --user -r requirements.txt
+          #- export PATH=$HOME/.local/bin:$PATH
         - make clean
         - make all
         - make latexpdf
