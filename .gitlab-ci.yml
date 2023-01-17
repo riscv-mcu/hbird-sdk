@@ -31,6 +31,8 @@ build_doc:
         expire_in: 2 day
     script:
         - cd doc
+        # https://www.baeldung.com/linux/locale-environment-variables#3-lcall-environment-variable
+        - export LC_ALL=en_EN.UTF-8
         - activate_swdev
           #- pip3 install --user -r requirements.txt
           #- export PATH=$HOME/.local/bin:$PATH
