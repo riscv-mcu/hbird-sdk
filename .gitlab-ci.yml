@@ -13,6 +13,9 @@ stages:
     - build_hbird_eval
     - build_ddr200t
 
+default:
+    interruptible: true
+
 ## Job for build document
 build_doc:
     stage: doc_build
