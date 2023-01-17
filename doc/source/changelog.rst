@@ -16,6 +16,10 @@ This is release version ``0.1.4`` of HBird SDK.
 
   - Fix typo of ``global: true`` in npk.yml
 
+* CI
+
+  - Update gitlab & github ci workflow
+
 V0.1.3
 ------
 
